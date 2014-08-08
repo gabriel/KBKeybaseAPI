@@ -9,6 +9,6 @@ pod "AFNetworking"
 pod "Mantle"
 pod "SSKeychain"
 
-#target :Tests do
-# pod "GHUnit", :path => "../gh-unit/"
-#end
+target :Tests do
+  pod "GRUnit"
+end

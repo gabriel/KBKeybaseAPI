@@ -18,7 +18,4 @@
 
 - (instancetype)initWithSessionUser:(KBSessionUser *)sessionUser user:(KBUser *)user;
 
-+ (KBSession *)loadSession;
-- (void)saveSession;
-
 @end

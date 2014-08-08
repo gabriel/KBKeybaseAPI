@@ -19,19 +19,26 @@
   return @{
            @"identifier": @"id",
            @"userName": @"basics.username",
-           @"primaryImage": @"pictures.primary",
+           @"image": @"pictures.primary",
            @"fullName": @"profile.full_name",
            @"bio": @"profile.bio",
            @"location": @"profile.location",
            
-           @"primaryEmail": @"emails.primary.email",
+           @"email": @"emails.primary.email",
            @"bitcoinAddresses": @"cryptocurrency_addresses.bitcoin",
            @"proofs": @"proofs_summary.all",
+           
+           @"KID": @"public_keys.primary.kid",
+           @"publicKey": @"public_keys.primary",
            };
 }
 
 + (NSValueTransformer *)primaryImageJSONTransformer {
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBImage.class];
+}
+
++ (NSValueTransformer *)publicKeyJSONTransformer {
+  return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBPublicKey.class];
 }
 
 + (NSValueTransformer *)proofsJSONTransformer {
@@ -44,11 +51,6 @@
 
 - (NSArray *)proofsForType:(KBProofType)type {  
   return [_proofs select:^BOOL(KBProof *proof) { return (proof.proofType == type); }];
-}
-
-- (BOOL)verifyKey:(id<KBKey>)key {
-  // TODO: Key verification
-  return YES;
 }
 
 - (NSUInteger)hash {

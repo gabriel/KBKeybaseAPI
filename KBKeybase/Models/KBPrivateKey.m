@@ -19,23 +19,25 @@
 
 @implementation KBPrivateKey
 
-- (NSString *)keyId {
-  return KBKeyIdFromFingerprint(_fingerprint);
+- (instancetype)initWithBundle:(NSData *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
+  if ((self = [super init])) {
+    _bundle = [bundle base64EncodedStringWithOptions:0];
+    _secretKey = [P3SKB P3SKBFromData:bundle error:nil];
+    _fingerprint = fingerprint;
+    _userName = userName;
+  }
+  return self;
 }
 
 - (NSString *)displayDescription {
   return KBKeyDisplayDescription(_fingerprint);
 }
 
-- (NSData *)publicKey {
-  return _secretKey.publicKey;
-}
-
-- (NSData *)decryptPrivateKeyWithPassword:(NSString *)password error:(NSError * __autoreleasing *)error {
+- (NSData *)decryptKeyWithPassword:(NSString *)password error:(NSError * __autoreleasing *)error {
   return [_secretKey decryptPrivateKeyWithPassword:password error:error];
 }
 
-- (BOOL)isPasswordProtected {
+- (BOOL)isSecret {
   return YES;
 }
 
@@ -51,6 +53,13 @@
 + (NSValueTransformer *)secretKeyJSONTransformer {
   return [[P3SKBValueTransformer alloc] init];
 }
+
+//- (instancetype)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error {
+//  self = [super initWithDictionary:dictionary error:error];
+//  if (self == nil) return nil;
+//
+//  return self;
+//}
 
 @end
 

@@ -11,11 +11,11 @@
 
 @interface KBPublicKey : MTLModel <KBKey, MTLJSONSerializing>
 
-@property (readonly) NSString *keyId;
 @property (readonly) NSString *bundle;
 @property (readonly) NSString *userName;
 @property (readonly) NSString *fingerprint;
-@property (readonly) KBKeyCapabilities capabilities;
-- (BOOL)isPasswordProtected;
+- (BOOL)isSecret;
+
+- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName;
 
 @end

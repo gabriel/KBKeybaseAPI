@@ -8,17 +8,16 @@
 
 #import "KBKey.h"
 #import <Mantle/Mantle.h>
+#import <TSTripleSec/P3SKB.h>
 
 @interface KBPrivateKey : MTLModel <KBKey, MTLJSONSerializing>
 
-@property (readonly) NSString *keyId;
 @property (readonly) NSString *bundle;
+@property (readonly) P3SKB *secret;
 @property (readonly) NSString *userName;
 @property (readonly) NSString *fingerprint;
-@property (readonly) KBKeyCapabilities capabilities;
-- (BOOL)isPasswordProtected;
+- (BOOL)isSecret;
 
-- (NSData *)publicKey;
-- (NSData *)decryptPrivateKeyWithPassword:(NSString *)password error:(NSError * __autoreleasing *)error;
+- (instancetype)initWithBundle:(NSData *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName;
 
 @end

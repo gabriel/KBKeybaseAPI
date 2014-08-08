@@ -10,15 +10,20 @@
 
 @implementation KBPublicKey
 
-- (NSString *)keyId {
-  return KBKeyIdFromFingerprint(_fingerprint);
+- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
+  if ((self = [super init])) {
+    _bundle = bundle;
+    _fingerprint = fingerprint;
+    _userName = userName;
+  }
+  return self;
 }
 
 - (NSString *)displayDescription {
   return KBKeyDisplayDescription(_fingerprint);
 }
 
-- (BOOL)isPasswordProtected {
+- (BOOL)isSecret {
   return NO;
 }
 
@@ -29,5 +34,16 @@
            @"userName": @"username",
            };
 }
+
+//- (BOOL)verifyUserName:(NSString *)userName {
+//  @try {
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[_signatureJSON dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+//    NSString *keyFingerprint = dict[@"body"][@"key"][@"fingerprint"];
+//    NSString *userName = dict[@"body"][@"key"][@"username"];
+//    return [keyFingerprint isEqual:_fingerprint] && [userName isEqual:_userName];
+//  } @catch(NSException *e) {
+//    return NO;
+//  }
+//}
 
 @end

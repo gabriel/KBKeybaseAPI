@@ -24,16 +24,13 @@
            @"userName": @"basics.username",
            @"signatures": @"sigs.all",
            @"followees": @"followees",
+           @"KID": @"private_keys.primary.kid",
            @"keyFingerprint": @"private_keys.primary.key_fingerprint",
            };
 }
 
 + (NSValueTransformer *)signaturesJSONTransformer {
   return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBSignature.class];
-}
-
-- (NSString *)keyId {
-  return KBKeyIdFromFingerprint(_keyFingerprint);
 }
 
 - (KBSignature *)signatureForIdentifier:(NSString *)identifier {

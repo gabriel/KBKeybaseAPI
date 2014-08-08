@@ -44,6 +44,11 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
 
 @implementation KBClient
 
+- (instancetype)init {
+  [NSException raise:NSInvalidArgumentException format:@"Use initWithAPIHost:"];
+  return nil;
+}
+
 - (instancetype)initWithAPIHost:(NSString *)APIHost {
   if ((self = [super init])) {
     _APIHost = APIHost;
@@ -108,7 +113,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   return [HMACpwh na_hexString];
 }
 
-- (void)getSaltWithEmailOrUserName:(NSString *)emailOrUserName success:(void (^)(NSData *salt, NSString *loginSession))success failure:(void (^)(NSError *error))failure {
+- (void)getSaltWithEmailOrUserName:(NSString *)emailOrUserName success:(void (^)(NSData *salt, NSString *loginSession))success failure:(KBClientErrorHandler)failure {
   
   NSParameterAssert(emailOrUserName);
   
@@ -126,7 +131,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)logInWithEmailOrUserName:(NSString *)emailOrUserName password:(NSString *)password success:(void (^)(KBSession *session))success failure:(void (^)(NSError *error))failure {
+- (void)logInWithEmailOrUserName:(NSString *)emailOrUserName password:(NSString *)password success:(void (^)(KBSession *session))success failure:(KBClientErrorHandler)failure {
   
   NSParameterAssert(emailOrUserName);
   NSParameterAssert(password);
@@ -163,7 +168,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)signUpWithName:(NSString *)name email:(NSString *)email userName:(NSString *)userName password:(NSString *)password invitationId:(NSString *)invitationId success:(void (^)(KBSession *session))success failure:(void (^)(NSError *error))failure {
+- (void)signUpWithName:(NSString *)name email:(NSString *)email userName:(NSString *)userName password:(NSString *)password invitationId:(NSString *)invitationId success:(void (^)(KBSession *session))success failure:(KBClientErrorHandler)failure {
   NSParameterAssert(name);
   NSParameterAssert(email);
   NSParameterAssert(userName);
@@ -189,7 +194,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)setPrivateKey:(P3SKB *)privateKey success:(dispatch_block_t)success failure:(void (^)(NSError *error))failure {
+- (void)pushPrivateKey:(P3SKB *)privateKey success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
   NSAssert(self.CSRFToken, @"Missing CSRF");
   
   NSDictionary *params = @{@"private_key": [[privateKey data] base64EncodedStringWithOptions:0], @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
@@ -205,7 +210,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)sessionUser:(void (^)(KBSessionUser *sessionUser))success failure:(void (^)(NSError *error))failure {
+- (void)sessionUser:(void (^)(KBSessionUser *sessionUser))success failure:(KBClientErrorHandler)failure {
   [self.httpManager GET:@"me.json" parameters:KBURLParameters(nil) success:^(NSURLSessionDataTask *task, id responseObject) {
     
     NSDictionary *meDict = [responseObject gh_objectMaybeNilForKey:@"me" ofClass:[NSDictionary class]];
@@ -223,7 +228,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(void (^)(NSError *error))failure {
+- (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
   NSParameterAssert(userName);
   [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"username": userName}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
@@ -242,7 +247,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)usersPaginatedForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users, BOOL completed))success failure:(void (^)(NSError *error))failure {
+- (void)usersPaginatedForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure {
   NSInteger length = 10;
   for (NSInteger offset = 0, count = [userNames count]; offset < count; offset += length) {
     BOOL completed = NO;
@@ -261,7 +266,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }
 }
 
-- (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(void (^)(NSError *error))failure {
+- (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
   [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"usernames": [userNames join:@","]}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
     NSArray *themDicts = [[responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSArray class]] gh_compact];
@@ -279,43 +284,54 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)checkSession:(KBSession *)session success:(void (^)(KBSession *session))success failure:(void (^)(NSError *error))failure {
+- (void)checkSession:(KBSession *)session success:(void (^)(KBSession *session))success failure:(KBClientErrorHandler)failure {
   NSString *userName = session.sessionUser.userName;
   NSAssert(userName, @"No user name");
   
+  GHWeakSelf blockSelf = self;
   [self sessionUser:^(KBSessionUser *sessionUser) {
-    [self userForUserName:userName success:^(KBUser *user) {
+    [blockSelf userForUserName:userName success:^(KBUser *user) {
       KBSession *session = [[KBSession alloc] initWithSessionUser:sessionUser user:user];
       success(session);
     } failure:failure];
   } failure:failure];
 }
 
-- (void)keysForKeyIds:(NSArray *)keyIds capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(void (^)(NSError *error))failure {
+- (void)_keysForResponseObject:(NSDictionary *)responseObject success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
+  NSArray *keyDicts = [responseObject gh_objectMaybeNilForKey:@"keys" ofClass:[NSArray class]];
+  NSError *error = nil;
+  NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[keyDicts count]];
+  for (NSDictionary *keyDict in keyDicts) {
+    if ([keyDict[@"key_type"] integerValue] == 1) {
+      KBPublicKey *publicKey = [MTLJSONAdapter modelOfClass:KBPublicKey.class fromJSONDictionary:keyDict error:&error];
+      if (publicKey) [keys addObject:publicKey];
+    } else if ([keyDict[@"key_type"] integerValue] == 2) {
+      KBPrivateKey *keyPair = [MTLJSONAdapter modelOfClass:KBPrivateKey.class fromJSONDictionary:keyDict error:&error];
+      if (keyPair) [keys addObject:keyPair];
+    }
+  }
   
-  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [keyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
-    
-    NSArray *keyDicts = [responseObject gh_objectMaybeNilForKey:@"keys" ofClass:[NSArray class]];
-    
-    NSError *error = nil;
-    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[keyDicts count]];
-    for (NSDictionary *keyDict in keyDicts) {
-      if ([keyDict[@"key_type"] integerValue] == 1) {
-        KBPublicKey *publicKey = [MTLJSONAdapter modelOfClass:KBPublicKey.class fromJSONDictionary:keyDict error:&error];
-        if (publicKey) [keys addObject:publicKey];
-      } else if ([keyDict[@"key_type"] integerValue] == 2) {
-        KBPrivateKey *privateKey = [MTLJSONAdapter modelOfClass:KBPrivateKey.class fromJSONDictionary:keyDict error:&error];
-        if (privateKey) [keys addObject:privateKey];
-      }
-    }
-    
-    if (error) {
-      failure(error);
-      return;
-    }
-    
-    success(keys);
-    
+  if (error) {
+    failure(error);
+    return;
+  }
+  
+  success(keys);
+}
+
+- (void)keysForKIDs:(NSArray *)KIDs capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
+  GHWeakSelf blockSelf = self;
+  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"kids": [KIDs join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)keysForPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
+  GHWeakSelf blockSelf = self;
+  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];

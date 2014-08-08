@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT" }
   s.author       = { "Gabriel Handford" => "gabrielh@gmail.com" }
   s.source       = { :git => "https://github.com/gabriel/KBKeybase", :tag => "0.1.1" }
+  s.platform = :ios, "7.0"
   s.dependency 'TSTripleSec'
   s.dependency 'KBCrypto'
   s.dependency 'AFNetworking'

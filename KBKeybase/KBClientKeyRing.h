@@ -1,5 +1,5 @@
 //
-//  KBAPIKeyRing.h
+//  KBClientKeyRing.h
 //  Keybase
 //
 //  Created by Gabriel on 7/23/14.

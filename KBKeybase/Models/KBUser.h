@@ -10,6 +10,7 @@
 #import "KBKey.h"
 #import "KBProof.h"
 #import "KBBitcoinAddress.h"
+#import "KBPublicKey.h"
 #import <Mantle/Mantle.h>
 
 
@@ -17,9 +18,9 @@
 
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *userName;
-@property (readonly) KBImage *primaryImage;
+@property (readonly) KBImage *image;
 
-@property (readonly) NSString *primaryEmail;
+@property (readonly) NSString *email;
 
 @property (readonly) NSString *bio;
 @property (readonly) NSString *fullName;
@@ -28,10 +29,8 @@
 @property (readonly) NSArray */*of KBProof*/proofs;
 @property (readonly) NSArray */*of KBBitcoinAdddress*/bitcoinAddresses;
 
-/*!
- Verify the key belongs to this user.
- */
-- (BOOL)verifyKey:(id<KBKey>)key;
+@property (readonly) NSString *KID;
+@property (readonly) KBPublicKey *publicKey;
 
 /*!
  Find proofs.

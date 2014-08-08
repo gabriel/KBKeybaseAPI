@@ -17,12 +17,11 @@
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *userName;
 @property (readonly) NSArray */*of KBSignature*/signatures;
+@property (readonly) NSString *KID;
 @property (readonly) NSString *keyFingerprint;
 
 - (KBSignature *)signatureForIdentifier:(NSString *)identifier;
 
 - (NSArray *)followeeUserNames;
-
-- (NSString *)keyId;
 
 @end

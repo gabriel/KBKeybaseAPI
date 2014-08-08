@@ -20,14 +20,6 @@
   return self;
 }
 
-+ (KBSession *)loadSession {
-  return [KBKeychain loadFromKeychainForName:@"session" ofClass:[KBSession class]];
-}
-
-- (void)saveSession {
-  [KBKeychain saveInKeychain:self name:@"session"];
-}
-
 #pragma mark NSCoding
 
 + (BOOL)supportsSecureCoding { return YES; }

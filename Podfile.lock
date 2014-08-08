@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - GHKit (1.0.5)
+  - GRUnit (1.0.3)
   - KBCrypto (0.1.1):
     - GHKit
     - NAChloride
@@ -41,6 +42,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - GHKit
+  - GRUnit
   - KBCrypto (from `../KBCrypto/`)
   - Mantle
   - ObjectiveSugar
@@ -54,7 +56,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   GHKit: 737b2d495cd7f389194e2798e219c5688ded7fce
-  KBCrypto: ae967b68115c8b0a874f0489756434660a41c7e5
+  GRUnit: 04f8adaef99779486b671568651c80e5c94d7aa5
+  KBCrypto: 39a4b88689c4b63dc24c2ba41280877557a4e0c3
   libsodium: 4baff758d2e4b598e12641ea8f2e9ffc18c9fa0b
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MPMessagePack: 7e6c5ff1e582272a34c6c2a24460b910605012ef
