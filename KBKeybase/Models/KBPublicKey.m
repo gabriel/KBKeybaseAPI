@@ -20,7 +20,7 @@
 }
 
 - (NSString *)displayDescription {
-  return KBKeyDisplayDescription(_fingerprint);
+  return NSStringFromKBKeyFingerprint(_fingerprint);
 }
 
 - (BOOL)isSecret {

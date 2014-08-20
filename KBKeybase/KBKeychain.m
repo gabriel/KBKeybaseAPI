@@ -18,15 +18,24 @@
 
 + (BOOL)saveInKeychain:(id)obj name:(NSString *)name {
   SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
-  query.service = @"Keybase";
+  query.service = @"me.rel.KBKeychain";
   query.synchronizationMode = SSKeychainQuerySynchronizationModeNo; // Don't synchronize the cloud
   query.account = name;
+  
+  NSError *error = nil;
+  if (!obj) {
+    if (![query deleteItem:&error]) {
+      GHDebug(@"Failed to save in keychain: %@; %@", name, error);
+      return NO;
+    }
+    return YES;
+  }
+  
   if ([obj isKindOfClass:[NSString class]]) {
     query.password = obj;
   } else {
     query.passwordData = [NSKeyedArchiver archivedDataWithRootObject:obj];
   }
-  NSError *error = nil;
   if (![query save:&error]) {
     GHDebug(@"Failed to save in keychain: %@; %@", name, error);
     return NO;
@@ -36,7 +45,7 @@
 
 + (id)loadFromKeychainForName:(NSString *)name ofClass:(Class)ofClass {
   SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
-  query.service = @"Keybase";
+  query.service = @"me.rel.KBKeychain";
   query.account = name;
   if ([query fetch:nil]) {
     if (query.password && (!ofClass || [ofClass isEqual:NSString.class])) return query.password;

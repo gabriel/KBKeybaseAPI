@@ -91,7 +91,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   NSHTTPCookieStorage *cookieStorage = [self cookieStorage];
   NSArray *cookies = [cookieStorage cookiesForURL:[NSURL URLWithString:_APIHost]];
   for (NSHTTPCookie *cookie in cookies) {
-    GHDebug(@"Removing cookie: %@", cookie);
+    //GHDebug(@"Removing cookie: %@", cookie);
     [cookieStorage deleteCookie:cookie];
   }
 }

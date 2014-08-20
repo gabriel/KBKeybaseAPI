@@ -30,7 +30,7 @@
 }
 
 - (NSString *)displayDescription {
-  return KBKeyDisplayDescription(_fingerprint);
+  return NSStringFromKBKeyFingerprint(_fingerprint);
 }
 
 - (NSData *)decryptKeyWithPassword:(NSString *)password error:(NSError * __autoreleasing *)error {

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM (NSUInteger, KBAPIErrorCode) {
+typedef NS_ENUM (NSInteger, KBAPIErrorCode) {
   KBErrorCodeDefault = -1,
   KBErrorCodeParameterError = -2,
   
