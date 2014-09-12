@@ -45,10 +45,14 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 #pragma mark Lookup
 
+- (void)checkForUserName:(NSString *)userName success:(void (^)(BOOL exists))success failure:(KBClientErrorHandler)failure;
+
 - (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure;
 
 - (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure;
 
 - (void)usersPaginatedForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure;
+
+- (void)searchWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure;
 
 @end

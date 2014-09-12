@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-typedef NS_ENUM (NSUInteger, KBProofType) {
-  KBProofTypeUnkown = 0,
-  KBProofTypeTwitter = 1,
-  KBProofTypeGithub = 2,
-  KBProofTypeDNS = 3,
-  KBProofTypeGenericWebSite = 4,
+typedef NS_ENUM (NSInteger, KBProofType) {
+  KBProofTypeUnknown,
+  KBProofTypeTwitter,
+  KBProofTypeGithub,
+  KBProofTypeReddit,
+  KBProofTypeCoinbase,
+  KBProofTypeHackerNews,
+  KBProofTypeDNS,
+  KBProofTypeGenericWebSite,
 };
 
 

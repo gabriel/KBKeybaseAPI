@@ -33,7 +33,7 @@
            };
 }
 
-+ (NSValueTransformer *)primaryImageJSONTransformer {
++ (NSValueTransformer *)imageJSONTransformer {
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBImage.class];
 }
 
@@ -51,6 +51,13 @@
 
 - (NSArray *)proofsForType:(KBProofType)type {  
   return [_proofs select:^BOOL(KBProof *proof) { return (proof.proofType == type); }];
+}
+
+- (NSString *)displayDescription {
+  if (_fullName) return _fullName;
+  if (_userName) return _userName;
+  if (_email) return _email;
+  return @"Unknown"; // Shouldn't ever reach here
 }
 
 - (NSUInteger)hash {

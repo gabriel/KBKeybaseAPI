@@ -1,5 +1,5 @@
 //
-//  KBAPIError.m
+//  KBError.m
 //  Keybase
 //
 //  Created by Gabriel on 6/19/14.

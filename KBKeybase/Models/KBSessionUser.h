@@ -17,6 +17,8 @@
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *userName;
 @property (readonly) NSArray */*of KBSignature*/signatures;
+
+// Primary private key
 @property (readonly) NSString *KID;
 @property (readonly) NSString *keyFingerprint;
 

@@ -25,7 +25,9 @@
   NSError *error = nil;
   if (!obj) {
     if (![query deleteItem:&error]) {
-      GHDebug(@"Failed to save in keychain: %@; %@", name, error);
+      if (error.code != errSecItemNotFound) {
+        GHDebug(@"Failed to delete keychain: %@; %@", name, error);
+      }
       return NO;
     }
     return YES;
@@ -69,14 +71,6 @@
 + (KBPrivateKey *)loadPrivateKeyWithFingerprint:(NSString *)fingerprint {
   if (!fingerprint) return nil;
   return [self loadFromKeychainForName:NSStringWithFormat(@"sk-%@", fingerprint) ofClass:KBPrivateKey.class];
-}
-
-+ (KBSession *)loadSession {
-  return [KBKeychain loadFromKeychainForName:@"session-v2" ofClass:KBSession.class];
-}
-
-+ (void)saveSession:(KBSession *)session {
-  [KBKeychain saveInKeychain:session name:@"session-v2"];
 }
 
 @end

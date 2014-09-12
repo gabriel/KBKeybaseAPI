@@ -8,16 +8,18 @@
 
 #import "KBPublicKey.h"
 
+#import <GHKit/GHKit.h>
+
 @implementation KBPublicKey
 
-- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
-  if ((self = [super init])) {
-    _bundle = bundle;
-    _fingerprint = fingerprint;
-    _userName = userName;
-  }
-  return self;
-}
+//- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
+//  if ((self = [super init])) {
+//    _bundle = bundle;
+//    _fingerprint = fingerprint;
+//    _userName = userName;
+//  }
+//  return self;
+//}
 
 - (NSString *)displayDescription {
   return NSStringFromKBKeyFingerprint(_fingerprint);
@@ -31,9 +33,16 @@
   return @{
            @"bundle": @"bundle",
            @"fingerprint": @"key_fingerprint",
-           @"userName": @"username",
+           @"dateCreated": @"ctime",
            };
 }
+
++ (NSValueTransformer *)dateCreatedJSONTransformer {
+  return [MTLValueTransformer transformerWithBlock:^(id date) {
+    return [NSDate gh_parseTimeSinceEpoch:date];
+  }];
+}
+
 
 //- (BOOL)verifyUserName:(NSString *)userName {
 //  @try {

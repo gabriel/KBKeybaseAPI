@@ -1,41 +1,42 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
+  - AFNetworking/NSURLSession (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GHKit (1.0.5)
-  - GRUnit (1.0.3)
+  - GHKit (1.0.9)
+  - GRUnit (1.0.8)
   - KBCrypto (0.1.1):
     - GHKit
+    - Mantle
     - NAChloride
     - ObjectiveSugar
-  - libsodium (0.6.1)
+  - libsodium (0.7.0)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
-  - MPMessagePack (0.1.7)
-  - NAChloride (1.0.8):
+  - MPMessagePack (0.1.8)
+  - NAChloride (1.1.1):
     - libsodium
   - ObjectiveSugar (1.1.0)
   - SSKeychain (1.2.2)
-  - TSTripleSec (0.1.5):
+  - TSTripleSec (0.1.7):
     - MPMessagePack
     - NAChloride
 
@@ -45,25 +46,30 @@ DEPENDENCIES:
   - GRUnit
   - KBCrypto (from `../KBCrypto/`)
   - Mantle
+  - MPMessagePack (from `../MPMessagePack/`)
   - ObjectiveSugar
   - SSKeychain
-  - TSTripleSec
+  - TSTripleSec (from `../TSTripleSec/`)
 
 EXTERNAL SOURCES:
   KBCrypto:
     :path: ../KBCrypto/
+  MPMessagePack:
+    :path: ../MPMessagePack/
+  TSTripleSec:
+    :path: ../TSTripleSec/
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  GHKit: 737b2d495cd7f389194e2798e219c5688ded7fce
-  GRUnit: 04f8adaef99779486b671568651c80e5c94d7aa5
-  KBCrypto: 39a4b88689c4b63dc24c2ba41280877557a4e0c3
-  libsodium: 4baff758d2e4b598e12641ea8f2e9ffc18c9fa0b
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  GHKit: a92861bbf7a5878c2638afb08e6790ffc102cc29
+  GRUnit: f9994ec0437e7db810ac8814efe489bd489550ac
+  KBCrypto: 54aff59560c39878d7ee827c6a5cf0a15e17ff20
+  libsodium: 6e51df562e39e747c64cc25162b0f57132114fae
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
-  MPMessagePack: 7e6c5ff1e582272a34c6c2a24460b910605012ef
-  NAChloride: 629fb7ecb3a35ee6f21a4d2e15462b9f87e5c4bd
+  MPMessagePack: 9263ecf6d77f0f0de43e3b4959137c2579d8f5a6
+  NAChloride: 56f5ed342554234da0c304b0f3b2318434570f74
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
-  TSTripleSec: 70197b9118b91fa63e99767790adeffb4e06f8cf
+  TSTripleSec: 4cde5f0ac4400d5482640ab7bc6f45355752e041
 
 COCOAPODS: 0.33.1

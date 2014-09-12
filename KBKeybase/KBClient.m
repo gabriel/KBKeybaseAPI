@@ -16,6 +16,8 @@
 #import "KBPrivateKey.h"
 #import "KBSession.h"
 #import "KBKeychain.h"
+#import "KBError.h"
+#import "KBSearchResult.h"
 
 NSString *const KBAPILocalHost = @"http://localhost:3000/_/api/1.0/";
 NSString *const KBAPIKeybaseIOHost = @"https://keybase.io/_/api/1.0/";
@@ -108,7 +110,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   NSData *pwh = [self passwordHashForPassword:password salt:salt];
   
   NSData *loginSessionData = [[NSData alloc] initWithBase64EncodedString:loginSession options:0];
-  NSData *HMACpwh = [NAHMAC HMACForKey:pwh data:loginSessionData algorithm:NAHMACAlgorithmSHA512];
+  NSData *HMACpwh = [NAHMAC HMACForKey:pwh data:loginSessionData algorithm:NAHMACAlgorithmSHA2_512];
   
   return [HMACpwh na_hexString];
 }
@@ -228,6 +230,20 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
+- (void)checkForUserName:(NSString *)userName success:(void (^)(BOOL exists))success failure:(KBClientErrorHandler)failure {
+  NSParameterAssert(userName);
+  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"username": userName, @"fields": @"basics"}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    success(YES);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    if (error.code == KBErrorCodeNotFound) {
+      success(NO);
+      return;
+    }
+    
+    failure(error);
+  }];
+}
+
 - (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
   NSParameterAssert(userName);
   [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"username": userName}) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -264,6 +280,30 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
     
     if (completed) break;
   }
+}
+
+- (void)searchWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure {
+  if ([NSString gh_isBlank:query]) {
+    dispatch_async(dispatch_get_main_queue(), ^{ success(@[]); });
+    return;
+  }
+  
+  [self.httpManager GET:@"user/autocomplete.json" parameters:KBURLParameters(@{@"q": query}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    NSArray *completions = [responseObject gh_objectMaybeNilForKey:@"completions" ofClass:[NSArray class]];
+    
+    NSError *error = nil;
+    NSArray *searchResults = [MTLJSONAdapter modelsOfClass:KBSearchResult.class fromJSONArray:completions error:&error];
+    if (!searchResults) {
+      failure(error);
+      return;
+    }
+    
+    success(searchResults);
+    
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
 }
 
 - (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {

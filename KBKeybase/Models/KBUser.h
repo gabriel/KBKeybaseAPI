@@ -37,4 +37,6 @@
  */
 - (NSArray *)proofsForType:(KBProofType)type;
 
+- (NSString *)displayDescription;
+
 @end

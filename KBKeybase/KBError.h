@@ -1,5 +1,5 @@
 //
-//  KBAPIError.h
+//  KBError.h
 //  Keybase
 //
 //  Created by Gabriel on 6/19/14.
@@ -11,6 +11,8 @@
 typedef NS_ENUM (NSInteger, KBAPIErrorCode) {
   KBErrorCodeDefault = -1,
   KBErrorCodeParameterError = -2,
+  
+  KBErrorCodeNotFound = -205, // NOT_FOUND
   
   // Server reported errors
   KBErrorCodeBadSession = -99, // BAD_SESSION

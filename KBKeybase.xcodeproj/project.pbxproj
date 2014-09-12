@@ -27,6 +27,8 @@
 		0054F1411990180D00908F74 /* KBPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 0054F13E1990180D00908F74 /* KBPublicKey.m */; };
 		0054F1561991505800908F74 /* gabrielhlocal2_private.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1551991505800908F74 /* gabrielhlocal2_private.json */; };
 		0054F1581991506900908F74 /* gabrielhlocal2_public.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1571991506900908F74 /* gabrielhlocal2_public.json */; };
+		0080099619AF1C7B002CFF4F /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080099519AF1C7B002CFF4F /* KBSearchResult.m */; };
+		0080099719AF1C7B002CFF4F /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080099519AF1C7B002CFF4F /* KBSearchResult.m */; };
 		070E02182A8B4345B3EA93AD /* KBRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 004BC932198C37CD000C039B /* KBRequestSerializer.m */; };
 		0D8B5B8F639A474D94DB2DCD /* KBProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 004BC91D198C37CD000C039B /* KBProof.m */; };
 		2959C66E163043BFAE8F53BD /* KBBitcoinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 004BC917198C37CD000C039B /* KBBitcoinAddress.m */; };
@@ -108,6 +110,8 @@
 		0054F13F1990180D00908F74 /* KBPublicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPublicKey.h; sourceTree = "<group>"; };
 		0054F1551991505800908F74 /* gabrielhlocal2_private.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_private.json; sourceTree = "<group>"; };
 		0054F1571991506900908F74 /* gabrielhlocal2_public.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_public.json; sourceTree = "<group>"; };
+		0080099419AF1C7B002CFF4F /* KBSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSearchResult.h; sourceTree = "<group>"; };
+		0080099519AF1C7B002CFF4F /* KBSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSearchResult.m; sourceTree = "<group>"; };
 		04AF233E14104792ACC8B738 /* KBClientTest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBClientTest.m; path = Tests/KBClientTest.m; sourceTree = "<group>"; };
 		3BFF2655478141999197045F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		3DA8BEF39A6B47CEBE626660 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -205,6 +209,8 @@
 				0054F13B1990176700908F74 /* KBPrivateKey.m */,
 				0054F13F1990180D00908F74 /* KBPublicKey.h */,
 				0054F13E1990180D00908F74 /* KBPublicKey.m */,
+				0080099419AF1C7B002CFF4F /* KBSearchResult.h */,
+				0080099519AF1C7B002CFF4F /* KBSearchResult.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				004BC943198C37CD000C039B /* KBKeychain.m in Sources */,
 				004BC93D198C37CD000C039B /* KBUser.m in Sources */,
 				004BC93C198C37CD000C039B /* KBSignature.m in Sources */,
+				0080099619AF1C7B002CFF4F /* KBSearchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +443,7 @@
 				2959C66E163043BFAE8F53BD /* KBBitcoinAddress.m in Sources */,
 				BA3288CB01BD4528B111154A /* KBClient.m in Sources */,
 				971E18FE89FE400D9F67AE81 /* KBResponseSerializer.m in Sources */,
+				0080099719AF1C7B002CFF4F /* KBSearchResult.m in Sources */,
 				5BA43C69E838427684F990FD /* KBClientKeyRing.m in Sources */,
 				BF039272AA6247DCB7CA98A3 /* KBKeychain.m in Sources */,
 				F2C0592332AE492CB2470E1B /* KBUser.m in Sources */,

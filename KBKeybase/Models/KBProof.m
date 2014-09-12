@@ -21,10 +21,13 @@
   NSDictionary *mapping = @{
                             @"github": @(KBProofTypeGithub),
                             @"twitter": @(KBProofTypeTwitter),
+                            @"reddit": @(KBProofTypeReddit),
+                            @"coinbase": @(KBProofTypeCoinbase),
+                            @"hacker_news": @(KBProofTypeHackerNews),
                             @"dns": @(KBProofTypeDNS),
                             @"generic_web_site": @(KBProofTypeGenericWebSite),
                             };
-  return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:mapping defaultValue:@(KBProofTypeUnkown) reverseDefaultValue:nil];
+  return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:mapping defaultValue:@(KBProofTypeUnknown) reverseDefaultValue:nil];
 }
 
 - (NSString *)displayDescription {

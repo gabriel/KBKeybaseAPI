@@ -13,8 +13,8 @@
 
 @interface KBSession : NSObject
 
-@property (readonly, nonatomic) KBUser *user;
-@property (readonly, nonatomic) KBSessionUser *sessionUser;
+@property (readonly) KBUser *user;
+@property (readonly) KBSessionUser *sessionUser;
 
 - (instancetype)initWithSessionUser:(KBSessionUser *)sessionUser user:(KBUser *)user;
 

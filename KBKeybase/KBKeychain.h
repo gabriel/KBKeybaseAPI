@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "KBPrivateKey.h"
-#import "KBSession.h"
 
 /*!
- Keychain wrapper. Don't store anything in here unencrypted.
- While 3rd parties (probably) can't read the keychain, Apple probably can.
+ Keychain wrapper. Don't store anything in here unencrypted. We don't trust anything not even the keychain.
  */
 @interface KBKeychain : NSObject
 
@@ -22,8 +20,5 @@
 
 + (void)savePrivateKey:(KBPrivateKey *)privateKey;
 + (KBPrivateKey *)loadPrivateKeyWithFingerprint:(NSString *)fingerprint;
-
-+ (KBSession *)loadSession;
-+ (void)saveSession:(KBSession *)session;
 
 @end

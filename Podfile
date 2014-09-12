@@ -1,6 +1,7 @@
 platform :ios, "7.0"
 
-pod "TSTripleSec"
+pod "TSTripleSec", :path => "../TSTripleSec/"
+pod "MPMessagePack", :path => "../MPMessagePack/"
 pod "KBCrypto", :path => "../KBCrypto/"
 
 pod "GHKit"

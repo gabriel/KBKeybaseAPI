@@ -8,8 +8,6 @@
 
 #import "KBSession.h"
 
-#import "KBKeychain.h"
-
 @implementation KBSession
 
 - (instancetype)initWithSessionUser:(KBSessionUser *)sessionUser user:(KBUser *)user {
@@ -26,8 +24,8 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
   if ((self = [self init])) {
-    _sessionUser = [decoder decodeObjectOfClass:[KBSessionUser class] forKey:@"sessionUser"];
-    _user = [decoder decodeObjectOfClass:[KBUser class] forKey:@"user"];
+    _sessionUser = [decoder decodeObjectOfClass:KBSessionUser.class forKey:@"sessionUser"];
+    _user = [decoder decodeObjectOfClass:KBUser.class forKey:@"user"];
   }
   return self;
 }
@@ -36,6 +34,5 @@
   [encoder encodeObject:_sessionUser forKey:@"sessionUser"];
   [encoder encodeObject:_user forKey:@"user"];
 }
-
 
 @end
