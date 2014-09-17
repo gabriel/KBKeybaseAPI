@@ -29,7 +29,7 @@
            @"proofs": @"proofs_summary.all",
            
            @"KID": @"public_keys.primary.kid",
-           @"publicKey": @"public_keys.primary",
+           @"key": @"public_keys.primary",
            };
 }
 

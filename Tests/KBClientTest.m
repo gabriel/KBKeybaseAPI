@@ -15,7 +15,14 @@
   KBClient *client = [[KBClient alloc] initWithAPIHost:KBAPILocalHost];
   [client logInWithEmailOrUserName:@"gabrielhlocal2" password:@"toomanysecrets" success:^(KBSession *session) {
     completion();
-  } failure:GRUErrorHandler(self)];
+  } failure:GRErrorHandler];
+}
+
+- (void)test:(dispatch_block_t)completion {
+  KBClient *client = [[KBClient alloc] initWithAPIHost:KBAPILocalHost];
+  [client nextSequence:^(NSNumber *sequenceNumber, NSString *previousBlockHash) {
+    completion();
+  } failure:GRErrorHandler];
 }
 
 @end

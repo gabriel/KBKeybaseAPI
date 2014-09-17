@@ -30,7 +30,7 @@
 @property (readonly) NSArray */*of KBBitcoinAdddress*/bitcoinAddresses;
 
 @property (readonly) NSString *KID;
-@property (readonly) KBPublicKey *publicKey;
+@property (readonly) id<KBKey> key;
 
 /*!
  Find proofs.

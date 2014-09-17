@@ -11,11 +11,8 @@
 
 @interface KBPublicKey : MTLModel <KBKey, MTLJSONSerializing>
 
-@property (readonly) NSString *bundle;
+@property (readonly) NSString *publicKeyBundle;
 @property (readonly) NSString *fingerprint;
 @property (readonly) NSDate *dateCreated;
-- (BOOL)isSecret;
-
-//- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName;
 
 @end

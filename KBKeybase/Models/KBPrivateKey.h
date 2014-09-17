@@ -12,12 +12,9 @@
 
 @interface KBPrivateKey : MTLModel <KBKey, MTLJSONSerializing>
 
-@property (readonly) NSString *bundle;
-@property (readonly) P3SKB *secret;
-@property (readonly) NSString *userName;
+@property (readonly) NSString *publicKeyBundle;
 @property (readonly) NSString *fingerprint;
-- (BOOL)isSecret;
-
-- (instancetype)initWithBundle:(NSData *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName;
+@property (nonatomic) P3SKB *secretKey;
+@property (readonly) NSString *userName;
 
 @end

@@ -10,24 +10,12 @@
 
 #import <TSTripleSec/TSTripleSec.h>
 
-@interface KBPrivateKey ()
-@property P3SKB *secretKey;
-@end
-
 @interface P3SKBValueTransformer : NSValueTransformer
 @end
 
 @implementation KBPrivateKey
 
-- (instancetype)initWithBundle:(NSData *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
-  if ((self = [super init])) {
-    _bundle = [bundle base64EncodedStringWithOptions:0];
-    _secretKey = [P3SKB P3SKBFromData:bundle error:nil];
-    _fingerprint = fingerprint;
-    _userName = userName;
-  }
-  return self;
-}
+@synthesize secretKey=_secretKey;
 
 - (NSString *)displayDescription {
   return NSStringFromKBKeyFingerprint(_fingerprint);
@@ -37,13 +25,9 @@
   return [_secretKey decryptPrivateKeyWithPassword:password error:error];
 }
 
-- (BOOL)isSecret {
-  return YES;
-}
-
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
-           @"bundle": @"bundle", // Store the original bundle value
+
            @"secretKey": @"bundle", // Unserialized bundle into p3skb
            @"fingerprint": @"key_fingerprint",
            @"userName": @"username",

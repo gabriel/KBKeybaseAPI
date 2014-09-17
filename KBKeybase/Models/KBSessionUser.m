@@ -22,7 +22,7 @@
   return @{
            @"identifier": @"basics.uid",
            @"userName": @"basics.username",
-           @"signatures": @"sigs.all",
+           @"signatures": @"sigs.valid_for_current_key",
            @"followees": @"followees",
            @"KID": @"private_keys.primary.kid",
            @"keyFingerprint": @"private_keys.primary.key_fingerprint",

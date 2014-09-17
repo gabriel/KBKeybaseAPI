@@ -12,26 +12,15 @@
 
 @implementation KBPublicKey
 
-//- (instancetype)initWithBundle:(NSString *)bundle fingerprint:(NSString *)fingerprint userName:(NSString *)userName {
-//  if ((self = [super init])) {
-//    _bundle = bundle;
-//    _fingerprint = fingerprint;
-//    _userName = userName;
-//  }
-//  return self;
-//}
+@synthesize publicKeyBundle=_publicKeyBundle, secretKey=_secretKey;
 
 - (NSString *)displayDescription {
   return NSStringFromKBKeyFingerprint(_fingerprint);
 }
 
-- (BOOL)isSecret {
-  return NO;
-}
-
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
-           @"bundle": @"bundle",
+           @"publicKeyBundle": @"bundle",
            @"fingerprint": @"key_fingerprint",
            @"dateCreated": @"ctime",
            };
@@ -42,17 +31,5 @@
     return [NSDate gh_parseTimeSinceEpoch:date];
   }];
 }
-
-
-//- (BOOL)verifyUserName:(NSString *)userName {
-//  @try {
-//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[_signatureJSON dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-//    NSString *keyFingerprint = dict[@"body"][@"key"][@"fingerprint"];
-//    NSString *userName = dict[@"body"][@"key"][@"username"];
-//    return [keyFingerprint isEqual:_fingerprint] && [userName isEqual:_userName];
-//  } @catch(NSException *e) {
-//    return NO;
-//  }
-//}
 
 @end

@@ -196,21 +196,30 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)pushPrivateKey:(P3SKB *)privateKey success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
-  NSAssert(self.CSRFToken, @"Missing CSRF");
-  
-  NSDictionary *params = @{@"private_key": [[privateKey data] base64EncodedStringWithOptions:0], @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
-  
-  GHWeakSelf blockSelf = self;
-  [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {    
-    
-    [blockSelf sessionUser:^(KBSessionUser *sessionUser) {
-      success();
-    } failure:failure];
+- (void)addPublicKeyBundle:(NSString *)publicKeyBundle success:(void (^)(NSString *kid))success failure:(KBClientErrorHandler)failure {
+  NSDictionary *params = @{@"public_key": publicKeyBundle, @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
+  [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
+    success(responseObject[@"kid"]);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
 }
+
+//- (void)pushPrivateKey:(P3SKB *)privateKey success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
+//  NSAssert(self.CSRFToken, @"Missing CSRF");
+//  
+//  NSDictionary *params = @{@"private_key": [[privateKey data] base64EncodedStringWithOptions:0], @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
+//  
+//  GHWeakSelf blockSelf = self;
+//  [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {    
+//    
+//    [blockSelf sessionUser:^(KBSessionUser *sessionUser) {
+//      success();
+//    } failure:failure];
+//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    failure(error);
+//  }];
+//}
 
 - (void)sessionUser:(void (^)(KBSessionUser *sessionUser))success failure:(KBClientErrorHandler)failure {
   [self.httpManager GET:@"me.json" parameters:KBURLParameters(nil) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -372,6 +381,35 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   GHWeakSelf blockSelf = self;
   [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
     [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
+
+#pragma mark -
+
+- (void)nextSequence:(void (^)(NSNumber *sequenceNumber, NSString *previousBlockHash))success failure:(KBClientErrorHandler)failure {
+  [self.httpManager GET:@"sig/next_seqno.json" parameters:KBURLParameters(@{@"type": @"PUBLIC"}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSNumber *sequenceNumber = responseObject[@"seqno"];
+    NSString *previousBlockHash = responseObject[@"prev"];
+    success(sequenceNumber, previousBlockHash);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)createSignature:(NSString *)signature userName:(NSString *)userName success:(void (^)(NSString *signatureId))success failure:(KBClientErrorHandler)failure {
+  NSDictionary *params =
+    @{
+      @"csrf_token": self.CSRFToken,
+      @"type": @"web_service_binding.keybase",
+      @"remote_username": userName,
+      @"sig": signature,
+      };
+    
+  [self.httpManager POST:@"sig/post.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString *signatureId = responseObject[@"sig_id"];
+    success(signatureId);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];

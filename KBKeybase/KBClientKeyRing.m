@@ -9,6 +9,7 @@
 #import "KBClientKeyRing.h"
 #import "KBKey.h"
 
+#import <KBCrypto/KBCrypto.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
 
 @interface KBClientKeyRing ()
@@ -45,7 +46,11 @@
       
     }
   }
-  success(@[]);
+  
+  NSArray *signers = [keyFingerprints map:^id(NSString *keyFingerprint) {
+    return [[KBSigner alloc] initWithKeyFingerprint:keyFingerprint verified:NO];
+  }];
+  success(signers);
 }
 
 @end
