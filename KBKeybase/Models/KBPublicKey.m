@@ -14,10 +14,6 @@
 
 @synthesize publicKeyBundle=_publicKeyBundle, secretKey=_secretKey;
 
-- (NSString *)displayDescription {
-  return NSStringFromKBKeyFingerprint(_fingerprint);
-}
-
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
            @"publicKeyBundle": @"bundle",

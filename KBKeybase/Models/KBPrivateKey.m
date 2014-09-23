@@ -17,10 +17,6 @@
 
 @synthesize secretKey=_secretKey;
 
-- (NSString *)displayDescription {
-  return NSStringFromKBKeyFingerprint(_fingerprint);
-}
-
 - (NSData *)decryptKeyWithPassword:(NSString *)password error:(NSError * __autoreleasing *)error {
   return [_secretKey decryptPrivateKeyWithPassword:password error:error];
 }

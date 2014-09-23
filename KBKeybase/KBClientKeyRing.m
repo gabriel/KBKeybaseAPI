@@ -27,7 +27,7 @@
   return self;
 }
 
-- (void)lookupPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilities success:(void (^)(NSArray *keys))success failure:(void (^)(NSError *error))failure {
+- (void)lookupPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilities success:(void (^)(NSArray *keyBundles))success failure:(void (^)(NSError *error))failure {
   [_client keysForPGPKeyIds:PGPKeyIds capabilities:capabilities success:^(NSArray *keys) {
     
     // Cache keys for verification step
@@ -48,7 +48,7 @@
   }
   
   NSArray *signers = [keyFingerprints map:^id(NSString *keyFingerprint) {
-    return [[KBSigner alloc] initWithKeyFingerprint:keyFingerprint verified:NO];
+    return [[KBSigner alloc] initWithKeyFingerprint:keyFingerprint verification:KBKeyVerificationNone];
   }];
   success(signers);
 }

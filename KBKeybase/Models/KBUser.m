@@ -37,7 +37,7 @@
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBImage.class];
 }
 
-+ (NSValueTransformer *)publicKeyJSONTransformer {
++ (NSValueTransformer *)keyJSONTransformer {
   return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBPublicKey.class];
 }
 

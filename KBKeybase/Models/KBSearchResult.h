@@ -20,8 +20,9 @@
 // Key
 @property (readonly) NSString *keyFingerprint;
 @property (readonly) float keyFingerprintScore;
-@property (readonly) KBKeyAlgorithm keyAlgorithm;
-@property (readonly) NSUInteger keyNumBits;
+// The API can return null for these
+//@property (readonly) KBKeyAlgorithm keyAlgorithm;
+//@property (readonly) NSInteger keyNumBits;
 
 // Fullname
 @property (readonly) NSString *fullName;

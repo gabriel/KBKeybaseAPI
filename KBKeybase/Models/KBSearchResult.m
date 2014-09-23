@@ -26,8 +26,8 @@
            
            @"keyFingerprint": @"components.key_fingerprint.val",
            @"keyFingerprintScore": @"components.key_fingerprint.score",
-           @"keyAlgorithm": @"components.key_fingerprint.algo",
-           @"keyNumBits": @"components.key_fingerprint.nbits",
+           //@"keyAlgorithm": @"components.key_fingerprint.algo",
+           //@"keyNumBits": @"components.key_fingerprint.nbits",
            
            @"totalScore": @"total_score",
            @"userId": @"uid",

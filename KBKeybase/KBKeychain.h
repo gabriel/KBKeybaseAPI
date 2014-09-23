@@ -18,7 +18,10 @@
 + (BOOL)saveInKeychain:(id)obj name:(NSString *)name;
 + (id)loadFromKeychainForName:(NSString *)name ofClass:(Class)ofClass;
 
-+ (void)savePrivateKey:(KBPrivateKey *)privateKey;
-+ (KBPrivateKey *)loadPrivateKeyWithFingerprint:(NSString *)fingerprint;
++ (BOOL)hasPasswordHash;
++ (void)setPasswordHashForPassword:(NSData *)password salt:(NSData *)salt success:(dispatch_block_t)success failure:(void (^)(NSError *error))failure;
++ (void)checkPasswordHashForPassword:(NSData *)password completion:(void (^)(BOOL match))completion;
+
++ (void)passwordHashForPassword:(NSData *)password salt:(NSData *)salt completion:(void (^)(NSData *hashed))completion;
 
 @end
