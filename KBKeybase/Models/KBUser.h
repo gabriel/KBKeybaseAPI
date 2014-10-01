@@ -20,8 +20,6 @@
 @property (readonly) NSString *userName;
 @property (readonly) KBImage *image;
 
-@property (readonly) NSString *email;
-
 @property (readonly) NSString *bio;
 @property (readonly) NSString *fullName;
 @property (readonly) NSString *location;

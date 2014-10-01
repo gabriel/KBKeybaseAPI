@@ -254,37 +254,49 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
 }
 
 - (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
-  NSParameterAssert(userName);
-  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"username": userName}) success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self userForKey:@"usernames" value:userName success:success failure:failure];
+}
+
+- (void)userForKey:(NSString *)key value:(NSString *)value success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
+  [self usersForKey:key value:value success:^(NSArray *users) {
+    success([users count] > 0 ? users[0]: nil);
+  } failure:failure];
+}
+
+- (void)usersForKey:(NSString *)key value:(NSString *)value success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
+  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{key: value}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
-    NSDictionary *themDict = [responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSDictionary class]];
+    NSArray *themDicts = [responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSArray class]];
     
     NSError *error = nil;
-    KBUser *user = [MTLJSONAdapter modelOfClass:KBUser.class fromJSONDictionary:themDict error:&error];
-    if (!user) {
-      failure(error);
-      return;
+    
+    NSMutableArray *users = [NSMutableArray arrayWithCapacity:[themDicts count]];
+    for (NSDictionary *themDict in themDicts) {
+      if (![themDict isEqual:NSNull.null]) {
+        KBUser *user = [MTLJSONAdapter modelOfClass:KBUser.class fromJSONDictionary:themDict error:&error];
+        [users addObject:user];
+      }
     }
-
-    success(user);
+    success(users);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
 }
 
-- (void)usersPaginatedForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure {
-  NSInteger length = 10;
-  for (NSInteger offset = 0, count = [userNames count]; offset < count; offset += length) {
+- (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values limit:(NSInteger)limit success:(void (^)(NSArray *users, NSArray *allUsers, BOOL completed))success failure:(KBClientErrorHandler)failure {
+  NSMutableArray *allUsers = [NSMutableArray arrayWithCapacity:[values count]];
+  for (NSInteger offset = 0, count = [values count]; offset < count; offset += limit) {
     BOOL completed = NO;
-    if ((offset + length) >= count) {
-      length = count - offset;
+    if ((offset + limit) >= count) {
+      limit = count - offset;
       completed = YES;
     }
-    NSValue *range = [NSValue valueWithRange:NSMakeRange(offset, length)];
-    NSArray *userNamesChunk = userNames[range];
+    NSValue *range = [NSValue valueWithRange:NSMakeRange(offset, limit)];
+    NSArray *valuesChunk = values[range];
     
-    [self usersForUserNames:userNamesChunk success:^(NSArray *users) {
-      success(users, completed);
+    [self usersForKey:key value:[valuesChunk join:@","] success:^(NSArray *users) {
+      [allUsers addObjectsFromArray:users];
+      success(users, allUsers, completed);
     } failure:failure];
     
     if (completed) break;
@@ -310,24 +322,6 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
     
     success(searchResults);
     
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    failure(error);
-  }];
-}
-
-- (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
-  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"usernames": [userNames join:@","]}) success:^(NSURLSessionDataTask *task, id responseObject) {
-    
-    NSArray *themDicts = [[responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSArray class]] gh_compact];
-    
-    NSError *error = nil;
-    NSArray *users = [MTLJSONAdapter modelsOfClass:KBUser.class fromJSONArray:themDicts error:&error];
-    if (!users) {
-      failure(error);
-      return;
-    }
-    
-    success(users);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];

@@ -27,7 +27,7 @@ PODS:
     - Mantle
     - NAChloride
     - ObjectiveSugar
-  - libsodium (0.7.0)
+  - libsodium (1.0.0)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   GHKit: a92861bbf7a5878c2638afb08e6790ffc102cc29
   GRUnit: 5ca46dd509f039f10ba027598fa8c1f12fe7ec3c
   KBCrypto: 54aff59560c39878d7ee827c6a5cf0a15e17ff20
-  libsodium: 6e51df562e39e747c64cc25162b0f57132114fae
+  libsodium: fe2e966890bd680204048ff800e2f72bfb1b6669
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MPMessagePack: 9263ecf6d77f0f0de43e3b4959137c2579d8f5a6
   NAChloride: 56f5ed342554234da0c304b0f3b2318434570f74

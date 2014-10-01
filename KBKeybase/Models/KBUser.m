@@ -24,7 +24,6 @@
            @"bio": @"profile.bio",
            @"location": @"profile.location",
            
-           @"email": @"emails.primary.email",
            @"bitcoinAddresses": @"cryptocurrency_addresses.bitcoin",
            @"proofs": @"proofs_summary.all",
            
@@ -56,7 +55,6 @@
 - (NSString *)displayDescription {
   if (_fullName) return _fullName;
   if (_userName) return _userName;
-  if (_email) return _email;
   return @"Unknown"; // Shouldn't ever reach here
 }
 

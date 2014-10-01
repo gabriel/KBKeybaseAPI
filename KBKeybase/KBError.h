@@ -38,5 +38,5 @@ typedef NS_ENUM (NSUInteger, KBErrorType) {
 
 @end
 
-#define KBErrorDefault(__DESC__) [KBError errorWithCode:KBErrorCodeDefault localizedDescription:(__DESC__) type:KBErrorTypeDefault]
-#define KBErrorAlert(__DESC__) [KBError errorWithCode:KBErrorCodeDefault localizedDescription:(__DESC__) type:KBErrorTypeAlert]
+#define KBErrorDefault(fmt, ...) [KBError errorWithCode:KBErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBErrorTypeDefault]
+#define KBErrorAlert(fmt, ...) [KBError errorWithCode:KBErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBErrorTypeAlert]

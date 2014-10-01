@@ -49,9 +49,9 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 - (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure;
 
-- (void)usersForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure;
+- (void)usersForKey:(NSString *)key value:(NSString *)value success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure;
 
-- (void)usersPaginatedForUserNames:(NSArray *)userNames success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure;
+- (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values limit:(NSInteger)limit success:(void (^)(NSArray *users, NSArray *allUsers, BOOL completed))success failure:(KBClientErrorHandler)failure;
 
 - (void)searchWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure;
 
