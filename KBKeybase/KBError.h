@@ -23,6 +23,8 @@ typedef NS_ENUM (NSInteger, KBAPIErrorCode) {
   
   KBErrorCodeBadLoginPassword = -300, // BAD_LOGIN_PASSWORD
   KBErrorCodeBadLoginUserNotFound = -301, // BAD_LOGIN_USER_NOT_FOUND
+  
+  KBErrorCodeKeyNotFound = -901,
 };
 
 extern NSString *const KBErrorTypeKey;

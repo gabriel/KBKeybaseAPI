@@ -33,6 +33,8 @@
       errorCode = KBErrorCodeInputError;
     } else if ([errorCodeString isEqualToString:@"NOT_FOUND"]) {
       errorCode = KBErrorCodeNotFound;
+    } else if ([errorCodeString isEqualToString:@"KEY_NOT_FOUND"]) {
+      errorCode = KBErrorCodeKeyNotFound;
     } else if ([errorCodeString isEqualToString:@"MISSING_PARAMETER"]) {
       errorCode = KBErrorCodeMissingParameter;
     } else if ([errorCodeString isEqualToString:@"BAD_SESSION"]) {

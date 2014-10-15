@@ -8,6 +8,7 @@
 
 #import "KBSignature.h"
 #import <Mantle/Mantle.h>
+#import <TSTripleSec/TSTripleSec.h>
 
 /*!
  Logged in user.
@@ -16,13 +17,16 @@
 
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *userName;
-@property (readonly) NSArray */*of KBSignature*/signatures;
+@property (readonly) NSDictionary */*sig_id -> dict*/signatures;
+@property (readonly) NSArray *followees;
+@property (readonly) NSString *primaryEmail;
 
 // Primary private key
 @property (readonly) NSString *KID;
 @property (readonly) NSString *keyFingerprint;
+@property (readonly) P3SKB *secretKey;
 
-- (KBSignature *)signatureForIdentifier:(NSString *)identifier;
+//- (KBSignature *)signatureForIdentifier:(NSString *)identifier;
 
 - (NSArray *)followeeUserNames;
 

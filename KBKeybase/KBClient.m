@@ -232,7 +232,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
       failure(error);
       return;
     }
-    
+
     success(sessionUser);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
@@ -376,7 +376,11 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
     [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    failure(error);
+    if (error.code == KBErrorCodeKeyNotFound) {
+      success(@[]);
+    } else {
+      failure(error);
+    }
   }];
 }
 

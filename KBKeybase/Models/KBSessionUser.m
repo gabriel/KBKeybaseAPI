@@ -12,29 +12,29 @@
 #import <ObjectiveSugar/ObjectiveSugar.h>
 #import <GHKit/GHKit.h>
 
-@interface KBSessionUser ()
-@property NSArray *followees;
-@end
-
 @implementation KBSessionUser
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
            @"identifier": @"basics.uid",
            @"userName": @"basics.username",
-           @"signatures": @"sigs.valid_for_current_key",
+           @"signatures": @"sigs.lookup",
            @"followees": @"followees",
            @"KID": @"private_keys.primary.kid",
            @"keyFingerprint": @"private_keys.primary.key_fingerprint",
+           @"secretKey": @"private_keys.primary.bundle",
+           @"primaryEmail": @"emails.primary.email",
            };
 }
 
-+ (NSValueTransformer *)signaturesJSONTransformer {
-  return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBSignature.class];
++ (NSValueTransformer *)secretKeyJSONTransformer {
+  return [[P3SKBValueTransformer alloc] init];
 }
 
 - (KBSignature *)signatureForIdentifier:(NSString *)identifier {
-  return [_signatures detect:^BOOL(KBSignature *signature) { return [signature.identifier isEqual:identifier]; }];
+  NSDictionary *dict = _signatures[identifier];
+  if (!dict) return nil;  
+  return [MTLJSONAdapter modelOfClass:KBSignature.class fromJSONDictionary:dict error:nil];
 }
 
 - (NSArray *)followeeUserNames {
@@ -42,6 +42,14 @@
     return [[self signatureForIdentifier:followees[@"sig_id"]] trackUserName];
   }] gh_compact];
 }
+
+//- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {
+//  if ((self = [super initWithDictionary:dictionaryValue error:error])) {
+//    
+//  }
+//  return self;
+//}
+
 
 - (NSUInteger)hash {
   return [_identifier hash];

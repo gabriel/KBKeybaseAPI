@@ -28,15 +28,15 @@ PODS:
     - NAChloride
     - ObjectiveSugar
   - libsodium (1.0.0)
-  - Mantle (1.5):
+  - Mantle (1.5.1):
     - Mantle/extobjc
-  - Mantle/extobjc (1.5)
+  - Mantle/extobjc (1.5.1)
   - MPMessagePack (0.1.8)
   - NAChloride (1.1.1):
     - libsodium
   - ObjectiveSugar (1.1.0)
   - SSKeychain (1.2.2)
-  - TSTripleSec (0.1.7):
+  - TSTripleSec (0.1.8):
     - MPMessagePack
     - NAChloride
 
@@ -65,11 +65,11 @@ SPEC CHECKSUMS:
   GRUnit: 5ca46dd509f039f10ba027598fa8c1f12fe7ec3c
   KBCrypto: 54aff59560c39878d7ee827c6a5cf0a15e17ff20
   libsodium: fe2e966890bd680204048ff800e2f72bfb1b6669
-  Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
+  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
   MPMessagePack: 9263ecf6d77f0f0de43e3b4959137c2579d8f5a6
   NAChloride: 56f5ed342554234da0c304b0f3b2318434570f74
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
-  TSTripleSec: 4cde5f0ac4400d5482640ab7bc6f45355752e041
+  TSTripleSec: b5f719f1698a7e880431f2c15da6f52907949fa7
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.1
