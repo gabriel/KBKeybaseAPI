@@ -11,11 +11,17 @@
 #import "KBUser.h"
 #import "KBSessionUser.h"
 
+@class KBSession;
+
+typedef void (^KBSessionAddBlock)(KBSession *session, NSString *password);
+
 @interface KBSession : NSObject
 
 @property (readonly) KBUser *user;
 @property (readonly) KBSessionUser *sessionUser;
 
 - (instancetype)initWithSessionUser:(KBSessionUser *)sessionUser user:(KBUser *)user;
+
+- (NSString *)userNameOrEmail;
 
 @end

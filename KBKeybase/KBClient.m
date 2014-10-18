@@ -205,21 +205,17 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-//- (void)pushPrivateKey:(P3SKB *)privateKey success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
-//  NSAssert(self.CSRFToken, @"Missing CSRF");
-//  
-//  NSDictionary *params = @{@"private_key": [[privateKey data] base64EncodedStringWithOptions:0], @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
-//  
-//  GHWeakSelf blockSelf = self;
-//  [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {    
-//    
-//    [blockSelf sessionUser:^(KBSessionUser *sessionUser) {
-//      success();
-//    } failure:failure];
-//  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//    failure(error);
-//  }];
-//}
+- (void)addPrivateKey:(P3SKB *)privateKey publicKeyBundle:(NSString *)publicKeyBundle success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
+  NSAssert(self.CSRFToken, @"Missing CSRF");
+  
+  NSDictionary *params = @{@"private_key": [[privateKey data] base64EncodedStringWithOptions:0], @"public_key": publicKeyBundle, @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
+  
+  [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
+    success();
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
 
 - (void)sessionUser:(void (^)(KBSessionUser *sessionUser))success failure:(KBClientErrorHandler)failure {
   [self.httpManager GET:@"me.json" parameters:KBURLParameters(nil) success:^(NSURLSessionDataTask *task, id responseObject) {

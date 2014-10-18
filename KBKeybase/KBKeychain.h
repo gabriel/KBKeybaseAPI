@@ -17,11 +17,14 @@
 
 + (BOOL)saveInKeychain:(id)obj name:(NSString *)name;
 + (id)loadFromKeychainForName:(NSString *)name ofClass:(Class)ofClass;
++ (void)clear;
 
 + (BOOL)hasPasswordHash;
-+ (void)setPasswordHashForPassword:(NSData *)password salt:(NSData *)salt success:(dispatch_block_t)success failure:(void (^)(NSError *error))failure;
-+ (void)checkPasswordHashForPassword:(NSData *)password completion:(void (^)(BOOL match))completion;
++ (void)setPasswordHashForPassword:(NSString *)password salt:(NSData *)salt success:(void (^)(NSData *hashed))success failure:(void (^)(NSError *error))failure;
++ (void)checkPasswordHashForPassword:(NSString *)password completion:(void (^)(BOOL match, NSData *hashed))completion;
 
-+ (void)passwordHashForPassword:(NSData *)password salt:(NSData *)salt completion:(void (^)(NSData *hashed))completion;
++ (void)passwordHashForPassword:(NSString *)password salt:(NSData *)salt completion:(void (^)(NSData *hashed))completion;
+
++ (void)derivePasswordFromPassword:(NSString *)password salt:(NSData *)salt completion:(void (^)(NSString *derivedPassword))completion;
 
 @end

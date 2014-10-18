@@ -18,6 +18,11 @@
   return self;
 }
 
+- (NSString *)userNameOrEmail {
+  if (_sessionUser.userName) return _sessionUser.userName;
+  return _sessionUser.primaryEmail;
+}
+
 #pragma mark NSCoding
 
 + (BOOL)supportsSecureCoding { return YES; }
