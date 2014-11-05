@@ -48,7 +48,7 @@
   }
   
   NSArray *signers = [keyFingerprints map:^id(NSString *keyFingerprint) {
-    return [[KBSigner alloc] initWithKeyFingerprint:keyFingerprint verification:KBKeyVerificationNone];
+    return [[KBSigner alloc] initWithKeyFingerprint:keyFingerprint];
   }];
   success(signers);
 }

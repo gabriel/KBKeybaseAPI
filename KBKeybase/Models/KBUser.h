@@ -7,7 +7,6 @@
 //
 
 #import "KBImage.h"
-#import "KBKey.h"
 #import "KBProof.h"
 #import "KBBitcoinAddress.h"
 #import "KBPublicKey.h"
@@ -24,11 +23,16 @@
 @property (readonly) NSString *fullName;
 @property (readonly) NSString *location;
 
+@property (readonly) NSDate *dateCreated;
+@property (readonly) NSDate *dateModified;
+
 @property (readonly) NSArray */*of KBProof*/proofs;
 @property (readonly) NSArray */*of KBBitcoinAdddress*/bitcoinAddresses;
 
 @property (readonly) NSString *KID;
 @property (readonly) id<KBKey> key;
+
+@property NSArray *signatures; // Verified signatures
 
 /*!
  Find proofs.

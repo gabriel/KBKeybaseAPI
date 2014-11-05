@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Gabriel Handford. All rights reserved.
 //
 
-#import "KBKey.h"
 #import <Mantle/Mantle.h>
 #import <TSTripleSec/P3SKB.h>
+#import <KBCrypto/KBCrypto.h>
 
 @interface KBPrivateKey : MTLModel <KBKey, MTLJSONSerializing>
 

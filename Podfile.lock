@@ -20,9 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GHKit (1.0.9)
+  - GHBigNum (0.1.1):
+    - OpenSSL-gabriel
+  - GHKit (1.0.10)
   - GRUnit (1.0.11)
   - KBCrypto (0.1.1):
+    - GHBigNum
     - GHKit
     - Mantle
     - NAChloride
@@ -31,10 +34,11 @@ PODS:
   - Mantle (1.5.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.5.1)
-  - MPMessagePack (0.1.8)
+  - MPMessagePack (0.1.9)
   - NAChloride (1.1.1):
     - libsodium
   - ObjectiveSugar (1.1.0)
+  - OpenSSL-gabriel (1.0.1.j)
   - SSKeychain (1.2.2)
   - TSTripleSec (0.1.8):
     - MPMessagePack
@@ -42,34 +46,42 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - GHBigNum (from `../GHBigNum/`)
   - GHKit
   - GRUnit
   - KBCrypto (from `../KBCrypto/`)
   - Mantle
   - MPMessagePack (from `../MPMessagePack/`)
   - ObjectiveSugar
+  - OpenSSL-gabriel (from `../OpenSSL-gabriel/`)
   - SSKeychain
   - TSTripleSec (from `../TSTripleSec/`)
 
 EXTERNAL SOURCES:
+  GHBigNum:
+    :path: ../GHBigNum/
   KBCrypto:
     :path: ../KBCrypto/
   MPMessagePack:
     :path: ../MPMessagePack/
+  OpenSSL-gabriel:
+    :path: ../OpenSSL-gabriel/
   TSTripleSec:
     :path: ../TSTripleSec/
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  GHKit: a92861bbf7a5878c2638afb08e6790ffc102cc29
+  GHBigNum: e62bc65d101ebf649fca14d83edbe892333a8ca8
+  GHKit: f729fd504fd304254b8613fb3969efcbdfcf15cd
   GRUnit: 5ca46dd509f039f10ba027598fa8c1f12fe7ec3c
-  KBCrypto: 54aff59560c39878d7ee827c6a5cf0a15e17ff20
+  KBCrypto: b4a3d377bf21baf4f55b4e851c5277d6682d255c
   libsodium: fe2e966890bd680204048ff800e2f72bfb1b6669
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
-  MPMessagePack: 9263ecf6d77f0f0de43e3b4959137c2579d8f5a6
+  MPMessagePack: 1ff8cce726fc001ee65793c4e56b85e9e189dbf5
   NAChloride: 56f5ed342554234da0c304b0f3b2318434570f74
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
+  OpenSSL-gabriel: 983ace94bfce3ecdf0ebeb7d365fcb7ebc98d153
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   TSTripleSec: b5f719f1698a7e880431f2c15da6f52907949fa7
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4

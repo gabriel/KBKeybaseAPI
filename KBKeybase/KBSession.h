@@ -11,6 +11,8 @@
 #import "KBUser.h"
 #import "KBSessionUser.h"
 
+extern NSString *const KBSessionDidChangeNotification;
+
 @class KBSession;
 
 typedef void (^KBSessionAddBlock)(KBSession *session, NSString *password);

@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.dependency 'SSKeychain'
   s.dependency 'ObjectiveSugar'
   s.dependency 'GHKit'
+  s.dependency 'OpenSSL-gabriel'
   s.source_files = 'KBKeybase/**/*.{c,h,m}'
   s.requires_arc = true
 

@@ -8,6 +8,8 @@
 
 #import "KBSession.h"
 
+NSString *const KBSessionDidChangeNotification = @"KBSessionDidChangeNotification";
+
 @implementation KBSession
 
 - (instancetype)initWithSessionUser:(KBSessionUser *)sessionUser user:(KBUser *)user {

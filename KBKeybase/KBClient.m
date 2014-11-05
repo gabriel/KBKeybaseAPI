@@ -31,7 +31,7 @@ NSURL *KBServerURL(NSString *APIHost, NSString *path) {
   return [NSURL URLWithString:KBServerURLString(APIHost, path)];
 }
 
-NSDictionary *KBURLParameters(NSDictionary *params) {
+NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   NSMutableDictionary *parameters = [NSMutableDictionary gh_dictionaryWithKeysAndObjectsMaybeNil:nil];
   if (params) [parameters addEntriesFromDictionary:params];
   [parameters addEntriesFromDictionary:parameters];
@@ -41,6 +41,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
 
 @interface KBClient ()
 @property NSString *APIHost;
+@property KBCrypto *crypto;
 @property NSString *CSRFToken;
 @end
 
@@ -51,9 +52,10 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   return nil;
 }
 
-- (instancetype)initWithAPIHost:(NSString *)APIHost {
+- (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(KBCrypto *)crypto {
   if ((self = [super init])) {
     _APIHost = APIHost;
+    _crypto = crypto;
   }
   return self;
 }
@@ -170,8 +172,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)signUpWithName:(NSString *)name email:(NSString *)email userName:(NSString *)userName password:(NSString *)password invitationId:(NSString *)invitationId success:(void (^)(KBSession *session))success failure:(KBClientErrorHandler)failure {
-  NSParameterAssert(name);
+- (void)signUpWithEmail:(NSString *)email userName:(NSString *)userName password:(NSString *)password invitationId:(NSString *)invitationId success:(void (^)(KBSession *session))success failure:(KBClientErrorHandler)failure {
   NSParameterAssert(email);
   NSParameterAssert(userName);
   NSParameterAssert(password);
@@ -186,7 +187,7 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }
 
   NSString *pwh = [[KBClient passwordHashForPassword:password salt:salt] na_hexString];
-  NSDictionary *params = @{@"name": name, @"email": email, @"username": userName, @"pwh": pwh, @"salt": [salt na_hexString], @"invitation_id": invitationId, @"pwh_version": @(3)};
+  NSDictionary *params = @{@"email": email, @"username": userName, @"pwh": pwh, @"salt": [salt na_hexString], @"invitation_id": invitationId, @"pwh_version": @(3)};
   
   GHWeakSelf blockSelf = self;
   [self.httpManager POST:@"signup.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -196,10 +197,10 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)addPublicKeyBundle:(NSString *)publicKeyBundle success:(void (^)(NSString *kid))success failure:(KBClientErrorHandler)failure {
+- (void)addPublicKeyBundle:(NSString *)publicKeyBundle success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
   NSDictionary *params = @{@"public_key": publicKeyBundle, @"csrf_token": self.CSRFToken, @"is_primary": @(YES)};
   [self.httpManager POST:@"key/add.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
-    success(responseObject[@"kid"]);
+    success();
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
@@ -250,17 +251,22 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
 }
 
 - (void)userForUserName:(NSString *)userName success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
-  [self userForKey:@"usernames" value:userName success:success failure:failure];
+  [self userForKey:@"usernames" value:userName fields:nil success:success failure:failure];
 }
 
-- (void)userForKey:(NSString *)key value:(NSString *)value success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
-  [self usersForKey:key value:value success:^(NSArray *users) {
+- (void)userForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
+  [self usersForKey:key value:value fields:fields success:^(NSArray *users) {
     success([users count] > 0 ? users[0]: nil);
   } failure:failure];
 }
 
-- (void)usersForKey:(NSString *)key value:(NSString *)value success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
-  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{key: value}) success:^(NSURLSessionDataTask *task, id responseObject) {
+- (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
+  
+  if (!fields) {
+    fields = @"basics,pictures,profile,proofs_summary,cryptocurrency_addresses,public_keys";
+  }
+  
+  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{key: value, @"fields": fields}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
     NSArray *themDicts = [responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSArray class]];
     
@@ -273,14 +279,17 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
         [users addObject:user];
       }
     }
+    
+    //[self verifySignatureChainForUsers:users index:0 completion:^{
     success(users);
+    //}];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
 }
 
-- (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values limit:(NSInteger)limit success:(void (^)(NSArray *users, NSArray *allUsers, BOOL completed))success failure:(KBClientErrorHandler)failure {
-  NSMutableArray *allUsers = [NSMutableArray arrayWithCapacity:[values count]];
+- (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values fields:(NSString *)fields limit:(NSInteger)limit success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure {
+  __block NSError *pageError = nil;
   for (NSInteger offset = 0, count = [values count]; offset < count; offset += limit) {
     BOOL completed = NO;
     if ((offset + limit) >= count) {
@@ -290,12 +299,20 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
     NSValue *range = [NSValue valueWithRange:NSMakeRange(offset, limit)];
     NSArray *valuesChunk = values[range];
     
-    [self usersForKey:key value:[valuesChunk join:@","] success:^(NSArray *users) {
-      [allUsers addObjectsFromArray:users];
-      success(users, allUsers, completed);
-    } failure:failure];
+    if ([valuesChunk count] == 0) {
+      success(@[], YES);
+      return;
+    }
+    
+    [self usersForKey:key value:[valuesChunk join:@","] fields:fields success:^(NSArray *users) {
+      success(users, completed);
+    } failure:^(NSError *error) {
+      pageError = error;
+      failure(error);
+    }];
     
     if (completed) break;
+    if (pageError) break;
   }
 }
 
@@ -358,15 +375,6 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   success(keys);
 }
 
-- (void)keysForKIDs:(NSArray *)KIDs capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
-  GHWeakSelf blockSelf = self;
-  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"kids": [KIDs join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
-    [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    failure(error);
-  }];
-}
-
 - (void)keysForPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
   GHWeakSelf blockSelf = self;
   [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -380,7 +388,56 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-#pragma mark -
+- (void)usersForPGPKeyIds:(NSArray *)PGPKeyIds success:(void (^)(NSArray */*of KBUser*/users))success failure:(KBClientErrorHandler)failure {
+  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","]}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    NSArray *userNames = [responseObject[@"keys"] map:^id(NSDictionary *keyDict) { return keyDict[@"username"]; }];
+    [self usersForKey:@"usernames" value:[userNames join:@","] fields:nil success:success failure:failure];
+    
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    if (error.code == KBErrorCodeKeyNotFound) {
+      success(@[]);
+    } else {
+      failure(error);
+    }
+  }];
+}
+
+- (void)updateProfileForSession:(KBSession *)session params:(NSDictionary *)params success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure {
+  [self checkSession:session success:^(KBSession *session) {
+    NSMutableDictionary *updates = [params mutableCopy];
+    if (!updates[@"full_name"]) updates[@"full_name"] = GHOrNull(session.user.fullName);
+    if (!updates[@"bio"]) updates[@"bio"] = GHOrNull(session.user.bio);
+    if (!updates[@"location"]) updates[@"location"] = GHOrNull(session.user.location);
+    updates[@"csrf_token"] = self.CSRFToken;
+
+    [self.httpManager POST:@"profile-edit.json" parameters:KBURLParameters(updates) success:^(NSURLSessionDataTask *task, id responseObject) {
+      [self userForKey:@"username" value:session.sessionUser.userName fields:nil success:^(KBUser *user) {
+        success(user);
+      } failure:failure];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      failure(error);
+    }];
+  } failure:failure];
+}
+
+#pragma mark Signature
+
+- (void)signaturesForUserId:(NSString *)userId success:(void (^)(NSArray *signatures))success failure:(KBClientErrorHandler)failure {
+  [self.httpManager GET:@"sig/get.json" parameters:KBURLParameters(@{@"uid": userId, @"low": @(1)}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    NSError *error = nil;
+    NSArray *signatures = [MTLJSONAdapter modelsOfClass:KBSignature.class fromJSONArray:responseObject[@"sigs"] error:&error];
+    if (!signatures) {
+      failure(error);
+      return;
+    }
+    success(signatures);
+    
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
 
 - (void)nextSequence:(void (^)(NSNumber *sequenceNumber, NSString *previousBlockHash))success failure:(KBClientErrorHandler)failure {
   [self.httpManager GET:@"sig/next_seqno.json" parameters:KBURLParameters(@{@"type": @"PUBLIC"}) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -392,21 +449,117 @@ NSDictionary *KBURLParameters(NSDictionary *params) {
   }];
 }
 
-- (void)createSignature:(NSString *)signature userName:(NSString *)userName success:(void (^)(NSString *signatureId))success failure:(KBClientErrorHandler)failure {
+- (void)createSignature:(NSString *)signature type:(NSString *)type remoteUserName:(NSString *)remoteUserName success:(void (^)(KBSignatureProof *signatureProof))success failure:(KBClientErrorHandler)failure {
   NSDictionary *params =
     @{
       @"csrf_token": self.CSRFToken,
-      @"type": @"web_service_binding.keybase",
-      @"remote_username": userName,
+      @"type": type,
+      @"remote_username": remoteUserName,
       @"sig": signature,
       };
     
   [self.httpManager POST:@"sig/post.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
-    NSString *signatureId = responseObject[@"sig_id"];
-    success(signatureId);
+    NSError *error = nil;
+    KBSignatureProof *signatureProof = [MTLJSONAdapter modelOfClass:KBSignatureProof.class fromJSONDictionary:responseObject error:&error];
+    if (!signatureProof) {
+      failure(error);
+      return;
+    }
+    success(signatureProof);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
+}
+
+- (void)postedWithProofId:(NSString *)proofId success:(dispatch_block_t)success failure:(KBClientErrorHandler)failure {
+  NSDictionary *params = @{@"proof_id": proofId, @"csrf_token": self.CSRFToken};
+  [self.httpManager POST:@"sig/posted.json" parameters:KBURLParameters(params) success:^(NSURLSessionDataTask *task, id responseObject) {
+    success();
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    failure(error);
+  }];
+}
+
+#pragma mark Verification
+
+/*!
+ Verify signature chain.
+ 
+ For each link in the chain, check that SHA256(payload_json) == payload_hash.
+ Check that the payload_hash of a link is equal to "prev" in the next link.
+ For the last (tail), verify the signature, and verify that payload_json is actually what's been signed.
+ 
+ We apply revocations, so the chain is compressed.
+ We ignore signatures not signed by the users current key.
+ 
+ */
+- (void)verifySignatures:(NSArray *)signatures user:(KBUser *)user completion:(void (^)(NSError *error))completion {
+  if ([signatures count] == 0) {
+    completion(nil);
+    return;
+  }
+  
+  // Skip signatures not signed with the users key
+  signatures = [signatures select:^BOOL(KBSignature *sig) {
+    return [sig.keyFingerprint isEqualToString:user.key.fingerprint];
+  }];
+  
+  NSInteger index = 0;
+  for (KBSignature *signature in signatures) {
+    KBSignature *previousSignature = index > 0 ? signatures[index-1] : nil;
+    
+    if ([[signature sequenceNumber] integerValue] != index+1) {
+      completion(KBSignatureError(KBSignatureErrorInvalidSequenceNumber, @"Invalid sequence number"));
+      return;
+    }
+
+    NSString *payloadHash = [[NADigest digestForData:GHStringData(signature.payloadJSONString) algorithm:NADigestAlgorithmSHA2_256] na_hexString];
+    if (![signature.payloadHash isEqualToString:payloadHash]) {
+      completion(KBSignatureError(KBSignatureErrorInvalidPayloadHash, @"Invalid payload hash"));
+      return;
+    }
+    
+    if (previousSignature) {
+      if (![signature.previousPayloadHash isEqualToString:previousSignature.payloadHash]) {
+        completion(KBSignatureError(KBSignatureErrorInvalidPreviousPayloadHash, @"Invalid previous payload hash"));
+        return;
+      }
+    }
+
+    if (index == [signatures count]-1) {
+      NSAssert(_crypto, @"No crypto set, can't verify");
+    
+      [_crypto verifyMessageArmored:signature.signatureArmored success:^(KBPGPMessage *message) {
+        if (![[message.signers valueForKey:@"keyFingerprint"] containsObject:signature.keyFingerprint]) {
+          completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Not signed by specified key fingerprint"));
+          return;
+        }
+        
+        if (![message.text isEqualToString:signature.payloadJSONString]) {
+          completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Invalid signature; data not equal"));
+          return;
+        }
+        
+        NSMutableArray *compressed = [signatures mutableCopy];
+        for (KBSignature *signature in signatures) {
+          if (signature.signatureType == KBSignatureTypeRevoke) {
+            NSArray *revokes = [signatures select:^BOOL(KBSignature *sig) {
+              return [sig.identifier isEqualToString:signature.revokeSignatureId];
+            }];
+            [compressed removeObjectsInArray:revokes];
+          } else {
+            [compressed addObject:signature];
+          }
+        }
+        
+        user.signatures = compressed;
+        
+        completion(nil);
+      } failure:completion];
+    }
+    
+    index++;
+  }
 }
 
 #pragma mark KBResponseSerializerDelegate

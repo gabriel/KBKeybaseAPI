@@ -9,19 +9,45 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-typedef NS_ENUM (NSUInteger, KBSignatureType) {
-  KBSignatureTypeUnkown,
-  KBSignatureTypeTrack = 1,
+typedef NS_ENUM (NSInteger, KBSignatureType) {
+  KBSignatureTypeUnkown = 0,
+  KBSignatureTypeTrack,
+  KBSignatureTypeRevoke,
+  KBSignatureTypeWebServiceBinding,
+  KBSignatureTypeCryptocurrency,
 };
+
+typedef NS_ENUM (NSInteger, KBSignatureError) {
+  KBSignatureErrorUnknown = 0,
+  KBSignatureErrorInvalidSequenceNumber = -1,
+  KBSignatureErrorInvalidSignature = -2,
+  KBSignatureErrorInvalidPayloadHash = -3,
+  KBSignatureErrorInvalidPreviousPayloadHash = -4,
+  KBSignatureErrorInvalidKeyFingerprint = -5,
+};
+
+#define KBSignatureError(CODE, MESSAGE) [NSError errorWithDomain:@"KBSignature" code:CODE userInfo:@{NSLocalizedDescriptionKey:MESSAGE}]
 
 @interface KBSignature : MTLModel <MTLJSONSerializing>
 
 @property (readonly) NSString *identifier;
+@property (readonly) NSNumber *sequenceNumber;
+@property (readonly) NSDictionary *payload;
+@property (readonly) NSString *payloadJSONString;
+@property (readonly) NSString *signatureArmored;
+@property (readonly) NSString *payloadHash;
+@property (readonly) NSString *previousPayloadHash;
 
 - (KBSignatureType)signatureType;
 
-#pragma mark Track
+- (NSString *)keyUserName;
+- (NSString *)keyFingerprint;
+
+- (NSString *)descriptionForType;
 
 - (NSString *)trackUserName;
+- (NSString *)revokeSignatureId;
+- (NSDictionary *)service;
+- (NSDictionary *)cryptocurrency;
 
 @end

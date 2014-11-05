@@ -23,9 +23,15 @@ typedef NS_ENUM (NSInteger, KBProofType) {
 
 @interface KBProof : MTLModel <MTLJSONSerializing>
 
+@property (readonly) NSString *identifier;
 @property (readonly) NSString *nameTag;
 @property (readonly) KBProofType proofType;
+@property (readonly) NSString *signatureId;
+@property (readonly) NSString *proofURLString;
+@property (readonly) NSString *humanURLString;
 
 - (NSString *)displayDescription;
+
+- (NSString *)URLString;
 
 @end

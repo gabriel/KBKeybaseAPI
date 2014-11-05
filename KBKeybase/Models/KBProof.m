@@ -12,8 +12,11 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
+           @"identifier": @"proof_id",
            @"nameTag": @"nametag",
            @"proofType": @"proof_type",
+           @"humanURLString": @"human_url",
+           @"proofURLString": @"proof_url"
            };
 }
 
@@ -32,6 +35,25 @@
 
 - (NSString *)displayDescription {
   return _nameTag;
+}
+
+- (NSString *)URLString {
+  if (!_nameTag) return nil;
+  
+  switch (_proofType) {
+    case KBProofTypeTwitter:
+      return [NSString stringWithFormat:@"https://twitter.com/%@", _nameTag];
+    case KBProofTypeGithub:
+      return [NSString stringWithFormat:@"https://github.com/%@", _nameTag];
+    case KBProofTypeReddit:
+      return [NSString stringWithFormat:@"https://www.reddit.com/user/%@", _nameTag];
+    case KBProofTypeDNS:
+      return _nameTag;
+    case KBProofTypeGenericWebSite:
+      return _nameTag;
+    default:
+      return nil;
+  }
 }
 
 @end
