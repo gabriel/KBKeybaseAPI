@@ -18,11 +18,11 @@
   return @{
            @"publicKeyBundle": @"bundle",
            @"fingerprint": @"key_fingerprint",
-           @"dateCreated": @"ctime",
+           @"dateModified": @"mtime",
            };
 }
 
-+ (NSValueTransformer *)dateCreatedJSONTransformer {
++ (NSValueTransformer *)dateModifiedJSONTransformer {
   return [MTLValueTransformer transformerWithBlock:^(id date) {
     return [NSDate gh_parseTimeSinceEpoch:date];
   }];

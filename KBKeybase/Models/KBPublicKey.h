@@ -13,6 +13,6 @@
 
 @property (readonly) NSString *publicKeyBundle;
 @property (readonly) NSString *fingerprint;
-@property (readonly) NSDate *dateCreated;
+@property (readonly) NSDate *dateModified;
 
 @end

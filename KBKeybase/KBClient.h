@@ -67,7 +67,7 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 #pragma mark Signature
 
-- (void)signaturesForUserId:(NSString *)userId success:(void (^)(NSArray *signatures))success failure:(KBClientErrorHandler)failure;
+- (void)signaturesForUserId:(NSString *)userId sequenceNumber:(NSInteger)sequenceNumber success:(void (^)(NSArray *signatures))success failure:(KBClientErrorHandler)failure;
 
 - (void)createSignature:(NSString *)signature type:(NSString *)type remoteUserName:(NSString *)remoteUserName success:(void (^)(KBSignatureProof *signatureProof))success failure:(KBClientErrorHandler)failure;
 

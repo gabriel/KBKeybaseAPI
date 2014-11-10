@@ -263,7 +263,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 - (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure {
   
   if (!fields) {
-    fields = @"basics,pictures,profile,proofs_summary,cryptocurrency_addresses,public_keys";
+    fields = @"basics,pictures,profile,proofs_summary,cryptocurrency_addresses,public_keys,sigs";
   }
   
   [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{key: value, @"fields": fields}) success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -423,8 +423,8 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 
 #pragma mark Signature
 
-- (void)signaturesForUserId:(NSString *)userId success:(void (^)(NSArray *signatures))success failure:(KBClientErrorHandler)failure {
-  [self.httpManager GET:@"sig/get.json" parameters:KBURLParameters(@{@"uid": userId, @"low": @(1)}) success:^(NSURLSessionDataTask *task, id responseObject) {
+- (void)signaturesForUserId:(NSString *)userId sequenceNumber:(NSInteger)sequenceNumber success:(void (^)(NSArray *signatures))success failure:(KBClientErrorHandler)failure {
+  [self.httpManager GET:@"sig/get.json" parameters:KBURLParameters(@{@"uid": userId, @"low": @(sequenceNumber)}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
     NSError *error = nil;
     NSArray *signatures = [MTLJSONAdapter modelsOfClass:KBSignature.class fromJSONArray:responseObject[@"sigs"] error:&error];
@@ -490,7 +490,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
  For the last (tail), verify the signature, and verify that payload_json is actually what's been signed.
  
  We apply revocations, so the chain is compressed.
- We ignore signatures not signed by the users current key.
+ We stop checking signatures if we reach a different key (we check from the tail to the start).
  
  */
 - (void)verifySignatures:(NSArray *)signatures user:(KBUser *)user completion:(void (^)(NSError *error))completion {
@@ -498,67 +498,75 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     completion(nil);
     return;
   }
-  
-  // Skip signatures not signed with the users key
-  signatures = [signatures select:^BOOL(KBSignature *sig) {
-    return [sig.keyFingerprint isEqualToString:user.key.fingerprint];
+
+  [self _verifySignatures:signatures user:user index:[signatures count]-1 completion:^(NSError *error) {
+    if (error) {
+      user.signatures = nil;
+      completion(error);
+      return;
+    }
+    
+    // Apply the signatures to the user
+    NSMutableArray *signaturesJoined = [user.signatures mutableCopy];
+    if (!signaturesJoined) signaturesJoined = [NSMutableArray array];
+    [signaturesJoined addObjectsFromArray:signatures];
+    
+    user.signatures = signaturesJoined;
+    user.dateSignaturesVerified = [NSDate date];
+    completion(nil);
   }];
   
-  NSInteger index = 0;
-  for (KBSignature *signature in signatures) {
-    KBSignature *previousSignature = index > 0 ? signatures[index-1] : nil;
-    
-    if ([[signature sequenceNumber] integerValue] != index+1) {
-      completion(KBSignatureError(KBSignatureErrorInvalidSequenceNumber, @"Invalid sequence number"));
-      return;
-    }
+}
 
-    NSString *payloadHash = [[NADigest digestForData:GHStringData(signature.payloadJSONString) algorithm:NADigestAlgorithmSHA2_256] na_hexString];
-    if (![signature.payloadHash isEqualToString:payloadHash]) {
-      completion(KBSignatureError(KBSignatureErrorInvalidPayloadHash, @"Invalid payload hash"));
+- (void)_verifySignatures:(NSArray *)signatures user:(KBUser *)user index:(NSInteger)index completion:(void (^)(NSError *error))completion {
+  if (index == -1) {
+    completion(nil);
+    return;
+  }
+
+  KBSignature *signature = signatures[index];
+  KBSignature *previousSignature = index > 0 ? signatures[index-1] : nil;
+  
+  //GHDebug(@"Checking sig (%d): %@", (int)index, signature.identifier);
+
+  // If we reach a signature with a different key, lets stop
+  if (![signature.keyFingerprint isEqualToString:user.key.fingerprint]) {
+    completion(nil);
+    return;
+  }
+  
+  NSString *payloadHash = [[NADigest digestForData:GHStringData(signature.payloadJSONString) algorithm:NADigestAlgorithmSHA2_256] na_hexString];
+  if (![signature.payloadHash isEqualToString:payloadHash]) {
+    completion(KBSignatureError(KBSignatureErrorInvalidPayloadHash, @"Invalid payload hash"));
+    return;
+  }
+  
+  if (previousSignature) {
+    if (![signature.previousPayloadHash isEqualToString:previousSignature.payloadHash]) {
+      completion(KBSignatureError(KBSignatureErrorInvalidPreviousPayloadHash, @"Invalid previous payload hash"));
       return;
     }
-    
-    if (previousSignature) {
-      if (![signature.previousPayloadHash isEqualToString:previousSignature.payloadHash]) {
-        completion(KBSignatureError(KBSignatureErrorInvalidPreviousPayloadHash, @"Invalid previous payload hash"));
+  }
+
+  // Only need to verify signature on last item
+  if (index == [signatures count]-1) {
+    NSAssert(_crypto, @"No crypto set, can't verify");
+  
+    [_crypto verifyMessageArmored:signature.signatureArmored success:^(KBPGPMessage *message) {
+      if (![[message.signers valueForKey:@"keyFingerprint"] containsObject:signature.keyFingerprint]) {
+        completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Not signed by specified key fingerprint"));
         return;
       }
-    }
-
-    if (index == [signatures count]-1) {
-      NSAssert(_crypto, @"No crypto set, can't verify");
-    
-      [_crypto verifyMessageArmored:signature.signatureArmored success:^(KBPGPMessage *message) {
-        if (![[message.signers valueForKey:@"keyFingerprint"] containsObject:signature.keyFingerprint]) {
-          completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Not signed by specified key fingerprint"));
-          return;
-        }
-        
-        if (![message.text isEqualToString:signature.payloadJSONString]) {
-          completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Invalid signature; data not equal"));
-          return;
-        }
-        
-        NSMutableArray *compressed = [signatures mutableCopy];
-        for (KBSignature *signature in signatures) {
-          if (signature.signatureType == KBSignatureTypeRevoke) {
-            NSArray *revokes = [signatures select:^BOOL(KBSignature *sig) {
-              return [sig.identifier isEqualToString:signature.revokeSignatureId];
-            }];
-            [compressed removeObjectsInArray:revokes];
-          } else {
-            [compressed addObject:signature];
-          }
-        }
-        
-        user.signatures = compressed;
-        
-        completion(nil);
-      } failure:completion];
-    }
-    
-    index++;
+      
+      if (![message.text isEqualToString:signature.payloadJSONString]) {
+        completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Invalid signature; data not equal"));
+        return;
+      }
+      
+      [self _verifySignatures:signatures user:user index:index-1 completion:completion];
+    } failure:completion];
+  } else {
+    [self _verifySignatures:signatures user:user index:index-1 completion:completion];
   }
 }
 

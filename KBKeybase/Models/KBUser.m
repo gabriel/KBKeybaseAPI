@@ -33,7 +33,9 @@
            
            @"KID": @"public_keys.primary.kid",
            @"key": @"public_keys.primary",
+           @"lastSignatureId": @"sigs.last.sig_id",
            @"signatures": NSNull.null,
+           @"dateSignaturesVerified": NSNull.null,
            };
 }
 
@@ -77,6 +79,33 @@
 
 - (NSUInteger)hash {
   return [_identifier hash];
+}
+
+- (BOOL)needsSignaturesUpdate {
+  if (!self.lastSignatureId) return NO;
+  if ([[_signatures.lastObject identifier] isEqual:self.lastSignatureId]) return NO;
+  return YES;
+}
+
+- (NSInteger)lastSignatureSequenceNumber {
+  return [_signatures.lastObject sequenceNumber];
+}
+
+- (NSArray *)signaturesWithRevocationsApplied {
+  // Apply revocations. Any signature can contain revocations.
+  NSMutableArray *compressed = [_signatures mutableCopy];
+  for (KBSignature *signature in _signatures) {
+    NSArray *revokeSignatureIds = signature.revokeSignatureIds;
+    if ([revokeSignatureIds count] > 0) {
+      NSArray *revokes = [_signatures select:^BOOL(KBSignature *sig) {
+        return [revokeSignatureIds containsObject:sig.identifier];
+      }];
+      [compressed removeObjectsInArray:revokes];
+    } else {
+      [compressed addObject:signature];
+    }
+  }
+  return compressed;
 }
 
 - (BOOL)isEqual:(id)object {

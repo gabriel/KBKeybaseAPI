@@ -30,9 +30,12 @@
 @property (readonly) NSArray */*of KBBitcoinAdddress*/bitcoinAddresses;
 
 @property (readonly) NSString *KID;
-@property (readonly) id<KBKey> key;
+@property (readonly) KBPublicKey *key;
+
+@property (readonly) NSString *lastSignatureId;
 
 @property NSArray *signatures; // Verified signatures
+@property NSDate *dateSignaturesVerified;
 
 /*!
  Find proofs.
@@ -40,5 +43,8 @@
 - (NSArray *)proofsForType:(KBProofType)type;
 
 - (NSString *)displayDescription;
+
+- (BOOL)needsSignaturesUpdate;
+- (NSInteger)lastSignatureSequenceNumber;
 
 @end

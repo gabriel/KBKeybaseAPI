@@ -12,7 +12,6 @@
 typedef NS_ENUM (NSInteger, KBSignatureType) {
   KBSignatureTypeUnkown = 0,
   KBSignatureTypeTrack,
-  KBSignatureTypeRevoke,
   KBSignatureTypeWebServiceBinding,
   KBSignatureTypeCryptocurrency,
 };
@@ -31,14 +30,15 @@ typedef NS_ENUM (NSInteger, KBSignatureError) {
 @interface KBSignature : MTLModel <MTLJSONSerializing>
 
 @property (readonly) NSString *identifier;
-@property (readonly) NSNumber *sequenceNumber;
 @property (readonly) NSDictionary *payload;
 @property (readonly) NSString *payloadJSONString;
 @property (readonly) NSString *signatureArmored;
 @property (readonly) NSString *payloadHash;
-@property (readonly) NSString *previousPayloadHash;
 
 - (KBSignatureType)signatureType;
+
+- (NSString *)previousPayloadHash;
+- (NSInteger)sequenceNumber;
 
 - (NSString *)keyUserName;
 - (NSString *)keyFingerprint;
@@ -46,7 +46,7 @@ typedef NS_ENUM (NSInteger, KBSignatureError) {
 - (NSString *)descriptionForType;
 
 - (NSString *)trackUserName;
-- (NSString *)revokeSignatureId;
+- (NSArray *)revokeSignatureIds;
 - (NSDictionary *)service;
 - (NSDictionary *)cryptocurrency;
 
