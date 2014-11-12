@@ -16,10 +16,12 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{
            @"identifier": @"sig_id",
+           @"shortId": @"sig_id_short",
            @"payload": @"payload_json",
            @"payloadJSONString": @"payload_json",
            @"signatureArmored": @"sig",
            @"payloadHash": @"payload_hash",
+           @"proofTextCheck": @"proof_text_check",
            };
 }
 

@@ -34,6 +34,8 @@ typedef NS_ENUM (NSInteger, KBSignatureError) {
 @property (readonly) NSString *payloadJSONString;
 @property (readonly) NSString *signatureArmored;
 @property (readonly) NSString *payloadHash;
+@property (readonly) NSString *shortId;
+@property (readonly) NSString *proofTextCheck;
 
 - (KBSignatureType)signatureType;
 

@@ -489,33 +489,14 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
  Check that the payload_hash of a link is equal to "prev" in the next link.
  For the last (tail), verify the signature, and verify that payload_json is actually what's been signed.
  
- We apply revocations, so the chain is compressed.
- We stop checking signatures if we reach a different key (we check from the tail to the start).
- 
+ We stop checking signatures if we reach a different key (we check from the tail to the start). 
  */
 - (void)verifySignatures:(NSArray *)signatures user:(KBUser *)user completion:(void (^)(NSError *error))completion {
   if ([signatures count] == 0) {
     completion(nil);
     return;
   }
-
-  [self _verifySignatures:signatures user:user index:[signatures count]-1 completion:^(NSError *error) {
-    if (error) {
-      user.signatures = nil;
-      completion(error);
-      return;
-    }
-    
-    // Apply the signatures to the user
-    NSMutableArray *signaturesJoined = [user.signatures mutableCopy];
-    if (!signaturesJoined) signaturesJoined = [NSMutableArray array];
-    [signaturesJoined addObjectsFromArray:signatures];
-    
-    user.signatures = signaturesJoined;
-    user.dateSignaturesVerified = [NSDate date];
-    completion(nil);
-  }];
-  
+  [self _verifySignatures:signatures user:user index:[signatures count]-1 completion:completion];
 }
 
 - (void)_verifySignatures:(NSArray *)signatures user:(KBUser *)user index:(NSInteger)index completion:(void (^)(NSError *error))completion {

@@ -20,6 +20,15 @@ typedef NS_ENUM (NSInteger, KBProofType) {
   KBProofTypeGenericWebSite,
 };
 
+typedef NS_ENUM (NSInteger, KBProofError) {
+  KBProofErrorUnknown = 0,
+  KBProofErrorNoSignature = -1,
+  KBProofErrorInvalidProofURL = -2,
+  KBProofErrorInvalidResponseData = -3,
+  KBProofErrorMissingProofText = -4,
+  KBProofErrorUnrecognized = -5,
+  KBProofErrorDNSLookup = -6,
+};
 
 @interface KBProof : MTLModel <MTLJSONSerializing>
 
@@ -27,8 +36,12 @@ typedef NS_ENUM (NSInteger, KBProofType) {
 @property (readonly) NSString *nameTag;
 @property (readonly) KBProofType proofType;
 @property (readonly) NSString *signatureId;
-@property (readonly) NSString *proofURLString;
 @property (readonly) NSString *humanURLString;
+
+@property NSDate *dateVerified;
+@property NSError *verifyError;
+
+- (BOOL)isURLStringValid;
 
 - (NSString *)displayDescription;
 

@@ -34,17 +34,11 @@
 
 @property (readonly) NSString *lastSignatureId;
 
-@property NSArray *signatures; // Verified signatures
-@property NSDate *dateSignaturesVerified;
-
 /*!
  Find proofs.
  */
 - (NSArray *)proofsForType:(KBProofType)type;
 
 - (NSString *)displayDescription;
-
-- (BOOL)needsSignaturesUpdate;
-- (NSInteger)lastSignatureSequenceNumber;
 
 @end

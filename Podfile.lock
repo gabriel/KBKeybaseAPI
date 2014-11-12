@@ -47,7 +47,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - GHBigNum (from `../GHBigNum/`)
-  - GHKit
+  - GHKit (from `../gh-kit/`)
   - GRUnit
   - KBCrypto (from `../KBCrypto/`)
   - Mantle
@@ -60,6 +60,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   GHBigNum:
     :path: ../GHBigNum/
+  GHKit:
+    :path: ../gh-kit/
   KBCrypto:
     :path: ../KBCrypto/
   MPMessagePack:

@@ -6,7 +6,7 @@ pod "TSTripleSec", :path => "../TSTripleSec/"
 pod "MPMessagePack", :path => "../MPMessagePack/"
 pod "KBCrypto", :path => "../KBCrypto/"
 
-pod "GHKit"
+pod "GHKit", :path => "../gh-kit/"
 pod "ObjectiveSugar"
 pod "AFNetworking"
 pod "Mantle"

@@ -27,6 +27,10 @@
 		0054F1411990180D00908F74 /* KBPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 0054F13E1990180D00908F74 /* KBPublicKey.m */; };
 		0054F1561991505800908F74 /* gabrielhlocal2_private.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1551991505800908F74 /* gabrielhlocal2_private.json */; };
 		0054F1581991506900908F74 /* gabrielhlocal2_public.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1571991506900908F74 /* gabrielhlocal2_public.json */; };
+		005D65501A11560600A4E1CC /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D654F1A11560600A4E1CC /* KBProofVerification.m */; };
+		005D65511A11560600A4E1CC /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D654F1A11560600A4E1CC /* KBProofVerification.m */; };
+		005D65551A12B4EA00A4E1CC /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D65541A12B4EA00A4E1CC /* KBDNSQuery.m */; };
+		005D65561A12B4EA00A4E1CC /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D65541A12B4EA00A4E1CC /* KBDNSQuery.m */; };
 		0080099619AF1C7B002CFF4F /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080099519AF1C7B002CFF4F /* KBSearchResult.m */; };
 		0080099719AF1C7B002CFF4F /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0080099519AF1C7B002CFF4F /* KBSearchResult.m */; };
 		00D010441A085F95002BF5C5 /* KBSignatureProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D010431A085F95002BF5C5 /* KBSignatureProof.m */; };
@@ -112,6 +116,10 @@
 		0054F13F1990180D00908F74 /* KBPublicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPublicKey.h; sourceTree = "<group>"; };
 		0054F1551991505800908F74 /* gabrielhlocal2_private.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_private.json; sourceTree = "<group>"; };
 		0054F1571991506900908F74 /* gabrielhlocal2_public.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_public.json; sourceTree = "<group>"; };
+		005D654E1A11560600A4E1CC /* KBProofVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBProofVerification.h; sourceTree = "<group>"; };
+		005D654F1A11560600A4E1CC /* KBProofVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBProofVerification.m; sourceTree = "<group>"; };
+		005D65531A12B4EA00A4E1CC /* KBDNSQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDNSQuery.h; sourceTree = "<group>"; };
+		005D65541A12B4EA00A4E1CC /* KBDNSQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDNSQuery.m; sourceTree = "<group>"; };
 		0080099419AF1C7B002CFF4F /* KBSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSearchResult.h; sourceTree = "<group>"; };
 		0080099519AF1C7B002CFF4F /* KBSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSearchResult.m; sourceTree = "<group>"; };
 		00D010421A085F95002BF5C5 /* KBSignatureProof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSignatureProof.h; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				004BC915198C37CD000C039B /* Models */,
+				005D65521A12B4D400A4E1CC /* DNS */,
 				004BC8FE198C36CD000C039B /* KBKeybase.h */,
 				004BC929198C37CD000C039B /* KBClient.h */,
 				004BC926198C37CD000C039B /* KBClient.m */,
@@ -191,6 +200,8 @@
 				004BC932198C37CD000C039B /* KBRequestSerializer.m */,
 				004BC935198C37CD000C039B /* KBResponseSerializer.h */,
 				004BC92D198C37CD000C039B /* KBResponseSerializer.m */,
+				005D654E1A11560600A4E1CC /* KBProofVerification.h */,
+				005D654F1A11560600A4E1CC /* KBProofVerification.m */,
 			);
 			path = KBKeybase;
 			sourceTree = "<group>";
@@ -230,6 +241,15 @@
 			);
 			name = Data;
 			path = Tests/Data;
+			sourceTree = "<group>";
+		};
+		005D65521A12B4D400A4E1CC /* DNS */ = {
+			isa = PBXGroup;
+			children = (
+				005D65531A12B4EA00A4E1CC /* KBDNSQuery.h */,
+				005D65541A12B4EA00A4E1CC /* KBDNSQuery.m */,
+			);
+			name = DNS;
 			sourceTree = "<group>";
 		};
 		5448E67988E0A97DF6E53C9B /* Pods */ = {
@@ -433,6 +453,8 @@
 				004BC937198C37CD000C039B /* KBImage.m in Sources */,
 				0054F1401990180D00908F74 /* KBPublicKey.m in Sources */,
 				0054F13C1990176700908F74 /* KBPrivateKey.m in Sources */,
+				005D65501A11560600A4E1CC /* KBProofVerification.m in Sources */,
+				005D65551A12B4EA00A4E1CC /* KBDNSQuery.m in Sources */,
 				004BC936198C37CD000C039B /* KBBitcoinAddress.m in Sources */,
 				004BC93E198C37CD000C039B /* KBClient.m in Sources */,
 				004BC942198C37CD000C039B /* KBResponseSerializer.m in Sources */,
@@ -451,6 +473,7 @@
 			files = (
 				0054F13D1990176700908F74 /* KBPrivateKey.m in Sources */,
 				B2EAB5CD13004D8CBA822AED /* main.m in Sources */,
+				005D65511A11560600A4E1CC /* KBProofVerification.m in Sources */,
 				AAE89D2D7C614CAABCA8C939 /* KBClientTest.m in Sources */,
 				545654A16F3C4A14850265DA /* KBError.m in Sources */,
 				070E02182A8B4345B3EA93AD /* KBRequestSerializer.m in Sources */,
@@ -461,6 +484,7 @@
 				0054F1411990180D00908F74 /* KBPublicKey.m in Sources */,
 				00D010451A085F95002BF5C5 /* KBSignatureProof.m in Sources */,
 				2959C66E163043BFAE8F53BD /* KBBitcoinAddress.m in Sources */,
+				005D65561A12B4EA00A4E1CC /* KBDNSQuery.m in Sources */,
 				BA3288CB01BD4528B111154A /* KBClient.m in Sources */,
 				971E18FE89FE400D9F67AE81 /* KBResponseSerializer.m in Sources */,
 				0080099719AF1C7B002CFF4F /* KBSearchResult.m in Sources */,

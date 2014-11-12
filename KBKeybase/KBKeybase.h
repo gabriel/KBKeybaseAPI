@@ -20,3 +20,5 @@
 #import "KBSessionUser.h"
 #import "KBSignature.h"
 #import "KBUser.h"
+
+#import "KBProofVerification.h"
