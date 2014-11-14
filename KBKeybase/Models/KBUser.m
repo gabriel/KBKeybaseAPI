@@ -21,6 +21,7 @@
   return @{
            @"identifier": @"id",
            @"userName": @"basics.username",
+           @"displayUserName": @"basics.username", // Duplicating for test scaffolding
            @"image": @"pictures.primary",
            @"fullName": @"profile.full_name",
            @"bio": @"profile.bio",

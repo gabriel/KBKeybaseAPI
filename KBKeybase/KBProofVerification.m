@@ -42,6 +42,13 @@
   }
 }
 
+- (NSString *)stringByStrippingHTML:(NSString *)document {
+  NSRange r;
+  while ((r = [document rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+    document = [document stringByReplacingCharactersInRange:r withString:@""];
+  return document;
+}
+
 - (void)verifyHTTPWithURLString:(NSString *)URLString signature:(KBSignature *)signature completion:(KBProofCompletionHandler)completion {
   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
   AFHTTPRequestSerializer *requestSerializer = [[AFHTTPRequestSerializer alloc] init];
@@ -61,10 +68,12 @@
     document = [document stringByReplacingOccurrencesOfString:@"\\s" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, document.length)];
     NSString *proofTextCheck = [signature.proofTextCheck stringByReplacingOccurrencesOfString:@"\\s" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, signature.proofTextCheck.length)];
     
-    NSRange range = [document rangeOfString:proofTextCheck options:NSLiteralSearch];
-    if (range.location == NSNotFound) {
-      completion(GHNSError(KBProofErrorMissingProofText, @"Missing proof text in response."));
-      return;
+    if ([document rangeOfString:proofTextCheck options:NSLiteralSearch].location == NSNotFound) {
+      // Try again after stripping HTML
+      if ([[self stringByStrippingHTML:document] rangeOfString:proofTextCheck options:NSLiteralSearch].location == NSNotFound) {
+        completion(GHNSError(KBProofErrorMissingProofText, @"Missing proof text in response."));
+        return;
+      }
     }
     
     // Verfied ok
@@ -76,11 +85,22 @@
 }
 
 - (void)verifyDNSWithName:(NSString *)name signature:(KBSignature *)signature completion:(KBProofCompletionHandler)completion {
+  // Try the domain name and then try _keybase.domain if that failed
+  [self _verifyDNSWithName:name signature:signature completion:^(NSError *error) {
+    if (!error) {
+      completion(nil);
+      return;
+    }
+    [self _verifyDNSWithName:NSStringWithFormat(@"_keybase.%@", name) signature:signature completion:completion];
+  }];
+}
+
+- (void)_verifyDNSWithName:(NSString *)name signature:(KBSignature *)signature completion:(KBProofCompletionHandler)completion {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     KBDNSQuery *query = [[KBDNSQuery alloc] init];
     [query TXTRecordsWithName:name completion:^(NSError *error, NSArray *records) {
       for (NSString *record in records) {
-        if ([record gh_endsWith:signature.shortId options:0]) {
+        if ([record rangeOfString:signature.proofTextCheck options:NSLiteralSearch].location != NSNotFound) {
           completion(nil);
           return;
         }

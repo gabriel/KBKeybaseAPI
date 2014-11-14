@@ -17,6 +17,7 @@
 
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *userName;
+@property (readonly) NSString *displayUserName;
 @property (readonly) KBImage *image;
 
 @property (readonly) NSString *bio;

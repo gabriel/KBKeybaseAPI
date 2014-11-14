@@ -34,17 +34,19 @@ typedef NS_ENUM (NSInteger, KBProofError) {
 
 @property (readonly) NSString *identifier;
 @property (readonly) NSString *nameTag;
+@property (readonly) NSString *displayName;
 @property (readonly) KBProofType proofType;
 @property (readonly) NSString *signatureId;
 @property (readonly) NSString *humanURLString;
+@property (readonly) NSString *serviceURLString;
 
 @property NSDate *dateVerified;
 @property NSError *verifyError;
 
+- (NSString *)proofName;
+
 - (BOOL)isURLStringValid;
 
-- (NSString *)displayDescription;
-
-- (NSString *)URLString;
+- (NSString *)statusDescription;
 
 @end

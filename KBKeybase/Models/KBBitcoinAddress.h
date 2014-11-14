@@ -14,4 +14,6 @@
 @property (readonly) NSString *address;
 @property (readonly) NSString *signatureId;
 
+- (NSString *)displayDescription;
+
 @end

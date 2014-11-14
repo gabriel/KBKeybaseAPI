@@ -284,7 +284,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     success(users);
     //}];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    failure(error);
+    if (failure) failure(error);
   }];
 }
 
@@ -308,7 +308,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
       success(users, completed);
     } failure:^(NSError *error) {
       pageError = error;
-      failure(error);
+      if (failure) failure(error);
     }];
     
     if (completed) break;
@@ -412,7 +412,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     updates[@"csrf_token"] = self.CSRFToken;
 
     [self.httpManager POST:@"profile-edit.json" parameters:KBURLParameters(updates) success:^(NSURLSessionDataTask *task, id responseObject) {
-      [self userForKey:@"username" value:session.sessionUser.userName fields:nil success:^(KBUser *user) {
+      [self userForKey:@"usernames" value:session.sessionUser.userName fields:nil success:^(KBUser *user) {
         success(user);
       } failure:failure];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

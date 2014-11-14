@@ -10,6 +10,7 @@
 
 #import <GHKit/GHKit.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
+#import <NAChloride/NAChloride.h>
 
 @implementation KBProof
 
@@ -18,8 +19,10 @@
            @"identifier": @"proof_id",
            @"signatureId": @"sig_id",
            @"nameTag": @"nametag",
+           @"displayName": @"nametag",
            @"proofType": @"proof_type",
            @"humanURLString": @"human_url",
+           @"serviceURLString": @"service_url",
            @"dateVerified": NSNull.null,
            @"verifyError": NSNull.null,
            };
@@ -38,26 +41,23 @@
   return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:mapping defaultValue:@(KBProofTypeUnknown) reverseDefaultValue:nil];
 }
 
-- (NSString *)displayDescription {
-  return _nameTag;
+- (NSString *)statusDescription {
+  if (_verifyError) return NSStringWithFormat(@"Error: %@", [_verifyError localizedDescription]);
+  if (_dateVerified) return NSStringWithFormat(@"Verified: %@", _dateVerified);
+  return @"None";
 }
 
-- (NSString *)URLString {
-  if (!_nameTag) return nil;
-  
+- (NSString *)proofName {
   switch (_proofType) {
-    case KBProofTypeTwitter:
-      return [NSString stringWithFormat:@"https://twitter.com/%@", _nameTag];
-    case KBProofTypeGithub:
-      return [NSString stringWithFormat:@"https://github.com/%@", _nameTag];
-    case KBProofTypeReddit:
-      return [NSString stringWithFormat:@"https://www.reddit.com/user/%@", _nameTag];
-    case KBProofTypeDNS:
-      return _nameTag;
-    case KBProofTypeGenericWebSite:
-      return _nameTag;
+    case KBProofTypeTwitter: return @"Twitter";
+    case KBProofTypeGithub: return @"Github";
+    case KBProofTypeReddit: return @"Reddit";
+    case KBProofTypeDNS: return @"Domain";
+    case KBProofTypeGenericWebSite: return @"Website";
+    case KBProofTypeHackerNews: return @"Hackernews";
+    case KBProofTypeCoinbase: return @"Coinbase";
     default:
-      return nil;
+      return @"Unknown";
   }
 }
 
