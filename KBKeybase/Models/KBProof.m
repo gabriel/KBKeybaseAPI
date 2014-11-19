@@ -44,7 +44,7 @@
 - (NSString *)statusDescription {
   if (_verifyError) return NSStringWithFormat(@"Error: %@", [_verifyError localizedDescription]);
   if (_dateVerified) return NSStringWithFormat(@"Verified: %@", _dateVerified);
-  return @"None";
+  return @"Unverified";
 }
 
 - (NSString *)proofName {

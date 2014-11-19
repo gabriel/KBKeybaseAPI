@@ -11,10 +11,10 @@
 #import "KBProof.h"
 #import "KBSignature.h"
 
-typedef void (^KBProofCompletionHandler)(NSError *error);
+typedef void (^KBProofCompletionHandler)(NSError *error, KBProof *proof);
 
 @interface KBProofVerification : NSObject
 
-- (void)verifyProof:(KBProof *)proof signature:(KBSignature *)signature completion:(KBProofCompletionHandler)completion;
++ (void)verifyProof:(KBProof *)proof signature:(KBSignature *)signature completion:(KBProofCompletionHandler)completion;
 
 @end

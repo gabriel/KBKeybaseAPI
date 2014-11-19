@@ -53,13 +53,18 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 - (void)userForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(KBUser *user))success failure:(KBClientErrorHandler)failure;
 
+/*!
+ Key can be:
+ - usernames
+ - twitter
+ */
 - (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBClientErrorHandler)failure;
 
 - (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values fields:(NSString *)fields limit:(NSInteger)limit success:(void (^)(NSArray *users, BOOL completed))success failure:(KBClientErrorHandler)failure;
 
-- (void)searchWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure;
-
 - (void)usersForPGPKeyIds:(NSArray *)PGPKeyIds success:(void (^)(NSArray */*of KBUser*/users))success failure:(KBClientErrorHandler)failure;
+
+- (void)searchUsersWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure;
 
 #pragma mark Profile
 

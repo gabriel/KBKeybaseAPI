@@ -266,9 +266,18 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     fields = @"basics,pictures,profile,proofs_summary,cryptocurrency_addresses,public_keys,sigs";
   }
   
-  [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{key: value, @"fields": fields}) success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSString *path = @"user/lookup.json";
+  NSString *responseKey = @"them";
+  NSMutableDictionary *parameters = KBURLParameters(@{key: value, @"fields": fields});
+  if ([key isEqual:@"twitter"]) {
+    path = @"user/discover.json";
+    responseKey = @"matches";
+    parameters[@"flatten"] = @"1";
+  }
+  
+  [self.httpManager GET:path parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     
-    NSArray *themDicts = [responseObject gh_objectMaybeNilForKey:@"them" ofClass:[NSArray class]];
+    NSArray *themDicts = [responseObject gh_objectMaybeNilForKey:responseKey ofClass:[NSArray class]];
     
     NSError *error = nil;
     
@@ -316,7 +325,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   }
 }
 
-- (void)searchWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure {
+- (void)searchUsersWithQuery:(NSString *)query success:(void (^)(NSArray *searchResults))success failure:(KBClientErrorHandler)failure {
   if ([NSString gh_isBlank:query]) {
     dispatch_async(dispatch_get_main_queue(), ^{ success(@[]); });
     return;

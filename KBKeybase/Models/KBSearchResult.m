@@ -36,11 +36,6 @@
            };
 }
 
-- (NSString *)twitterUserName {
-  if (!_twitter) return nil;
-  return [NSString stringWithFormat:@"@%@", _twitter];
-}
-
 @end
 
 //{

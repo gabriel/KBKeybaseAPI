@@ -19,18 +19,17 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
   
   KBDNSInternalCompletionHandler cb = (__bridge KBDNSInternalCompletionHandler)(context);
   
-  if (errorCode) {
+  if (errorCode != kDNSServiceErr_NoError) {
     cb(errorCode, nil, YES);
     return;
   }
-  
   BOOL more = (flags & kDNSServiceFlagsMoreComing) != 0;
   NSData *data = (rdlen > 0 ? [NSData dataWithBytes:rdata length:rdlen] : nil);
   cb(kDNSServiceErr_NoError, data, !more);
 };
 
 
-- (void)TXTRecordsWithName:(NSString *)name completion:(KBDNSCompletionHandler)completion {
+- (void)TXTRecordsWithName:(NSString *)name progress:(KBDNSProgressHandler)progress completion:(KBDNSCompletionHandler)completion {
   __block DNSServiceRef serviceRef = NULL;
   NSMutableArray *records = [NSMutableArray array];
   
@@ -46,7 +45,14 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
     
     if (data) {
       NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-      if (str) [records addObject:str];
+      if (str) {
+        GHDebug(@"Got record: %@ (more? %d)", str, finished);
+        [records addObject:str];
+        
+        BOOL stop = NO;
+        progress(str, &stop);
+        if (stop) finished = YES;
+      }
     }
     
     if (finished) {
@@ -58,6 +64,7 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
     }
   };
   
+  GHDebug(@"DNS query: %@", name);
   DNSServiceErrorType error = DNSServiceQueryRecord(&serviceRef, kDNSServiceFlagsTimeout, 0, [name cStringUsingEncoding:NSUTF8StringEncoding], kDNSServiceType_TXT, kDNSServiceClass_IN, callback, (__bridge void *)(cb));
   
   if (error != kDNSServiceErr_NoError) {
@@ -65,7 +72,12 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
     return;
   }
 
-  DNSServiceProcessResult(serviceRef);
+  error = DNSServiceProcessResult(serviceRef);
+  if (error != kDNSServiceErr_NoError) {
+    completion(GHNSError(error, @"DNS Error (DNSServiceProcessResult)"), nil);
+    return;
+  }
+
   
   if (serviceRef) {
     DNSServiceRefDeallocate(serviceRef);
