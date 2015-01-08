@@ -4,7 +4,6 @@
 #import <GRUnit/GRUnit.h>
 
 #import "KBKeybase.h"
-#import <KBCrypto/KBCrypto.h>
 
 @interface KBClientTest : GRTestCase
 @end

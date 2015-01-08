@@ -25,7 +25,9 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
   }
   BOOL more = (flags & kDNSServiceFlagsMoreComing) != 0;
   NSData *data = (rdlen > 0 ? [NSData dataWithBytes:rdata length:rdlen] : nil);
-  cb(kDNSServiceErr_NoError, data, !more);
+  dispatch_async(dispatch_get_main_queue(), ^{
+    cb(kDNSServiceErr_NoError, data, !more);
+  });
 };
 
 
@@ -33,14 +35,19 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
   __block DNSServiceRef serviceRef = NULL;
   NSMutableArray *records = [NSMutableArray array];
   
+  __block BOOL completed = NO;
+  
   KBDNSInternalCompletionHandler cb = ^(DNSServiceErrorType errorCode, NSData *data, BOOL finished) {
     if (errorCode != kDNSServiceErr_NoError) {
       if (serviceRef) {
         DNSServiceRefDeallocate(serviceRef);
         serviceRef = NULL;
       }
-      completion(GHNSError(errorCode, @"DNS Error (Callback)"), records);
-      return;
+      if (!completed) {
+        completed = YES;
+        completion(GHNSError(errorCode, @"DNS Error (Callback)"), records);
+        return;
+      }
     }
     
     if (data) {
@@ -60,7 +67,10 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
         DNSServiceRefDeallocate(serviceRef);
         serviceRef = NULL;
       }
-      completion(nil, records);
+      if (!completed) {
+        completed = YES;
+        completion(nil, records);
+      }
     }
   };
   
@@ -71,18 +81,18 @@ static void callback(DNSServiceRef sdRef, DNSServiceFlags flags, uint32_t interf
     completion(GHNSError(error, @"DNS Error (DNSServiceQueryRecord)"), nil);
     return;
   }
-
-  error = DNSServiceProcessResult(serviceRef);
-  if (error != kDNSServiceErr_NoError) {
-    completion(GHNSError(error, @"DNS Error (DNSServiceProcessResult)"), nil);
-    return;
-  }
-
   
-  if (serviceRef) {
-    DNSServiceRefDeallocate(serviceRef);
-    serviceRef = NULL;
-  }
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    DNSServiceErrorType error = DNSServiceProcessResult(serviceRef);
+    if (error != kDNSServiceErr_NoError) {
+      completion(GHNSError(error, @"DNS Error (DNSServiceProcessResult)"), nil);
+      return;
+    }
+  });
+
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (!completed) cb(kDNSServiceErr_Timeout, nil, YES);
+  });
 }
 
 

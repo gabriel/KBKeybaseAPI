@@ -8,7 +8,7 @@
 
 #import <Mantle/Mantle.h>
 #import <TSTripleSec/P3SKB.h>
-#import <KBCrypto/KBCrypto.h>
+#import "KBKey.h"
 
 @interface KBPrivateKey : MTLModel <KBKey, MTLJSONSerializing>
 

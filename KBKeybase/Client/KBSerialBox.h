@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^KBSerialBoxRunBlock)(id obj, BOOL finished, dispatch_block_t completion);
+#import "KBDefines.h"
+
+typedef void (^KBSerialBoxRunBlock)(id obj, BOOL finished, KBCompletionHandler completion);
 typedef void (^KBSerialBoxCompletionBlock)(NSArray *objs);
 
 @interface KBSerialBox : NSObject

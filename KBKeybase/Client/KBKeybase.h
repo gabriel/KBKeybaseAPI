@@ -11,7 +11,6 @@
 #import "KBClientKeyRing.h"
 
 #import "KBSession.h"
-#import "KBKeychain.h"
 
 #import "KBBitcoinAddress.h"
 #import "KBImage.h"
@@ -22,3 +21,5 @@
 #import "KBUser.h"
 
 #import "KBProofVerification.h"
+#import "KBDefines.h"
+#import "KBSerialBox.h"

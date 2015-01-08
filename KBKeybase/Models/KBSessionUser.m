@@ -7,7 +7,6 @@
 //
 
 #import "KBSessionUser.h"
-#import "KBKey.h"
 
 #import <ObjectiveSugar/ObjectiveSugar.h>
 #import <GHKit/GHKit.h>

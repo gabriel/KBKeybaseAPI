@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-#import "KBKey.h"
-
 @interface KBSearchResult : MTLModel <MTLJSONSerializing>
 
 // Username
@@ -31,8 +29,6 @@
 // Twitter
 @property (readonly) NSString *twitter;
 @property (readonly) float twitterScore;
-// @name
-- (NSString *)twitterUserName;
 
 // Github
 @property (readonly) NSString *github;

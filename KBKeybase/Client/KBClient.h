@@ -9,12 +9,11 @@
 #import "KBUser.h"
 #import "KBSessionUser.h"
 #import "KBSession.h"
-#import "KBKey.h"
 #import "KBSignatureProof.h"
 
 #import "KBResponseSerializer.h"
+#import "KBCrypto.h"
 
-#import <KBCrypto/KBCrypto.h>
 #import <TSTripleSec/P3SKB.h>
 
 extern NSString *const KBAPILocalHost;
@@ -24,7 +23,9 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 @interface KBClient : NSObject <KBResponseSerializerDelegate>
 
-- (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(KBCrypto *)crypto;
+@property NSTimeInterval cacheInterval;
+
+- (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(id<KBCrypto>)crypto;
 
 // For debugging when cookies are invalid or expired
 - (void)clearCookies;

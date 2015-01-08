@@ -1,89 +1,62 @@
 PODS:
-  - AFNetworking (2.4.1):
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - GHBigNum (0.1.1):
-    - OpenSSL-gabriel
-  - GHKit (1.0.10)
-  - GRUnit (1.0.11)
-  - KBCrypto (0.1.1):
-    - GHBigNum
-    - GHKit
-    - Mantle
-    - NAChloride
-    - ObjectiveSugar
-  - libsodium (1.0.0)
-  - Mantle (1.5.1):
-    - Mantle/extobjc
-  - Mantle/extobjc (1.5.1)
-  - MPMessagePack (0.1.9)
-  - NAChloride (1.1.1):
+  - GHBigNum (0.1.4):
+    - OpenSSL-gabriel (~> 1.0.1.j-2)
+  - GHKit (1.0.20)
+  - GRUnit (1.1.2)
+  - libsodium (1.0.1)
+  - Mantle (1.5.3):
+    - Mantle/extobjc (= 1.5.3)
+  - Mantle/extobjc (1.5.3)
+  - MPMessagePack (1.0.5)
+  - NAChloride (1.1.2):
     - libsodium
   - ObjectiveSugar (1.1.0)
-  - OpenSSL-gabriel (1.0.1.j)
-  - SSKeychain (1.2.2)
-  - TSTripleSec (0.1.8):
+  - OpenSSL-gabriel (1.0.1.j-2)
+  - TSTripleSec (1.0.0):
     - MPMessagePack
     - NAChloride
 
 DEPENDENCIES:
   - AFNetworking
-  - GHBigNum (from `../GHBigNum/`)
-  - GHKit (from `../gh-kit/`)
+  - GHBigNum
+  - GHKit
   - GRUnit
-  - KBCrypto (from `../KBCrypto/`)
   - Mantle
-  - MPMessagePack (from `../MPMessagePack/`)
   - ObjectiveSugar
-  - OpenSSL-gabriel (from `../OpenSSL-gabriel/`)
-  - SSKeychain
-  - TSTripleSec (from `../TSTripleSec/`)
-
-EXTERNAL SOURCES:
-  GHBigNum:
-    :path: ../GHBigNum/
-  GHKit:
-    :path: ../gh-kit/
-  KBCrypto:
-    :path: ../KBCrypto/
-  MPMessagePack:
-    :path: ../MPMessagePack/
-  OpenSSL-gabriel:
-    :path: ../OpenSSL-gabriel/
-  TSTripleSec:
-    :path: ../TSTripleSec/
+  - TSTripleSec
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  GHBigNum: e62bc65d101ebf649fca14d83edbe892333a8ca8
-  GHKit: f729fd504fd304254b8613fb3969efcbdfcf15cd
-  GRUnit: 5ca46dd509f039f10ba027598fa8c1f12fe7ec3c
-  KBCrypto: b4a3d377bf21baf4f55b4e851c5277d6682d255c
-  libsodium: fe2e966890bd680204048ff800e2f72bfb1b6669
-  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
-  MPMessagePack: 1ff8cce726fc001ee65793c4e56b85e9e189dbf5
-  NAChloride: 56f5ed342554234da0c304b0f3b2318434570f74
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  GHBigNum: 9b4e8d8770bbb58e571319e82374763e670ed5ca
+  GHKit: 9466c08deeb753e144bbbfac7f76be1b38175cb0
+  GRUnit: daa7670b1af32fe97889b8ceedb8eba2f5d8726d
+  libsodium: ac34cc59b942350fb1377380cfb31f05c3d6170e
+  Mantle: 8d84cacd6c2a69ff6fbce985a2b51298a5495de3
+  MPMessagePack: 9219faa657435f1b28a4a651dcb74f563d948324
+  NAChloride: f5ec84c64efcdb5008f960d7d557dfac6c060a1d
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
-  OpenSSL-gabriel: 983ace94bfce3ecdf0ebeb7d365fcb7ebc98d153
-  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
-  TSTripleSec: b5f719f1698a7e880431f2c15da6f52907949fa7
+  OpenSSL-gabriel: 98244ee135881a50ecde71747429a8b27ce242cd
+  TSTripleSec: 7371672f757735ab696d8c0d0fc0d98b7a38059e
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

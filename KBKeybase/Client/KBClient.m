@@ -15,7 +15,6 @@
 #import "KBPublicKey.h"
 #import "KBPrivateKey.h"
 #import "KBSession.h"
-#import "KBKeychain.h"
 #import "KBError.h"
 #import "KBSearchResult.h"
 
@@ -41,8 +40,9 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 
 @interface KBClient ()
 @property NSString *APIHost;
-@property KBCrypto *crypto;
+@property id<KBCrypto> crypto;
 @property NSString *CSRFToken;
+@property NSMutableDictionary *cache;
 @end
 
 @implementation KBClient
@@ -52,10 +52,11 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   return nil;
 }
 
-- (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(KBCrypto *)crypto {
+- (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(id<KBCrypto>)crypto {
   if ((self = [super init])) {
     _APIHost = APIHost;
     _crypto = crypto;
+    _cache = [NSMutableDictionary dictionary];
   }
   return self;
 }
@@ -85,6 +86,46 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     gHttpManager.responseSerializer = responseSerializer;
   });
   return gHttpManager;
+}
+
+NSString *KBKeyForCache(id key, int level) {
+  if ([key isKindOfClass:NSArray.class]) {
+    ++level;
+    NSString *delimeter = [@"" stringByPaddingToLength:level withString:@"-" startingAtIndex:0];
+    return [[key map:^(id k) { return KBKeyForCache(k, level); }] join:delimeter];
+  } else {
+    return [key description];
+  }
+}
+
+- (BOOL)cachedValueForKey:(id)key completion:(void (^)(id value))completion {
+  if (!_cacheInterval) return NO;
+
+  NSString *keyStr = KBKeyForCache(key, 0);
+  id value = nil;
+  NSDictionary *cached = _cache[keyStr];
+  if (cached && fabs([cached[@"date"] timeIntervalSinceNow]) < _cacheInterval) {
+    value = cached[@"value"];
+  }
+  [self pruneCache];
+  if (!value) return NO;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    completion(value);
+  });
+  return YES;
+}
+
+- (void)cacheValue:(id)value forKey:(id)key {
+  if (!_cacheInterval) return;
+  NSString *keyStr = KBKeyForCache(key, 0);
+  _cache[keyStr] = @{@"date": [NSDate date], @"value": value};
+  [self pruneCache];
+}
+
+- (void)pruneCache {
+  for (id key in _cache) {
+    if (fabs([_cache[key][@"date"] timeIntervalSinceNow] >= _cacheInterval)) [_cache removeObjectForKey:key];
+  }
 }
 
 - (NSHTTPCookieStorage *)cookieStorage {
@@ -285,7 +326,8 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     for (NSDictionary *themDict in themDicts) {
       if (![themDict isEqual:NSNull.null]) {
         KBUser *user = [MTLJSONAdapter modelOfClass:KBUser.class fromJSONDictionary:themDict error:&error];
-        [users addObject:user];
+        if (user.userName) [users addObject:user];
+        else GHErr(@"Invalid response for user");
       }
     }
     
@@ -384,12 +426,18 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   success(keys);
 }
 
-- (void)keysForPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilites success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
+- (void)keysForPGPKeyIds:(NSArray *)PGPKeyIds capabilities:(KBKeyCapabilities)capabilities success:(void (^)(NSArray */*of id<KBKey>*/keys))success failure:(KBClientErrorHandler)failure {
+  if ([self cachedValueForKey:@[@"keysForPGPKeyIds", @(capabilities), PGPKeyIds] completion:success]) return;
+  
   GHWeakSelf blockSelf = self;
-  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilites)}) success:^(NSURLSessionDataTask *task, id responseObject) {
-    [blockSelf _keysForResponseObject:responseObject success:success failure:failure];
+  [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","], @"ops": @(capabilities)}) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [blockSelf _keysForResponseObject:responseObject success:^(NSArray *keys) {
+      [self cacheValue:keys forKey:@[@"keysForPGPKeyIds", @(capabilities), PGPKeyIds]];
+      success(keys);
+    } failure:failure];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     if (error.code == KBErrorCodeKeyNotFound) {
+      [self cacheValue:@[] forKey:@[@"keysForPGPKeyIds", @(capabilities), PGPKeyIds]];
       success(@[]);
     } else {
       failure(error);
@@ -398,13 +446,19 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 }
 
 - (void)usersForPGPKeyIds:(NSArray *)PGPKeyIds success:(void (^)(NSArray */*of KBUser*/users))success failure:(KBClientErrorHandler)failure {
+  if ([self cachedValueForKey:@[@"usersForPGPKeyIds", PGPKeyIds] completion:success]) return;
+  
   [self.httpManager GET:@"key/fetch.json" parameters:KBURLParameters(@{@"pgp_key_ids": [PGPKeyIds join:@","]}) success:^(NSURLSessionDataTask *task, id responseObject) {
     
     NSArray *userNames = [responseObject[@"keys"] map:^id(NSDictionary *keyDict) { return keyDict[@"username"]; }];
-    [self usersForKey:@"usernames" value:[userNames join:@","] fields:nil success:success failure:failure];
+    [self usersForKey:@"usernames" value:[userNames join:@","] fields:nil success:^(NSArray *users) {
+      [self cacheValue:users forKey:@[@"usersForPGPKeyIds", PGPKeyIds]];
+      success(users);
+    } failure:failure];
     
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     if (error.code == KBErrorCodeKeyNotFound) {
+      [self cacheValue:@[] forKey:@[@"usersForPGPKeyIds", PGPKeyIds]];
       success(@[]);
     } else {
       failure(error);
@@ -525,7 +579,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     return;
   }
   
-  NSString *payloadHash = [[NADigest digestForData:GHStringData(signature.payloadJSONString) algorithm:NADigestAlgorithmSHA2_256] na_hexString];
+  NSString *payloadHash = [[NADigest digestForData:GHNSDataFromNSString(signature.payloadJSONString) algorithm:NADigestAlgorithmSHA2_256] na_hexString];
   if (![signature.payloadHash isEqualToString:payloadHash]) {
     completion(KBSignatureError(KBSignatureErrorInvalidPayloadHash, @"Invalid payload hash"));
     return;
@@ -542,7 +596,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   if (index == [signatures count]-1) {
     NSAssert(_crypto, @"No crypto set, can't verify");
   
-    [_crypto verifyMessageArmored:signature.signatureArmored success:^(KBPGPMessage *message) {
+    [_crypto verifyArmored:signature.signatureArmored success:^(KBPGPMessage *message) {
       if (![[message.signers valueForKey:@"keyFingerprint"] containsObject:signature.keyFingerprint]) {
         completion(KBSignatureError(KBSignatureErrorInvalidSignature, @"Not signed by specified key fingerprint"));
         return;

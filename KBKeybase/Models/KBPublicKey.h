@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Gabriel Handford. All rights reserved.
 //
 
-#import "KBKey.h"
 #import <Mantle/Mantle.h>
+
+#import "KBKey.h"
 
 @interface KBPublicKey : MTLModel <KBKey, MTLJSONSerializing>
 

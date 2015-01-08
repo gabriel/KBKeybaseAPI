@@ -19,8 +19,9 @@
 - (void)next {
   GHWeakSelf blockSelf = self;
   BOOL isLast = (_index + 1) == [_objects count];
-  self.runBlock(_objects[_index++], isLast, ^() {
+  self.runBlock(_objects[_index++], isLast, ^(NSError *error) {
     if (blockSelf.index < [blockSelf.objects count]) {
+      // Maybe dispatch_async so we don't blow the stack?
       [self next];
     } else {
       self.completionBlock(blockSelf.objects);
