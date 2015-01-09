@@ -13,12 +13,12 @@ pod "KBKeybase"
 # Example
 
 ```objc
+#import <KBKeybase/KBKeybase.h>
+
 KBClient *client = [[KBClient alloc] initWithAPIHost:KBAPIKeybaseIOHost];
 NSArray *userNames = @[@"gabrielh", @"chris", @"max"];
-[_client usersPaginatedForKey:@"usernames" values:userNames fields:nil limit:10 success:^(NSArray *users, BOOL completed) {
-
-  // users is an array of KBUser
-
+[_client usersPaginatedForKey:@"usernames" values:userNames fields:nil limit:10 success:^(NSArray */*of KBUser*/users, BOOL completed) {
+  // If paginating completed will be NO, and another callback will occur.
 } failure:^(NSError *error) {
   // There was an error
 }];
