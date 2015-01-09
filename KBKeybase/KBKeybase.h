@@ -1,12 +1,13 @@
 //
 //  KBKeybase.h
-//  Keybase
+//  KBKeybase
 //
-//  Created by Gabriel on 8/1/14.
-//  Copyright (c) 2014 Gabriel Handford. All rights reserved.
+//  Created by Gabriel on 1/8/15.
+//  Copyright (c) 2015 Gabriel Handford. All rights reserved.
 //
 
-#import "KBClient.h"
+#import <Foundation/Foundation.h>
+
 #import "KBError.h"
 #import "KBClientKeyRing.h"
 
