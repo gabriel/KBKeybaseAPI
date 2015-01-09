@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GHBigNum (0.1.4):
-    - OpenSSL-gabriel (~> 1.0.1.j-2)
+  - GHBigNum (0.1.5):
+    - OpenSSL-Universal (~> 1.0.1k)
   - GHKit (1.0.20)
   - GRUnit (1.1.2)
   - libsodium (1.0.1)
@@ -32,7 +32,7 @@ PODS:
   - NAChloride (1.1.2):
     - libsodium
   - ObjectiveSugar (1.1.0)
-  - OpenSSL-gabriel (1.0.1.j-2)
+  - OpenSSL-Universal (1.0.1.k)
   - TSTripleSec (1.0.0):
     - MPMessagePack
     - NAChloride
@@ -48,7 +48,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  GHBigNum: 9b4e8d8770bbb58e571319e82374763e670ed5ca
+  GHBigNum: c10615b4ffd94f5f28e21f82075481df05c0bf3c
   GHKit: 9466c08deeb753e144bbbfac7f76be1b38175cb0
   GRUnit: daa7670b1af32fe97889b8ceedb8eba2f5d8726d
   libsodium: ac34cc59b942350fb1377380cfb31f05c3d6170e
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   MPMessagePack: 9219faa657435f1b28a4a651dcb74f563d948324
   NAChloride: f5ec84c64efcdb5008f960d7d557dfac6c060a1d
   ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
-  OpenSSL-gabriel: 98244ee135881a50ecde71747429a8b27ce242cd
+  OpenSSL-Universal: 60ee5ddf6530100c0aa702c2e0c9881cfd4a89a5
   TSTripleSec: 7371672f757735ab696d8c0d0fc0d98b7a38059e
 
 COCOAPODS: 0.36.0.beta.1
