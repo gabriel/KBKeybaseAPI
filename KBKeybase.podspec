@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.subspec 'Client' do |a|
     a.source_files = 'KBKeybase/Core/**/*.{h,m}', 'KBKeybase/Models/**/*.{c,h,m}', 'KBKeybase/Client/**/*.{h,m}'
     a.dependency 'TSTripleSec'
-    a.dependency 'GHBignum'
+    a.dependency 'GHBigNum'
     a.dependency 'AFNetworking'
     a.dependency 'Mantle'
     a.dependency 'ObjectiveSugar'

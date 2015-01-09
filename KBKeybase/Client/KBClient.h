@@ -25,6 +25,8 @@ typedef void (^KBClientErrorHandler)(NSError *error);
 
 @property NSTimeInterval cacheInterval;
 
+- (instancetype)initWithAPIHost:(NSString *)APIHost;
+
 - (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(id<KBCrypto>)crypto;
 
 // For debugging when cookies are invalid or expired

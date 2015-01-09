@@ -52,6 +52,10 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   return nil;
 }
 
+- (instancetype)initWithAPIHost:(NSString *)APIHost {
+  return [self initWithAPIHost:APIHost crypto:nil];
+}
+
 - (instancetype)initWithAPIHost:(NSString *)APIHost crypto:(id<KBCrypto>)crypto {
   if ((self = [super init])) {
     _APIHost = APIHost;
