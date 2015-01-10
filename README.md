@@ -15,7 +15,7 @@ pod "KBKeybase"
 ```objc
 #import <KBKeybase/KBKeybase.h>
 
-KBClient *client = [[KBClient alloc] initWithAPIHost:KBAPIKeybaseIOHost];
+KBAPIClient *client = [[KBAPIClient alloc] initWithAPIHost:KBAPIKeybaseIOHost];
 NSArray *userNames = @[@"gabrielh", @"chris", @"max"];
 [_client usersPaginatedForKey:@"usernames" values:userNames fields:nil limit:10 success:^(NSArray *users, BOOL completed) {
   // The **users** var is an array of KBUser.
