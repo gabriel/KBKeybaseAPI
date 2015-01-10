@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Gabriel Handford. All rights reserved.
 //
 
-#import "KBClient.h"
+#import "KBAPIClient.h"
 
 #import <TSTripleSec/TSTripleSec.h>
 #import <GHKit/GHKit.h>
@@ -15,7 +15,7 @@
 #import "KBPublicKey.h"
 #import "KBPrivateKey.h"
 #import "KBSession.h"
-#import "KBError.h"
+#import "KBAPIError.h"
 #import "KBSearchResult.h"
 
 NSString *const KBAPILocalHost = @"http://localhost:3000/_/api/1.0/";
@@ -38,14 +38,14 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
   return parameters;
 }
 
-@interface KBClient ()
+@interface KBAPIClient ()
 @property NSString *APIHost;
 @property id<KBCrypto> crypto;
 @property NSString *CSRFToken;
 @property NSMutableDictionary *cache;
 @end
 
-@implementation KBClient
+@implementation KBAPIClient
 
 - (instancetype)init {
   [NSException raise:NSInvalidArgumentException format:@"Use initWithAPIHost:"];
@@ -187,7 +187,7 @@ NSString *KBKeyForCache(id key, int level) {
   
   GHWeakSelf blockSelf = self;
   [self getSaltWithEmailOrUserName:emailOrUserName success:^(NSData *salt, NSString *loginSession) {
-    NSString *HMACPasswordHash = [KBClient HMACPasswordHashForPassword:password salt:salt loginSession:loginSession];
+    NSString *HMACPasswordHash = [KBAPIClient HMACPasswordHashForPassword:password salt:salt loginSession:loginSession];
     NSDictionary *params = @{@"email_or_username": emailOrUserName, @"hmac_pwh": HMACPasswordHash, @"login_session": loginSession, @"csrf_token": blockSelf.CSRFToken};
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -231,7 +231,7 @@ NSString *KBKeyForCache(id key, int level) {
     return;
   }
 
-  NSString *pwh = [[KBClient passwordHashForPassword:password salt:salt] na_hexString];
+  NSString *pwh = [[KBAPIClient passwordHashForPassword:password salt:salt] na_hexString];
   NSDictionary *params = @{@"email": email, @"username": userName, @"pwh": pwh, @"salt": [salt na_hexString], @"invitation_id": invitationId, @"pwh_version": @(3)};
   
   GHWeakSelf blockSelf = self;
@@ -286,7 +286,7 @@ NSString *KBKeyForCache(id key, int level) {
   [self.httpManager GET:@"user/lookup.json" parameters:KBURLParameters(@{@"username": userName, @"fields": @"basics"}) success:^(NSURLSessionDataTask *task, id responseObject) {
     success(YES);
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    if (error.code == KBErrorCodeNotFound) {
+    if (error.code == KBAPIErrorCodeNotFound) {
       success(NO);
       return;
     }
@@ -440,7 +440,7 @@ NSString *KBKeyForCache(id key, int level) {
       success(keys);
     } failure:failure];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    if (error.code == KBErrorCodeKeyNotFound) {
+    if (error.code == KBAPIErrorCodeKeyNotFound) {
       [self cacheValue:@[] forKey:@[@"keysForPGPKeyIds", @(capabilities), PGPKeyIds]];
       success(@[]);
     } else {
@@ -461,7 +461,7 @@ NSString *KBKeyForCache(id key, int level) {
     } failure:failure];
     
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    if (error.code == KBErrorCodeKeyNotFound) {
+    if (error.code == KBAPIErrorCodeKeyNotFound) {
       [self cacheValue:@[] forKey:@[@"usersForPGPKeyIds", PGPKeyIds]];
       success(@[]);
     } else {

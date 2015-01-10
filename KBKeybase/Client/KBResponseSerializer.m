@@ -8,7 +8,7 @@
 
 #import "KBResponseSerializer.h"
 
-#import "KBError.h"
+#import "KBAPIError.h"
 
 #import <GHKit/GHKit.h>
 
@@ -23,40 +23,40 @@
   NSDictionary *status = [JSONObject gh_objectForKeyOrNSNull:@"status"];
   NSNumber *statusCode = [status gh_objectForKeyOrNSNull:@"code"];
   if (!statusCode || [statusCode integerValue] != 0) {
-    KBAPIErrorCode errorCode = KBErrorCodeDefault;
+    KBAPIErrorCode errorCode = KBAPIErrorCodeDefault;
     
     NSString *localizedDescription = status[@"desc"];
     
     NSString *errorCodeString = status[@"name"];
-    KBErrorType errorType = KBErrorTypeDefault;
+    KBAPIErrorType errorType = KBAPIErrorTypeDefault;
     if ([errorCodeString isEqualToString:@"INPUT_ERROR"]) {
-      errorCode = KBErrorCodeInputError;
+      errorCode = KBAPIErrorCodeInputError;
     } else if ([errorCodeString isEqualToString:@"NOT_FOUND"]) {
-      errorCode = KBErrorCodeNotFound;
+      errorCode = KBAPIErrorCodeNotFound;
     } else if ([errorCodeString isEqualToString:@"KEY_NOT_FOUND"]) {
-      errorCode = KBErrorCodeKeyNotFound;
+      errorCode = KBAPIErrorCodeKeyNotFound;
     } else if ([errorCodeString isEqualToString:@"MISSING_PARAMETER"]) {
-      errorCode = KBErrorCodeMissingParameter;
+      errorCode = KBAPIErrorCodeMissingParameter;
     } else if ([errorCodeString isEqualToString:@"BAD_SESSION"]) {
-      errorCode = KBErrorCodeBadSession;
+      errorCode = KBAPIErrorCodeBadSession;
     } else if ([errorCodeString isEqualToString:@"BAD_SIGNUP_USERNAME_TAKEN"]) {
-      errorCode = KBErrorCodeBadSignupUsernameTaken;
-      errorType = KBErrorTypeAlert;
+      errorCode = KBAPIErrorCodeBadSignupUsernameTaken;
+      errorType = KBAPIErrorTypeAlert;
     } else if ([errorCodeString isEqualToString:@"BAD_SIGNUP_EMAIL_TAKEN"]) {
-      errorCode = KBErrorCodeBadSignupEmailTaken;
-      errorType = KBErrorTypeAlert;
+      errorCode = KBAPIErrorCodeBadSignupEmailTaken;
+      errorType = KBAPIErrorTypeAlert;
     } else if ([errorCodeString isEqualToString:@"BAD_LOGIN_PASSWORD"]) {
-      errorCode = KBErrorCodeBadLoginPassword;
-      errorType = KBErrorTypeAlert;
+      errorCode = KBAPIErrorCodeBadLoginPassword;
+      errorType = KBAPIErrorTypeAlert;
     } else if ([errorCodeString isEqualToString:@"BAD_LOGIN_USER_NOT_FOUND"]) {
-      errorCode = KBErrorCodeBadLoginUserNotFound;
-      errorType = KBErrorTypeAlert;
+      errorCode = KBAPIErrorCodeBadLoginUserNotFound;
+      errorType = KBAPIErrorTypeAlert;
     }
     
     if (!localizedDescription) localizedDescription = @"Unknown error";
       
-    NSError *kbError = [KBError errorWithCode:errorCode localizedDescription:localizedDescription type:errorType];
-    (*error) = kbError;
+    KBAPIError *APIError = [KBAPIError errorWithCode:errorCode localizedDescription:localizedDescription type:errorType];
+    (*error) = APIError;
   }
   
   NSString *CSRFToken = [JSONObject gh_objectMaybeNilForKey:@"csrf_token" ofClass:[NSString class]];

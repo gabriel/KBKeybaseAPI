@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^KBCompletionHandler)(NSError *error);
-typedef void (^KBErrorHandler)(NSError *error);
+typedef void (^KBAPIErrorHandler)(NSError *error);
 
 typedef NS_ENUM (NSInteger, KBActionType) {
   KBActionTypeEmail = 1,

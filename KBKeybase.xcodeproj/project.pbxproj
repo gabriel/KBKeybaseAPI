@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		00358CEB1A5E28220052B016 /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC31A5E28220052B016 /* KBDNSQuery.m */; };
 		00358CEC1A5E28220052B016 /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC31A5E28220052B016 /* KBDNSQuery.m */; };
-		00358CED1A5E28220052B016 /* KBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBClient.m */; };
-		00358CEE1A5E28220052B016 /* KBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBClient.m */; };
-		00358CEF1A5E28220052B016 /* KBClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBClientKeyRing.m */; };
-		00358CF01A5E28220052B016 /* KBClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBClientKeyRing.m */; };
-		00358CF11A5E28220052B016 /* KBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBError.m */; };
-		00358CF21A5E28220052B016 /* KBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBError.m */; };
+		00358CED1A5E28220052B016 /* KBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBAPIClient.m */; };
+		00358CEE1A5E28220052B016 /* KBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBAPIClient.m */; };
+		00358CEF1A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */; };
+		00358CF01A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */; };
+		00358CF11A5E28220052B016 /* KBAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBAPIError.m */; };
+		00358CF21A5E28220052B016 /* KBAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBAPIError.m */; };
 		00358CF31A5E28220052B016 /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCD1A5E28220052B016 /* KBProofVerification.m */; };
 		00358CF41A5E28220052B016 /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCD1A5E28220052B016 /* KBProofVerification.m */; };
 		00358CF51A5E28220052B016 /* KBRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCF1A5E28220052B016 /* KBRequestSerializer.m */; };
@@ -89,13 +89,13 @@
 /* Begin PBXFileReference section */
 		00358CC21A5E28220052B016 /* KBDNSQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDNSQuery.h; sourceTree = "<group>"; };
 		00358CC31A5E28220052B016 /* KBDNSQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDNSQuery.m; sourceTree = "<group>"; };
-		00358CC41A5E28220052B016 /* KBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBClient.h; sourceTree = "<group>"; };
-		00358CC51A5E28220052B016 /* KBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBClient.m; sourceTree = "<group>"; };
-		00358CC61A5E28220052B016 /* KBClientKeyRing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBClientKeyRing.h; sourceTree = "<group>"; };
-		00358CC71A5E28220052B016 /* KBClientKeyRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBClientKeyRing.m; sourceTree = "<group>"; };
+		00358CC41A5E28220052B016 /* KBAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAPIClient.h; sourceTree = "<group>"; };
+		00358CC51A5E28220052B016 /* KBAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBAPIClient.m; sourceTree = "<group>"; };
+		00358CC61A5E28220052B016 /* KBAPIClientKeyRing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAPIClientKeyRing.h; sourceTree = "<group>"; };
+		00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBAPIClientKeyRing.m; sourceTree = "<group>"; };
 		00358CC81A5E28220052B016 /* KBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDefines.h; sourceTree = "<group>"; };
-		00358CC91A5E28220052B016 /* KBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBError.h; sourceTree = "<group>"; };
-		00358CCA1A5E28220052B016 /* KBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBError.m; sourceTree = "<group>"; };
+		00358CC91A5E28220052B016 /* KBAPIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAPIError.h; sourceTree = "<group>"; };
+		00358CCA1A5E28220052B016 /* KBAPIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBAPIError.m; sourceTree = "<group>"; };
 		00358CCC1A5E28220052B016 /* KBProofVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBProofVerification.h; sourceTree = "<group>"; };
 		00358CCD1A5E28220052B016 /* KBProofVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBProofVerification.m; sourceTree = "<group>"; };
 		00358CCE1A5E28220052B016 /* KBRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBRequestSerializer.h; sourceTree = "<group>"; };
@@ -182,13 +182,13 @@
 			isa = PBXGroup;
 			children = (
 				00358CC11A5E28220052B016 /* DNS */,
-				00358CC41A5E28220052B016 /* KBClient.h */,
-				00358CC51A5E28220052B016 /* KBClient.m */,
-				00358CC61A5E28220052B016 /* KBClientKeyRing.h */,
-				00358CC71A5E28220052B016 /* KBClientKeyRing.m */,
+				00358CC41A5E28220052B016 /* KBAPIClient.h */,
+				00358CC51A5E28220052B016 /* KBAPIClient.m */,
+				00358CC61A5E28220052B016 /* KBAPIClientKeyRing.h */,
+				00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */,
 				00358CC81A5E28220052B016 /* KBDefines.h */,
-				00358CC91A5E28220052B016 /* KBError.h */,
-				00358CCA1A5E28220052B016 /* KBError.m */,
+				00358CC91A5E28220052B016 /* KBAPIError.h */,
+				00358CCA1A5E28220052B016 /* KBAPIError.m */,
 				00358CCC1A5E28220052B016 /* KBProofVerification.h */,
 				00358CCD1A5E28220052B016 /* KBProofVerification.m */,
 				00358CCE1A5E28220052B016 /* KBRequestSerializer.h */,
@@ -506,17 +506,17 @@
 				00358D441A5E2B7C0052B016 /* KBUser.m in Sources */,
 				00358D721A5F62F80052B016 /* KBPGPKeyRing.m in Sources */,
 				00358D761A5F62F80052B016 /* KBSigner.m in Sources */,
-				00358CEF1A5E28220052B016 /* KBClientKeyRing.m in Sources */,
+				00358CEF1A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */,
 				00358D341A5E2B7C0052B016 /* KBImage.m in Sources */,
 				00358CF71A5E28220052B016 /* KBResponseSerializer.m in Sources */,
 				00358D321A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */,
 				00358D381A5E2B7C0052B016 /* KBProof.m in Sources */,
 				00358D3A1A5E2B7C0052B016 /* KBPublicKey.m in Sources */,
-				00358CED1A5E28220052B016 /* KBClient.m in Sources */,
+				00358CED1A5E28220052B016 /* KBAPIClient.m in Sources */,
 				00358D701A5F62F80052B016 /* KBPGPKey.m in Sources */,
 				00358CF31A5E28220052B016 /* KBProofVerification.m in Sources */,
 				00358CF91A5E28220052B016 /* KBSerialBox.m in Sources */,
-				00358CF11A5E28220052B016 /* KBError.m in Sources */,
+				00358CF11A5E28220052B016 /* KBAPIError.m in Sources */,
 				00358CEB1A5E28220052B016 /* KBDNSQuery.m in Sources */,
 				00358D361A5E2B7C0052B016 /* KBPrivateKey.m in Sources */,
 			);
@@ -537,7 +537,7 @@
 				B2EAB5CD13004D8CBA822AED /* main.m in Sources */,
 				00358CFA1A5E28220052B016 /* KBSerialBox.m in Sources */,
 				00358CF81A5E28220052B016 /* KBResponseSerializer.m in Sources */,
-				00358CF21A5E28220052B016 /* KBError.m in Sources */,
+				00358CF21A5E28220052B016 /* KBAPIError.m in Sources */,
 				00358CEC1A5E28220052B016 /* KBDNSQuery.m in Sources */,
 				00358D711A5F62F80052B016 /* KBPGPKey.m in Sources */,
 				00358D3D1A5E2B7C0052B016 /* KBSearchResult.m in Sources */,
@@ -548,9 +548,9 @@
 				00358D371A5E2B7C0052B016 /* KBPrivateKey.m in Sources */,
 				AAE89D2D7C614CAABCA8C939 /* KBClientTest.m in Sources */,
 				00358D391A5E2B7C0052B016 /* KBProof.m in Sources */,
-				00358CF01A5E28220052B016 /* KBClientKeyRing.m in Sources */,
+				00358CF01A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */,
 				00358D331A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */,
-				00358CEE1A5E28220052B016 /* KBClient.m in Sources */,
+				00358CEE1A5E28220052B016 /* KBAPIClient.m in Sources */,
 				00358CF41A5E28220052B016 /* KBProofVerification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

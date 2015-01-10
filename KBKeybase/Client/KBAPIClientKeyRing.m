@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Gabriel Handford. All rights reserved.
 //
 
-#import "KBClientKeyRing.h"
+#import "KBAPIClientKeyRing.h"
 #import "KBKey.h"
 #import "KBKeyRing.h"
 
 #import <ObjectiveSugar/ObjectiveSugar.h>
 
-@interface KBClientKeyRing ()
-@property KBClient *client;
+@interface KBAPIClientKeyRing ()
+@property KBAPIClient *client;
 @end
 
-@implementation KBClientKeyRing
+@implementation KBAPIClientKeyRing
 
-- (instancetype)initWithClient:(KBClient *)client {
+- (instancetype)initWithClient:(KBAPIClient *)client {
   if ((self = [super init])) {
     _client = client;
   }

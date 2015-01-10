@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "KBError.h"
-#import "KBClientKeyRing.h"
+#import "KBAPIError.h"
+#import "KBAPIClient.h"
+#import "KBAPIClientKeyRing.h"
 
 #import "KBSession.h"
 

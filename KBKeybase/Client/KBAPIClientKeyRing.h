@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Gabriel Handford. All rights reserved.
 //
 
-#import "KBClient.h"
+#import "KBAPIClient.h"
 #import "KBKeyRing.h"
 
-@interface KBClientKeyRing : NSObject <KBKeyRing>
+@interface KBAPIClientKeyRing : NSObject <KBKeyRing>
 
-- (instancetype)initWithClient:(KBClient *)client;
+- (instancetype)initWithClient:(KBAPIClient *)client;
 
 @end

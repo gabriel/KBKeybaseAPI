@@ -21,7 +21,7 @@ extern NSString *const KBAPIKeybaseIOHost;
 
 typedef void (^KBClientErrorHandler)(NSError *error);
 
-@interface KBClient : NSObject <KBResponseSerializerDelegate>
+@interface KBAPIClient : NSObject <KBResponseSerializerDelegate>
 
 @property NSTimeInterval cacheInterval;
 
