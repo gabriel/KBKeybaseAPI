@@ -40,5 +40,5 @@ typedef NS_ENUM (NSUInteger, KBAPIErrorType) {
 
 @end
 
-#define KBAPIErrorDefault(fmt, ...) [KBAPIError errorWithCode:KBAPIErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBAPIErrorTypeDefault]
-#define KBAPIErrorAlert(fmt, ...) [KBAPIError errorWithCode:KBAPIErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBAPIErrorTypeAlert]
+#define KBErrorDefault(fmt, ...) [KBAPIError errorWithCode:KBAPIErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBAPIErrorTypeDefault]
+#define KBErrorAlert(fmt, ...) [KBAPIError errorWithCode:KBAPIErrorCodeDefault localizedDescription:[NSString stringWithFormat:fmt, ##__VA_ARGS__] type:KBAPIErrorTypeAlert]

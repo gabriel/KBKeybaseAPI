@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "KBKeybase"
-  s.version      = "0.1.4"
+  s.version      = "0.1.5"
   s.summary      = "Keybase.io API client for iOS/OSX."
   s.homepage     = "https://github.com/gabriel/KBKeybase"
   s.license      = { :type => "MIT" }
@@ -16,28 +16,16 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.default_subspecs = "Client"
+  s.source_files = "KBKeybase/**/*.{h,m}"
+  s.dependency "TSTripleSec"
+  s.dependency "GHBigNum"
+  s.dependency "AFNetworking"
+  s.dependency "Mantle"
+  s.dependency "ObjectiveSugar"
+  s.dependency "GHKit"
 
   s.subspec "Core" do |a|
     a.source_files = "KBKeybase/Core/**/*.{h,m}"
-    a.dependency "GHKit"
-    a.dependency "Mantle"
-    a.dependency "ObjectiveSugar"
-    a.dependency "TSTripleSec"
-  end
-
-  s.subspec "Client" do |a|
-    a.source_files = "KBKeybase/Core/**/*.{h,m}", "KBKeybase/Models/**/*.{c,h,m}", "KBKeybase/Client/**/*.{h,m}"
-    a.dependency "TSTripleSec"
-    a.dependency "GHBigNum"
-    a.dependency "AFNetworking"
-    a.dependency "Mantle"
-    a.dependency "ObjectiveSugar"
-    a.dependency "GHKit"
-  end
-
-  s.subspec "Models" do |a|
-    a.source_files = "KBKeybase/Core/**/*.{h,m}", "KBKeybase/Models/**/*.{c,h,m}"
     a.dependency "GHKit"
     a.dependency "Mantle"
     a.dependency "ObjectiveSugar"
