@@ -8,6 +8,8 @@
 
 #import "KBAPIClient.h"
 
+#define KBCMakeError(CODE, fmt, ...) [NSError errorWithDomain:NSStringFromClass(self.class) code:CODE userInfo:@{NSLocalizedDescriptionKey:[NSString stringWithFormat:fmt, ##__VA_ARGS__]}]
+
 #import <TSTripleSec/TSTripleSec.h>
 #import <GHKit/GHKit.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
@@ -188,6 +190,7 @@ NSString *KBKeyForCache(id key, int level) {
   GHWeakSelf blockSelf = self;
   [self getSaltWithEmailOrUserName:emailOrUserName success:^(NSData *salt, NSString *loginSession) {
     NSString *HMACPasswordHash = [KBAPIClient HMACPasswordHashForPassword:password salt:salt loginSession:loginSession];
+    NSAssert(blockSelf.CSRFToken, @"Missing CSRF");
     NSDictionary *params = @{@"email_or_username": emailOrUserName, @"hmac_pwh": HMACPasswordHash, @"login_session": loginSession, @"csrf_token": blockSelf.CSRFToken};
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -308,7 +311,7 @@ NSString *KBKeyForCache(id key, int level) {
 - (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBAPIClientErrorHandler)failure {
 
   if ([key isEqualToString:@"username"]) {
-    failure(GHMakeError(-1, @"Invalid key. Use 'usernames' instead of 'username'"));
+    failure(KBCMakeError(-1, @"Invalid key. Use 'usernames' instead of 'username'"));
     return;
   }
 
