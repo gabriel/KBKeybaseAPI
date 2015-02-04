@@ -1,6 +1,5 @@
 platform :ios, "8.0"
 
-pod "GHBigNum"
 pod "TSTripleSec"
 pod "GHKit"
 pod "ObjectiveSugar"

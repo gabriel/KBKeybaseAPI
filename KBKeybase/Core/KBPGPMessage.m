@@ -9,6 +9,7 @@
 #import "KBPGPMessage.h"
 
 #import <ObjectiveSugar/ObjectiveSugar.h>
+#import <GHKit/GHKit.h>
 
 @interface KBPGPMessage ()
 @property NSArray *verifyKeyIds;
@@ -16,6 +17,8 @@
 @property NSString *bundle;
 @property NSArray *signers;
 @property NSArray *warnings;
+
+@property (nonatomic) NSString *text;
 @end
 
 @implementation KBPGPMessage
@@ -32,8 +35,23 @@
 }
 
 - (NSString *)text {
+  if (_text) return _text;
   if (!_data) return nil;
-  return [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+  // TODO: It's a security issue to assume UTF8
+  _text = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
+  if (!_text) {
+    GHErr(@"Unable to decode data into string (%@)", @(_data.length));
+
+    // TODO: This is a hack and is dangerous
+    _text = [[NSString alloc] initWithData:_data encoding:NSWindowsCP1252StringEncoding];
+    if (!_text) _text = [[NSString alloc] initWithData:_data encoding:NSISOLatin1StringEncoding];
+  }
+
+  if (!_text) {
+    if (!_warnings) _warnings = [NSArray array];
+    _warnings = [_warnings arrayByAddingObject:@"Unable to decode data."];
+  }
+  return _text;
 }
 
 - (void)verifiedWithSigners:(NSArray *)signers warnings:(NSArray *)warnings verifyKeyIds:(NSArray *)verifyKeyIds {
