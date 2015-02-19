@@ -24,6 +24,7 @@ typedef void (^KBAPIClientErrorHandler)(NSError *error);
 @interface KBAPIClient : NSObject <KBResponseSerializerDelegate>
 
 @property NSTimeInterval cacheInterval;
+@property KBSession *session;
 
 - (instancetype)initWithAPIHost:(NSString *)APIHost;
 

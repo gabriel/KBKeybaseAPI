@@ -208,6 +208,7 @@ NSString *KBKeyForCache(id key, int level) {
         
         [blockSelf sessionUser:^(KBSessionUser *sessionUser) {
           KBSession *session = [[KBSession alloc] initWithSessionUser:sessionUser user:user];
+          self.session = session;
           success(session);
         } failure:failure];
         
