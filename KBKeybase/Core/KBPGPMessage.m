@@ -85,6 +85,4 @@
   [encoder encodeObject:_warnings forKey:@"warnings"];
 }
 
-
-
 @end

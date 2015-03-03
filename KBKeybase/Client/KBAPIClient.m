@@ -70,13 +70,15 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 - (AFHTTPSessionManager *)httpManager {
   static AFHTTPSessionManager *gHttpManager = NULL;
   static dispatch_once_t onceToken;
+  GHWeakSelf gself = self;
   dispatch_once(&onceToken, ^{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain;
     configuration.HTTPShouldSetCookies = YES;
     
-    NSURL *URL = KBServerURL(_APIHost, nil);
-    
+    NSURL *URL = KBServerURL(gself.APIHost, nil);
+
+    /*
     if ([[URL host] isEqual:@"localhost"]) {
       configuration.URLCache = nil;
       NSDictionary *proxyDict = @{
@@ -85,6 +87,7 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
                                   };    
       configuration.connectionProxyDictionary = proxyDict;
     }
+     */
 
     gHttpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:URL sessionConfiguration:configuration];
     KBResponseSerializer *responseSerializer = [[KBResponseSerializer alloc] init];
@@ -208,7 +211,6 @@ NSString *KBKeyForCache(id key, int level) {
         
         [blockSelf sessionUser:^(KBSessionUser *sessionUser) {
           KBSession *session = [[KBSession alloc] initWithSessionUser:sessionUser user:user];
-          self.session = session;
           success(session);
         } failure:failure];
         
@@ -309,6 +311,14 @@ NSString *KBKeyForCache(id key, int level) {
   } failure:failure];
 }
 
+- (void)usersForKey:(NSString *)key values:(NSArray *)values completion:(void (^)(NSError *error, NSArray *users))completion {
+  NSMutableArray *users = [NSMutableArray array];
+  [self usersPaginatedForKey:key values:values fields:nil limit:20 success:^(NSArray *u, BOOL completed) {
+    if ([u count] > 0) [users addObjectsFromArray:u];
+    if (completed) completion(nil, users);
+  } failure:^(NSError *error) { completion(error, users); }];
+}
+
 - (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBAPIClientErrorHandler)failure {
 
   if ([key isEqualToString:@"username"]) {
@@ -353,6 +363,12 @@ NSString *KBKeyForCache(id key, int level) {
 }
 
 - (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values fields:(NSString *)fields limit:(NSInteger)limit success:(void (^)(NSArray *users, BOOL completed))success failure:(KBAPIClientErrorHandler)failure {
+
+  if ([values count] == 0) {
+    success(@[], YES);
+    return;
+  }
+
   __block NSError *pageError = nil;
   for (NSInteger offset = 0, count = [values count]; offset < count; offset += limit) {
     BOOL completed = NO;

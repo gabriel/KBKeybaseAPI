@@ -25,3 +25,5 @@
 #import "KBProofVerification.h"
 #import "KBDefines.h"
 #import "KBSerialBox.h"
+
+#import "KBSearchResult.h"

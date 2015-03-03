@@ -24,7 +24,6 @@ typedef void (^KBAPIClientErrorHandler)(NSError *error);
 @interface KBAPIClient : NSObject <KBResponseSerializerDelegate>
 
 @property NSTimeInterval cacheInterval;
-@property KBSession *session;
 
 - (instancetype)initWithAPIHost:(NSString *)APIHost;
 
@@ -65,6 +64,8 @@ typedef void (^KBAPIClientErrorHandler)(NSError *error);
 - (void)usersForKey:(NSString *)key value:(NSString *)value fields:(NSString *)fields success:(void (^)(NSArray *users))success failure:(KBAPIClientErrorHandler)failure;
 
 - (void)usersPaginatedForKey:(NSString *)key values:(NSArray *)values fields:(NSString *)fields limit:(NSInteger)limit success:(void (^)(NSArray *users, BOOL completed))success failure:(KBAPIClientErrorHandler)failure;
+
+- (void)usersForKey:(NSString *)key values:(NSArray *)values completion:(void (^)(NSError *error, NSArray *users))completion;
 
 - (void)usersForPGPKeyIds:(NSArray *)PGPKeyIds success:(void (^)(NSArray */*of KBUser*/users))success failure:(KBAPIClientErrorHandler)failure;
 
