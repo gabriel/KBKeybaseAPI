@@ -18,11 +18,13 @@
 
 extern NSString *const KBAPILocalHost;
 extern NSString *const KBAPIKeybaseIOHost;
+extern NSString *const KBAPIPath;
 
 typedef void (^KBAPIClientErrorHandler)(NSError *error);
 
 @interface KBAPIClient : NSObject <KBResponseSerializerDelegate>
 
+@property NSString *APIHost;
 @property NSTimeInterval cacheInterval;
 
 - (instancetype)initWithAPIHost:(NSString *)APIHost;
@@ -86,5 +88,9 @@ typedef void (^KBAPIClientErrorHandler)(NSError *error);
 - (void)postedWithProofId:(NSString *)proofId success:(dispatch_block_t)success failure:(KBAPIClientErrorHandler)failure;
 
 - (void)verifySignatures:(NSArray *)signatures user:(KBUser *)user completion:(void (^)(NSError *error))completion;
+
+#pragma mark -
+
+- (NSString *)URLStringWithPath:(NSString *)path;
 
 @end

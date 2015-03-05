@@ -20,12 +20,14 @@
 #import "KBAPIError.h"
 #import "KBSearchResult.h"
 
-NSString *const KBAPILocalHost = @"http://localhost:3000/_/api/1.0/";
-NSString *const KBAPIKeybaseIOHost = @"https://keybase.io/_/api/1.0/";
+NSString *const KBAPILocalHost = @"http://localhost:3000";
+NSString *const KBAPIKeybaseIOHost = @"https://keybase.io";
+NSString *const KBAPIPath = @"/_/api/1.0/";
 
 NSString *KBServerURLString(NSString *APIHost, NSString *path) {
-  if (!path) return APIHost;
-  return [NSString stringWithFormat:@"%@%@", APIHost, path];
+  NSString *APIURLString = [NSString stringWithFormat:@"%@%@", APIHost, KBAPIPath];
+  if (!path) return APIURLString;
+  return [NSString stringWithFormat:@"%@%@", APIURLString, path];
 }
 
 NSURL *KBServerURL(NSString *APIHost, NSString *path) {
@@ -41,7 +43,6 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
 }
 
 @interface KBAPIClient ()
-@property NSString *APIHost;
 @property id<KBCrypto> crypto;
 @property NSString *CSRFToken;
 @property NSMutableDictionary *cache;
@@ -65,6 +66,11 @@ NSMutableDictionary *KBURLParameters(NSDictionary *params) {
     _cache = [NSMutableDictionary dictionary];
   }
   return self;
+}
+
+- (NSString *)URLStringWithPath:(NSString *)path {
+  if (!path) return _APIHost;
+  return [NSString stringWithFormat:@"%@/%@", _APIHost, path];
 }
 
 - (AFHTTPSessionManager *)httpManager {

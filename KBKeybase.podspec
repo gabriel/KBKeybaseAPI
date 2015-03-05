@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "KBKeybase"
-  s.version      = "0.1.10"
+  s.version      = "0.1.11"
   s.summary      = "Keybase.io API client for iOS/OSX."
   s.homepage     = "https://github.com/gabriel/KBKeybase"
   s.license      = { :type => "MIT" }
