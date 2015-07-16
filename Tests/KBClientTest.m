@@ -1,22 +1,40 @@
 //
-//  MyTest.m
+//  KBClientTest.m
+//  KBKeybase
 //
-#import <GRUnit/GRUnit.h>
+//  Created by Gabriel on 7/15/15.
+//  Copyright (c) 2015 Gabriel Handford. All rights reserved.
+//
 
-#import "KBKeybase.h"
+#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
-@interface KBClientTest : GRTestCase
+#import <KBKeybase/KBKeybase.h>
+
+@interface KBClientTest : XCTestCase
 @end
 
 @implementation KBClientTest
 
-- (void)test:(dispatch_block_t)completion {
+- (void)testLogin {
+  XCTestExpectation *expectation = [self expectationWithDescription:@"Login"];
+
   KBAPIClient *client = [[KBAPIClient alloc] initWithAPIHost:KBAPIKeybaseIOHost crypto:nil];
   [client logInWithEmailOrUserName:@"gbrl24" password:@"toomanysecrets" success:^(KBSession *session) {
     [client nextSequence:^(NSNumber *sequenceNumber, NSString *previousBlockHash) {
-      completion();
-    } failure:GRErrorHandler];
-  } failure:GRErrorHandler];
+
+      [expectation fulfill];
+
+    } failure:^(NSError *error) {
+      XCTFail(error);
+    }];
+  } failure:^(NSError *error) {
+    XCTFail(error);
+  }];
+
+  [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    if (error) XCTFail();
+  }];
 }
 
 @end

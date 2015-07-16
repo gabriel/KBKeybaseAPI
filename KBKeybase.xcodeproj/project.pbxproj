@@ -7,84 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00358CEB1A5E28220052B016 /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC31A5E28220052B016 /* KBDNSQuery.m */; };
-		00358CEC1A5E28220052B016 /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC31A5E28220052B016 /* KBDNSQuery.m */; };
-		00358CED1A5E28220052B016 /* KBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBAPIClient.m */; };
-		00358CEE1A5E28220052B016 /* KBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBAPIClient.m */; };
-		00358CEF1A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */; };
-		00358CF01A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */; };
-		00358CF11A5E28220052B016 /* KBAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBAPIError.m */; };
-		00358CF21A5E28220052B016 /* KBAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBAPIError.m */; };
-		00358CF31A5E28220052B016 /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCD1A5E28220052B016 /* KBProofVerification.m */; };
-		00358CF41A5E28220052B016 /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCD1A5E28220052B016 /* KBProofVerification.m */; };
-		00358CF51A5E28220052B016 /* KBRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCF1A5E28220052B016 /* KBRequestSerializer.m */; };
-		00358CF61A5E28220052B016 /* KBRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCF1A5E28220052B016 /* KBRequestSerializer.m */; };
-		00358CF71A5E28220052B016 /* KBResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD11A5E28220052B016 /* KBResponseSerializer.m */; };
-		00358CF81A5E28220052B016 /* KBResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD11A5E28220052B016 /* KBResponseSerializer.m */; };
-		00358CF91A5E28220052B016 /* KBSerialBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD31A5E28220052B016 /* KBSerialBox.m */; };
-		00358CFA1A5E28220052B016 /* KBSerialBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD31A5E28220052B016 /* KBSerialBox.m */; };
-		00358CFB1A5E28220052B016 /* KBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD51A5E28220052B016 /* KBSession.m */; };
-		00358CFC1A5E28220052B016 /* KBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD51A5E28220052B016 /* KBSession.m */; };
-		00358D321A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D1F1A5E2B7C0052B016 /* KBBitcoinAddress.m */; };
-		00358D331A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D1F1A5E2B7C0052B016 /* KBBitcoinAddress.m */; };
-		00358D341A5E2B7C0052B016 /* KBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D211A5E2B7C0052B016 /* KBImage.m */; };
-		00358D351A5E2B7C0052B016 /* KBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D211A5E2B7C0052B016 /* KBImage.m */; };
-		00358D361A5E2B7C0052B016 /* KBPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D231A5E2B7C0052B016 /* KBPrivateKey.m */; };
-		00358D371A5E2B7C0052B016 /* KBPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D231A5E2B7C0052B016 /* KBPrivateKey.m */; };
-		00358D381A5E2B7C0052B016 /* KBProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D251A5E2B7C0052B016 /* KBProof.m */; };
-		00358D391A5E2B7C0052B016 /* KBProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D251A5E2B7C0052B016 /* KBProof.m */; };
-		00358D3A1A5E2B7C0052B016 /* KBPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D271A5E2B7C0052B016 /* KBPublicKey.m */; };
-		00358D3B1A5E2B7C0052B016 /* KBPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D271A5E2B7C0052B016 /* KBPublicKey.m */; };
-		00358D3C1A5E2B7C0052B016 /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D291A5E2B7C0052B016 /* KBSearchResult.m */; };
-		00358D3D1A5E2B7C0052B016 /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D291A5E2B7C0052B016 /* KBSearchResult.m */; };
-		00358D3E1A5E2B7C0052B016 /* KBSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2B1A5E2B7C0052B016 /* KBSessionUser.m */; };
-		00358D3F1A5E2B7C0052B016 /* KBSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2B1A5E2B7C0052B016 /* KBSessionUser.m */; };
-		00358D401A5E2B7C0052B016 /* KBSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2D1A5E2B7C0052B016 /* KBSignature.m */; };
-		00358D411A5E2B7C0052B016 /* KBSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2D1A5E2B7C0052B016 /* KBSignature.m */; };
-		00358D421A5E2B7C0052B016 /* KBSignatureProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2F1A5E2B7C0052B016 /* KBSignatureProof.m */; };
-		00358D431A5E2B7C0052B016 /* KBSignatureProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2F1A5E2B7C0052B016 /* KBSignatureProof.m */; };
-		00358D441A5E2B7C0052B016 /* KBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D311A5E2B7C0052B016 /* KBUser.m */; };
-		00358D451A5E2B7C0052B016 /* KBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D311A5E2B7C0052B016 /* KBUser.m */; };
-		00358D6E1A5F62F80052B016 /* KBKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D641A5F62F80052B016 /* KBKey.m */; };
-		00358D6F1A5F62F80052B016 /* KBKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D641A5F62F80052B016 /* KBKey.m */; };
-		00358D701A5F62F80052B016 /* KBPGPKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D671A5F62F80052B016 /* KBPGPKey.m */; };
-		00358D711A5F62F80052B016 /* KBPGPKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D671A5F62F80052B016 /* KBPGPKey.m */; };
-		00358D721A5F62F80052B016 /* KBPGPKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D691A5F62F80052B016 /* KBPGPKeyRing.m */; };
-		00358D731A5F62F80052B016 /* KBPGPKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D691A5F62F80052B016 /* KBPGPKeyRing.m */; };
-		00358D741A5F62F80052B016 /* KBPGPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6B1A5F62F80052B016 /* KBPGPMessage.m */; };
-		00358D751A5F62F80052B016 /* KBPGPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6B1A5F62F80052B016 /* KBPGPMessage.m */; };
-		00358D761A5F62F80052B016 /* KBSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6D1A5F62F80052B016 /* KBSigner.m */; };
-		00358D771A5F62F80052B016 /* KBSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6D1A5F62F80052B016 /* KBSigner.m */; };
-		0054F1561991505800908F74 /* gabrielhlocal2_private.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1551991505800908F74 /* gabrielhlocal2_private.json */; };
-		0054F1581991506900908F74 /* gabrielhlocal2_public.json in Resources */ = {isa = PBXBuildFile; fileRef = 0054F1571991506900908F74 /* gabrielhlocal2_public.json */; };
-		93ACD719B5C94F7CB378314A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */; };
-		AAE89D2D7C614CAABCA8C939 /* KBClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF233E14104792ACC8B738 /* KBClientTest.m */; };
-		B2EAB5CD13004D8CBA822AED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B037BD03463B42FF88CC9C7A /* main.m */; };
-		CA3E614B151B434986E22987 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA8BEF39A6B47CEBE626660 /* Foundation.framework */; };
-		D073500E8E5C493FA561D3AB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C63A870D3FE845ECB0AADD3B /* libPods.a */; };
+		00A1B92A1B572D16003B77A2 /* KBCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D621A5F62F80052B016 /* KBCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B92B1B572D16003B77A2 /* KBKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D631A5F62F80052B016 /* KBKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B92C1B572D16003B77A2 /* KBKeyRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D651A5F62F80052B016 /* KBKeyRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B92D1B572D16003B77A2 /* KBPGPKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D661A5F62F80052B016 /* KBPGPKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B92E1B572D16003B77A2 /* KBPGPKeyRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D681A5F62F80052B016 /* KBPGPKeyRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B92F1B572D16003B77A2 /* KBPGPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D6A1A5F62F80052B016 /* KBPGPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9301B572D16003B77A2 /* KBSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D6C1A5F62F80052B016 /* KBSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9311B572D16003B77A2 /* KBBitcoinAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D1E1A5E2B7C0052B016 /* KBBitcoinAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9321B572D16003B77A2 /* KBImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D201A5E2B7C0052B016 /* KBImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9331B572D16003B77A2 /* KBPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D221A5E2B7C0052B016 /* KBPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9341B572D16003B77A2 /* KBProof.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D241A5E2B7C0052B016 /* KBProof.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9351B572D16003B77A2 /* KBPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D261A5E2B7C0052B016 /* KBPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9361B572D16003B77A2 /* KBSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D281A5E2B7C0052B016 /* KBSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9371B572D16003B77A2 /* KBSessionUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D2A1A5E2B7C0052B016 /* KBSessionUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9381B572D16003B77A2 /* KBSignature.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D2C1A5E2B7C0052B016 /* KBSignature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9391B572D16003B77A2 /* KBSignatureProof.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D2E1A5E2B7C0052B016 /* KBSignatureProof.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93A1B572D16003B77A2 /* KBUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D301A5E2B7C0052B016 /* KBUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93B1B572D25003B77A2 /* KBDNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CC21A5E28220052B016 /* KBDNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93C1B572D25003B77A2 /* KBAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CC41A5E28220052B016 /* KBAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93D1B572D25003B77A2 /* KBAPIClientKeyRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CC61A5E28220052B016 /* KBAPIClientKeyRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93E1B572D25003B77A2 /* KBDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CC81A5E28220052B016 /* KBDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B93F1B572D25003B77A2 /* KBAPIError.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CC91A5E28220052B016 /* KBAPIError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9401B572D25003B77A2 /* KBProofVerification.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CCC1A5E28220052B016 /* KBProofVerification.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9411B572D25003B77A2 /* KBRequestSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CCE1A5E28220052B016 /* KBRequestSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9421B572D25003B77A2 /* KBResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CD01A5E28220052B016 /* KBResponseSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9431B572D25003B77A2 /* KBSerialBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CD21A5E28220052B016 /* KBSerialBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9441B572D25003B77A2 /* KBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358CD41A5E28220052B016 /* KBSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00A1B9451B572D44003B77A2 /* KBKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D641A5F62F80052B016 /* KBKey.m */; };
+		00A1B9461B572D44003B77A2 /* KBPGPKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D671A5F62F80052B016 /* KBPGPKey.m */; };
+		00A1B9471B572D44003B77A2 /* KBPGPKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D691A5F62F80052B016 /* KBPGPKeyRing.m */; };
+		00A1B9481B572D44003B77A2 /* KBPGPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6B1A5F62F80052B016 /* KBPGPMessage.m */; };
+		00A1B9491B572D44003B77A2 /* KBSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D6D1A5F62F80052B016 /* KBSigner.m */; };
+		00A1B94A1B572D44003B77A2 /* KBBitcoinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D1F1A5E2B7C0052B016 /* KBBitcoinAddress.m */; };
+		00A1B94B1B572D44003B77A2 /* KBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D211A5E2B7C0052B016 /* KBImage.m */; };
+		00A1B94C1B572D44003B77A2 /* KBPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D231A5E2B7C0052B016 /* KBPrivateKey.m */; };
+		00A1B94D1B572D44003B77A2 /* KBProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D251A5E2B7C0052B016 /* KBProof.m */; };
+		00A1B94E1B572D44003B77A2 /* KBPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D271A5E2B7C0052B016 /* KBPublicKey.m */; };
+		00A1B94F1B572D44003B77A2 /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D291A5E2B7C0052B016 /* KBSearchResult.m */; };
+		00A1B9501B572D44003B77A2 /* KBSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2B1A5E2B7C0052B016 /* KBSessionUser.m */; };
+		00A1B9511B572D44003B77A2 /* KBSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2D1A5E2B7C0052B016 /* KBSignature.m */; };
+		00A1B9521B572D44003B77A2 /* KBSignatureProof.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D2F1A5E2B7C0052B016 /* KBSignatureProof.m */; };
+		00A1B9531B572D44003B77A2 /* KBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358D311A5E2B7C0052B016 /* KBUser.m */; };
+		00A1B9541B572D44003B77A2 /* KBDNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC31A5E28220052B016 /* KBDNSQuery.m */; };
+		00A1B9551B572D44003B77A2 /* KBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC51A5E28220052B016 /* KBAPIClient.m */; };
+		00A1B9561B572D44003B77A2 /* KBAPIClientKeyRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CC71A5E28220052B016 /* KBAPIClientKeyRing.m */; };
+		00A1B9571B572D44003B77A2 /* KBAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCA1A5E28220052B016 /* KBAPIError.m */; };
+		00A1B9581B572D44003B77A2 /* KBProofVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCD1A5E28220052B016 /* KBProofVerification.m */; };
+		00A1B9591B572D44003B77A2 /* KBRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CCF1A5E28220052B016 /* KBRequestSerializer.m */; };
+		00A1B95A1B572D44003B77A2 /* KBResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD11A5E28220052B016 /* KBResponseSerializer.m */; };
+		00A1B95B1B572D44003B77A2 /* KBSerialBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD31A5E28220052B016 /* KBSerialBox.m */; };
+		00A1B95C1B572D44003B77A2 /* KBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD51A5E28220052B016 /* KBSession.m */; };
+		00A1B9671B572E05003B77A2 /* KBKeybase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A1B9111B572CED003B77A2 /* KBKeybase.framework */; };
+		00A1B96F1B572F04003B77A2 /* KBClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF233E14104792ACC8B738 /* KBClientTest.m */; };
+		00A1B9701B572F1E003B77A2 /* KBKeybase.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D601A5F5FB40052B016 /* KBKeybase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4FAC04BF6FC4BE954716F9CE /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */; };
+		5F9609D5527BB0F436ECB17E /* libPods-KBKeybase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 076EB857B3D3B026187BC752 /* libPods-KBKeybase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FC2736121F904C9DBE3BB04F /* PBXContainerItemProxy */ = {
+		00A1B9681B572E05003B77A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 004BC8F3198C36CD000C039B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 004BC8FA198C36CD000C039B;
+			remoteGlobalIDString = 00A1B9101B572CED003B77A2;
 			remoteInfo = KBKeybase;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		004BC8F9198C36CD000C039B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00358CC21A5E28220052B016 /* KBDNSQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDNSQuery.h; sourceTree = "<group>"; };
@@ -139,39 +128,37 @@
 		00358D6B1A5F62F80052B016 /* KBPGPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPGPMessage.m; sourceTree = "<group>"; };
 		00358D6C1A5F62F80052B016 /* KBSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSigner.h; sourceTree = "<group>"; };
 		00358D6D1A5F62F80052B016 /* KBSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSigner.m; sourceTree = "<group>"; };
-		004BC8FB198C36CD000C039B /* libKBKeybase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKBKeybase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		004BC946198C37FC000C039B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		004BC94B198C4032000C039B /* KBKeybase.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KBKeybase.podspec; sourceTree = "<group>"; };
 		004BC94C198C416D000C039B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0054F1551991505800908F74 /* gabrielhlocal2_private.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_private.json; sourceTree = "<group>"; };
 		0054F1571991506900908F74 /* gabrielhlocal2_public.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_public.json; sourceTree = "<group>"; };
+		00A1B9111B572CED003B77A2 /* KBKeybase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KBKeybase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A1B9611B572E05003B77A2 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AF233E14104792ACC8B738 /* KBClientTest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBClientTest.m; path = Tests/KBClientTest.m; sourceTree = "<group>"; };
-		0919B5DAD278B400BC23B0A3 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		076EB857B3D3B026187BC752 /* libPods-KBKeybase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KBKeybase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA8BEF39A6B47CEBE626660 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		AAA5BCC6B58F8E244E8AE657 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AEE370DB9B1D2F618C91D553 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		B037BD03463B42FF88CC9C7A /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Tests/main.m; sourceTree = "<group>"; };
-		B29DA3C7E1110D81248E334B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A8C8A6A8A6E1130FBC7E282E /* Pods-KBKeybase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KBKeybase.release.xcconfig"; path = "Pods/Target Support Files/Pods-KBKeybase/Pods-KBKeybase.release.xcconfig"; sourceTree = "<group>"; };
+		C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KBKeybase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KBKeybase/Pods-KBKeybase.debug.xcconfig"; sourceTree = "<group>"; };
 		C63A870D3FE845ECB0AADD3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F976443DCCC0465D80021996 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		004BC8F8198C36CD000C039B /* Frameworks */ = {
+		00A1B90D1B572CED003B77A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D073500E8E5C493FA561D3AB /* libPods.a in Frameworks */,
+				5F9609D5527BB0F436ECB17E /* libPods-KBKeybase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57157AD60D3E433EACC6C990 /* Frameworks */ = {
+		00A1B95E1B572E05003B77A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3E614B151B434986E22987 /* Foundation.framework in Frameworks */,
-				93ACD719B5C94F7CB378314A /* libPods-Tests.a in Frameworks */,
+				00A1B9671B572E05003B77A2 /* KBKeybase.framework in Frameworks */,
+				4FAC04BF6FC4BE954716F9CE /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,8 +262,8 @@
 		004BC8FC198C36CD000C039B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				004BC8FB198C36CD000C039B /* libKBKeybase.a */,
-				F976443DCCC0465D80021996 /* Tests.app */,
+				00A1B9111B572CED003B77A2 /* KBKeybase.framework */,
+				00A1B9611B572E05003B77A2 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,10 +292,8 @@
 		5448E67988E0A97DF6E53C9B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AAA5BCC6B58F8E244E8AE657 /* Pods.debug.xcconfig */,
-				B29DA3C7E1110D81248E334B /* Pods.release.xcconfig */,
-				AEE370DB9B1D2F618C91D553 /* Pods-Tests.release.xcconfig */,
-				0919B5DAD278B400BC23B0A3 /* Pods-Tests.debug.xcconfig */,
+				C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */,
+				A8C8A6A8A6E1130FBC7E282E /* Pods-KBKeybase.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -325,7 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				0054F1541991503600908F74 /* Data */,
-				B037BD03463B42FF88CC9C7A /* main.m */,
 				04AF233E14104792ACC8B738 /* KBClientTest.m */,
 			);
 			name = Tests;
@@ -337,51 +321,91 @@
 				C63A870D3FE845ECB0AADD3B /* libPods.a */,
 				682E0287DD784D05B59E92B2 /* iOS */,
 				CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */,
+				076EB857B3D3B026187BC752 /* libPods-KBKeybase.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		00A1B90E1B572CED003B77A2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A1B9411B572D25003B77A2 /* KBRequestSerializer.h in Headers */,
+				00A1B93D1B572D25003B77A2 /* KBAPIClientKeyRing.h in Headers */,
+				00A1B9441B572D25003B77A2 /* KBSession.h in Headers */,
+				00A1B93A1B572D16003B77A2 /* KBUser.h in Headers */,
+				00A1B9371B572D16003B77A2 /* KBSessionUser.h in Headers */,
+				00A1B9311B572D16003B77A2 /* KBBitcoinAddress.h in Headers */,
+				00A1B9381B572D16003B77A2 /* KBSignature.h in Headers */,
+				00A1B92B1B572D16003B77A2 /* KBKey.h in Headers */,
+				00A1B93E1B572D25003B77A2 /* KBDefines.h in Headers */,
+				00A1B93C1B572D25003B77A2 /* KBAPIClient.h in Headers */,
+				00A1B9331B572D16003B77A2 /* KBPrivateKey.h in Headers */,
+				00A1B9421B572D25003B77A2 /* KBResponseSerializer.h in Headers */,
+				00A1B93B1B572D25003B77A2 /* KBDNSQuery.h in Headers */,
+				00A1B92A1B572D16003B77A2 /* KBCrypto.h in Headers */,
+				00A1B93F1B572D25003B77A2 /* KBAPIError.h in Headers */,
+				00A1B9391B572D16003B77A2 /* KBSignatureProof.h in Headers */,
+				00A1B92C1B572D16003B77A2 /* KBKeyRing.h in Headers */,
+				00A1B9361B572D16003B77A2 /* KBSearchResult.h in Headers */,
+				00A1B9701B572F1E003B77A2 /* KBKeybase.h in Headers */,
+				00A1B9341B572D16003B77A2 /* KBProof.h in Headers */,
+				00A1B9401B572D25003B77A2 /* KBProofVerification.h in Headers */,
+				00A1B9431B572D25003B77A2 /* KBSerialBox.h in Headers */,
+				00A1B92D1B572D16003B77A2 /* KBPGPKey.h in Headers */,
+				00A1B9301B572D16003B77A2 /* KBSigner.h in Headers */,
+				00A1B9351B572D16003B77A2 /* KBPublicKey.h in Headers */,
+				00A1B92E1B572D16003B77A2 /* KBPGPKeyRing.h in Headers */,
+				00A1B92F1B572D16003B77A2 /* KBPGPMessage.h in Headers */,
+				00A1B9321B572D16003B77A2 /* KBImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		004BC8FA198C36CD000C039B /* KBKeybase */ = {
+		00A1B9101B572CED003B77A2 /* KBKeybase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 004BC90F198C36CD000C039B /* Build configuration list for PBXNativeTarget "KBKeybase" */;
+			buildConfigurationList = 00A1B9241B572CED003B77A2 /* Build configuration list for PBXNativeTarget "KBKeybase" */;
 			buildPhases = (
-				52E8A5DAD8224F0DA5625BDF /* Check Pods Manifest.lock */,
-				004BC8F7198C36CD000C039B /* Sources */,
-				004BC8F8198C36CD000C039B /* Frameworks */,
-				004BC8F9198C36CD000C039B /* CopyFiles */,
-				9023771B045F4EE5A066A57D /* Copy Pods Resources */,
+				C77C26501A7807B02FBD2DA4 /* Check Pods Manifest.lock */,
+				00A1B90C1B572CED003B77A2 /* Sources */,
+				00A1B90D1B572CED003B77A2 /* Frameworks */,
+				00A1B90E1B572CED003B77A2 /* Headers */,
+				00A1B90F1B572CED003B77A2 /* Resources */,
+				8B70EECD240235C13E25B25E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = KBKeybase;
-			productName = KBAPI;
-			productReference = 004BC8FB198C36CD000C039B /* libKBKeybase.a */;
-			productType = "com.apple.product-type.library.static";
+			productName = KBKeybase;
+			productReference = 00A1B9111B572CED003B77A2 /* KBKeybase.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		FCC00B86A5814C7089C99512 /* Tests */ = {
+		00A1B9601B572E05003B77A2 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1D49BD569241FBB7D0E687 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 00A1B96A1B572E05003B77A2 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				EA7BC5A84AF0464DB44BCBFD /* Check Pods Manifest.lock */,
-				1CFB3DCE9C4248A4BF240301 /* Sources */,
-				57157AD60D3E433EACC6C990 /* Frameworks */,
-				A450EF128ED248D9BC42CE9B /* Resources */,
-				9FD1CA94BC7F49B4B8972949 /* Copy Pods Resources */,
+				89901E86C8A08524EB392AAC /* Check Pods Manifest.lock */,
+				00A1B95D1B572E05003B77A2 /* Sources */,
+				00A1B95E1B572E05003B77A2 /* Frameworks */,
+				00A1B95F1B572E05003B77A2 /* Resources */,
+				5404923F020C975DC81FD275 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				93DDCE7908A44F308583DD62 /* PBXTargetDependency */,
+				00A1B9691B572E05003B77A2 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
-			productReference = F976443DCCC0465D80021996 /* Tests.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 00A1B9611B572E05003B77A2 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -392,8 +416,11 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Gabriel Handford";
 				TargetAttributes = {
-					004BC8FA198C36CD000C039B = {
-						CreatedOnToolsVersion = 6.0;
+					00A1B9101B572CED003B77A2 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					00A1B9601B572E05003B77A2 = {
+						CreatedOnToolsVersion = 6.4;
 					};
 				};
 			};
@@ -409,56 +436,31 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				004BC8FA198C36CD000C039B /* KBKeybase */,
-				FCC00B86A5814C7089C99512 /* Tests */,
+				00A1B9101B572CED003B77A2 /* KBKeybase */,
+				00A1B9601B572E05003B77A2 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A450EF128ED248D9BC42CE9B /* Resources */ = {
+		00A1B90F1B572CED003B77A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0054F1561991505800908F74 /* gabrielhlocal2_private.json in Resources */,
-				0054F1581991506900908F74 /* gabrielhlocal2_public.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A1B95F1B572E05003B77A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52E8A5DAD8224F0DA5625BDF /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9023771B045F4EE5A066A57D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9FD1CA94BC7F49B4B8972949 /* Copy Pods Resources */ = {
+		5404923F020C975DC81FD275 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -473,7 +475,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA7BC5A84AF0464DB44BCBFD /* Check Pods Manifest.lock */ = {
+		89901E86C8A08524EB392AAC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B70EECD240235C13E25B25E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KBKeybase/Pods-KBKeybase-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C77C26501A7807B02FBD2DA4 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -491,77 +523,52 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		004BC8F7198C36CD000C039B /* Sources */ = {
+		00A1B90C1B572CED003B77A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00358D6E1A5F62F80052B016 /* KBKey.m in Sources */,
-				00358D421A5E2B7C0052B016 /* KBSignatureProof.m in Sources */,
-				00358D3E1A5E2B7C0052B016 /* KBSessionUser.m in Sources */,
-				00358CFB1A5E28220052B016 /* KBSession.m in Sources */,
-				00358D741A5F62F80052B016 /* KBPGPMessage.m in Sources */,
-				00358D3C1A5E2B7C0052B016 /* KBSearchResult.m in Sources */,
-				00358CF51A5E28220052B016 /* KBRequestSerializer.m in Sources */,
-				00358D401A5E2B7C0052B016 /* KBSignature.m in Sources */,
-				00358D441A5E2B7C0052B016 /* KBUser.m in Sources */,
-				00358D721A5F62F80052B016 /* KBPGPKeyRing.m in Sources */,
-				00358D761A5F62F80052B016 /* KBSigner.m in Sources */,
-				00358CEF1A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */,
-				00358D341A5E2B7C0052B016 /* KBImage.m in Sources */,
-				00358CF71A5E28220052B016 /* KBResponseSerializer.m in Sources */,
-				00358D321A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */,
-				00358D381A5E2B7C0052B016 /* KBProof.m in Sources */,
-				00358D3A1A5E2B7C0052B016 /* KBPublicKey.m in Sources */,
-				00358CED1A5E28220052B016 /* KBAPIClient.m in Sources */,
-				00358D701A5F62F80052B016 /* KBPGPKey.m in Sources */,
-				00358CF31A5E28220052B016 /* KBProofVerification.m in Sources */,
-				00358CF91A5E28220052B016 /* KBSerialBox.m in Sources */,
-				00358CF11A5E28220052B016 /* KBAPIError.m in Sources */,
-				00358CEB1A5E28220052B016 /* KBDNSQuery.m in Sources */,
-				00358D361A5E2B7C0052B016 /* KBPrivateKey.m in Sources */,
+				00A1B9521B572D44003B77A2 /* KBSignatureProof.m in Sources */,
+				00A1B9551B572D44003B77A2 /* KBAPIClient.m in Sources */,
+				00A1B9581B572D44003B77A2 /* KBProofVerification.m in Sources */,
+				00A1B94D1B572D44003B77A2 /* KBProof.m in Sources */,
+				00A1B9471B572D44003B77A2 /* KBPGPKeyRing.m in Sources */,
+				00A1B95B1B572D44003B77A2 /* KBSerialBox.m in Sources */,
+				00A1B9591B572D44003B77A2 /* KBRequestSerializer.m in Sources */,
+				00A1B94F1B572D44003B77A2 /* KBSearchResult.m in Sources */,
+				00A1B9531B572D44003B77A2 /* KBUser.m in Sources */,
+				00A1B9461B572D44003B77A2 /* KBPGPKey.m in Sources */,
+				00A1B94C1B572D44003B77A2 /* KBPrivateKey.m in Sources */,
+				00A1B9481B572D44003B77A2 /* KBPGPMessage.m in Sources */,
+				00A1B9501B572D44003B77A2 /* KBSessionUser.m in Sources */,
+				00A1B9571B572D44003B77A2 /* KBAPIError.m in Sources */,
+				00A1B9451B572D44003B77A2 /* KBKey.m in Sources */,
+				00A1B94A1B572D44003B77A2 /* KBBitcoinAddress.m in Sources */,
+				00A1B95A1B572D44003B77A2 /* KBResponseSerializer.m in Sources */,
+				00A1B94E1B572D44003B77A2 /* KBPublicKey.m in Sources */,
+				00A1B94B1B572D44003B77A2 /* KBImage.m in Sources */,
+				00A1B9491B572D44003B77A2 /* KBSigner.m in Sources */,
+				00A1B9511B572D44003B77A2 /* KBSignature.m in Sources */,
+				00A1B9561B572D44003B77A2 /* KBAPIClientKeyRing.m in Sources */,
+				00A1B9541B572D44003B77A2 /* KBDNSQuery.m in Sources */,
+				00A1B95C1B572D44003B77A2 /* KBSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1CFB3DCE9C4248A4BF240301 /* Sources */ = {
+		00A1B95D1B572E05003B77A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00358D351A5E2B7C0052B016 /* KBImage.m in Sources */,
-				00358D3F1A5E2B7C0052B016 /* KBSessionUser.m in Sources */,
-				00358D6F1A5F62F80052B016 /* KBKey.m in Sources */,
-				00358CF61A5E28220052B016 /* KBRequestSerializer.m in Sources */,
-				00358D771A5F62F80052B016 /* KBSigner.m in Sources */,
-				00358D3B1A5E2B7C0052B016 /* KBPublicKey.m in Sources */,
-				00358CFC1A5E28220052B016 /* KBSession.m in Sources */,
-				00358D731A5F62F80052B016 /* KBPGPKeyRing.m in Sources */,
-				B2EAB5CD13004D8CBA822AED /* main.m in Sources */,
-				00358CFA1A5E28220052B016 /* KBSerialBox.m in Sources */,
-				00358CF81A5E28220052B016 /* KBResponseSerializer.m in Sources */,
-				00358CF21A5E28220052B016 /* KBAPIError.m in Sources */,
-				00358CEC1A5E28220052B016 /* KBDNSQuery.m in Sources */,
-				00358D711A5F62F80052B016 /* KBPGPKey.m in Sources */,
-				00358D3D1A5E2B7C0052B016 /* KBSearchResult.m in Sources */,
-				00358D431A5E2B7C0052B016 /* KBSignatureProof.m in Sources */,
-				00358D751A5F62F80052B016 /* KBPGPMessage.m in Sources */,
-				00358D411A5E2B7C0052B016 /* KBSignature.m in Sources */,
-				00358D451A5E2B7C0052B016 /* KBUser.m in Sources */,
-				00358D371A5E2B7C0052B016 /* KBPrivateKey.m in Sources */,
-				AAE89D2D7C614CAABCA8C939 /* KBClientTest.m in Sources */,
-				00358D391A5E2B7C0052B016 /* KBProof.m in Sources */,
-				00358CF01A5E28220052B016 /* KBAPIClientKeyRing.m in Sources */,
-				00358D331A5E2B7C0052B016 /* KBBitcoinAddress.m in Sources */,
-				00358CEE1A5E28220052B016 /* KBAPIClient.m in Sources */,
-				00358CF41A5E28220052B016 /* KBProofVerification.m in Sources */,
+				00A1B96F1B572F04003B77A2 /* KBClientTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		93DDCE7908A44F308583DD62 /* PBXTargetDependency */ = {
+		00A1B9691B572E05003B77A2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 004BC8FA198C36CD000C039B /* KBKeybase */;
-			targetProxy = FC2736121F904C9DBE3BB04F /* PBXContainerItemProxy */;
+			target = 00A1B9101B572CED003B77A2 /* KBKeybase */;
+			targetProxy = 00A1B9681B572E05003B77A2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -640,83 +647,95 @@
 			};
 			name = Release;
 		};
-		004BC910198C36CD000C039B /* Debug */ = {
+		00A1B9251B572CED003B77A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAA5BCC6B58F8E244E8AE657 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = KBKeybase;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		004BC911198C36CD000C039B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B29DA3C7E1110D81248E334B /* Pods.release.xcconfig */;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = KBKeybase;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		722CCDE28A904ACD90A76CC2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEE370DB9B1D2F618C91D553 /* Pods-Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_CFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8211172EA1014DEA998CA1E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0919B5DAD278B400BC23B0A3 /* Pods-Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = KBKeybase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		00A1B9261B572CED003B77A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8C8A6A8A6E1130FBC7E282E /* Pods-KBKeybase.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = KBKeybase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		00A1B96B1B572E05003B77A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		00A1B96C1B572E05003B77A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -730,20 +749,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		004BC90F198C36CD000C039B /* Build configuration list for PBXNativeTarget "KBKeybase" */ = {
+		00A1B9241B572CED003B77A2 /* Build configuration list for PBXNativeTarget "KBKeybase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				004BC910198C36CD000C039B /* Debug */,
-				004BC911198C36CD000C039B /* Release */,
+				00A1B9251B572CED003B77A2 /* Debug */,
+				00A1B9261B572CED003B77A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1D49BD569241FBB7D0E687 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		00A1B96A1B572E05003B77A2 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				722CCDE28A904ACD90A76CC2 /* Release */,
-				8211172EA1014DEA998CA1E3 /* Debug */,
+				00A1B96B1B572E05003B77A2 /* Debug */,
+				00A1B96C1B572E05003B77A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

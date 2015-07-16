@@ -22,7 +22,6 @@ PODS:
     - AFNetworking/NSURLSession
   - GHKit (2.0.0)
   - GHODictionary (1.0.8)
-  - GRUnit (1.1.3)
   - libsodium (1.0.3)
   - Mantle (2.0.2):
     - Mantle/extobjc (= 2.0.2)
@@ -42,9 +41,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - GHKit
-  - GRUnit
   - Mantle
-  - NACrypto
   - ObjectiveSugar
   - TSTripleSec
 
@@ -52,7 +49,6 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   GHKit: 29e5361c9d8a33343ae5ed4698057d1533ee590b
   GHODictionary: 4990d3fa008a11257ba54f52a3e95f90dd47ac1b
-  GRUnit: 3a60546a0d42bc0edb83c4e755f9620517cd7af7
   libsodium: be547e31dc75725629acc5717dc0a40fc05ef243
   Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
   MPMessagePack: a6f9b328cf057350589dbc095e6bb0536609ecae
