@@ -39,23 +39,23 @@
 }
 
 + (NSValueTransformer *)imageJSONTransformer {
-  return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBImage.class];
+  return [MTLJSONAdapter dictionaryTransformerWithModelClass:KBImage.class];
 }
 
 + (NSValueTransformer *)keyJSONTransformer {
-  return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:KBPublicKey.class];
+  return [MTLJSONAdapter dictionaryTransformerWithModelClass:KBPublicKey.class];
 }
 
 + (NSValueTransformer *)proofsJSONTransformer {
-  return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBProof.class];
+  return [MTLJSONAdapter arrayTransformerWithModelClass:KBProof.class];
 }
 
 + (NSValueTransformer *)bitcoinAddressesJSONTransformer {
-  return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBBitcoinAddress.class];
+  return [MTLJSONAdapter arrayTransformerWithModelClass:KBBitcoinAddress.class];
 }
 
 + (NSValueTransformer *)dateCreatedJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^(id date) {
+  return [MTLValueTransformer transformerUsingForwardBlock:^(NSDate *date, BOOL *success, NSError **error) {
     return [NSDate gh_parseTimeSinceEpoch:date];
   }];
 }

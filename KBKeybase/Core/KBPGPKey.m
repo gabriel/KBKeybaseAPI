@@ -51,19 +51,19 @@ KBKeyCapabilities KBKeyCapabiltiesFromFlags(KBPGPKeyFlags flags) {
 }
 
 + (NSValueTransformer *)dateJSONTransformer {
-  return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(id date) {
+  return [MTLValueTransformer transformerUsingForwardBlock:^(NSDate *date, BOOL *success, NSError **error) {
     return [NSDate gh_parseTimeSinceEpoch:date];
-  } reverseBlock:^(NSDate *date) {
+  } reverseBlock:^(NSDate *date, BOOL *success, NSError **error) {
     return [NSNumber numberWithUnsignedLongLong:[date timeIntervalSince1970]];
   }];
 }
 
 + (NSValueTransformer *)subKeysJSONTransformer {
-  return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBPGPSubKey.class];
+  return [MTLJSONAdapter arrayTransformerWithModelClass:KBPGPSubKey.class];
 }
 
 + (NSValueTransformer *)userIdsJSONTransformer {
-  return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:KBPGPUserId.class];
+  return [MTLJSONAdapter arrayTransformerWithModelClass:KBPGPUserId.class];
 }
 
 - (KBKeyCapabilities)capabilities {

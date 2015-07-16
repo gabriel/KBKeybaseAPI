@@ -23,7 +23,7 @@
 }
 
 + (NSValueTransformer *)dateModifiedJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^(id date) {
+  return [MTLValueTransformer transformerUsingForwardBlock:^(NSDate *date, BOOL *success, NSError **error) {
     return [NSDate gh_parseTimeSinceEpoch:date];
   }];
 }

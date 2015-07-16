@@ -35,9 +35,12 @@
 }
 
 + (NSValueTransformer *)payloadJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^id(NSString *payloadJSON) {
+  
+  return [MTLValueTransformer transformerUsingForwardBlock:^(NSString *payloadJSON, BOOL *success, NSError **error) {
     NSData *data = [payloadJSON dataUsingEncoding:NSUTF8StringEncoding];
-    return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:error];
+    if (!object) *success = NO;
+    return object;
   }];
 }
 

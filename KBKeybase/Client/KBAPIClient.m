@@ -13,6 +13,8 @@
 #import <TSTripleSec/TSTripleSec.h>
 #import <GHKit/GHKit.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
+#import <NAChloride/NAChloride.h>
+#import <NACrypto/NACrypto.h>
 
 #import "KBPublicKey.h"
 #import "KBPrivateKey.h"
@@ -139,7 +141,7 @@ NSString *KBKeyForCache(id key, int level) {
 
 - (void)pruneCache {
   for (id key in _cache) {
-    if (fabs([_cache[key][@"date"] timeIntervalSinceNow] >= _cacheInterval)) [_cache removeObjectForKey:key];
+    if (fabs([_cache[key][@"date"] timeIntervalSinceNow]) >= _cacheInterval) [_cache removeObjectForKey:key];
   }
 }
 
@@ -237,7 +239,7 @@ NSString *KBKeyForCache(id key, int level) {
   NSAssert(self.CSRFToken, @"Missing CSRF");
   
   NSError *error = nil;
-  NSData *salt = [NARandom randomData:16 error:&error];
+  NSData *salt = [NARandom randomData:16];
   if (!salt) {
     dispatch_async(dispatch_get_main_queue(), ^{ failure(error); });
     return;
