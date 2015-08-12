@@ -45,8 +45,8 @@ KBKeyCapabilities KBKeyCapabiltiesFromFlags(KBPGPKeyFlags flags) {
            @"selfSigned": @"self_signed",
            @"subKeys": @"subkeys",
            @"userIds": @"userids",
-           @"dateModified": @"timestamp",
-           //@"secretKeyArmoredEncrypted": NSNull.null
+           //@"dateModified": NSNull.null,
+           //@"secretKeyArmoredEncrypted": NSNull.null,
            };
 }
 
@@ -142,6 +142,10 @@ KBKeyCapabilities KBKeyCapabiltiesFromFlags(KBPGPKeyFlags flags) {
   return [self.fingerprint caseInsensitiveCompare:key2.fingerprint];
 }
 
++ (instancetype)PGPKeyFromDictionary:(NSDictionary *)dict error:(NSError **)error {
+  return [MTLJSONAdapter modelOfClass:KBPGPKey.class fromJSONDictionary:dict error:error];
+}
+
 @end
 
 @implementation KBPGPSubKey
@@ -154,6 +158,14 @@ KBKeyCapabilities KBKeyCapabiltiesFromFlags(KBPGPKeyFlags flags) {
            @"algorithm": @"type",
            @"date": @"timestamp",
            };
+}
+
++ (NSValueTransformer *)dateJSONTransformer {
+  return [MTLValueTransformer transformerUsingForwardBlock:^(NSDate *date, BOOL *success, NSError **error) {
+    return [NSDate gh_parseTimeSinceEpoch:date];
+  } reverseBlock:^(NSDate *date, BOOL *success, NSError **error) {
+    return [NSNumber numberWithUnsignedLongLong:[date timeIntervalSince1970]];
+  }];
 }
 
 - (NSString *)subKeyDescription {

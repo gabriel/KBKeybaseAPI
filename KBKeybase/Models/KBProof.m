@@ -23,8 +23,8 @@
            @"proofType": @"proof_type",
            @"humanURLString": @"human_url",
            @"serviceURLString": @"service_url",
-           @"dateVerified": NSNull.null,
-           @"verifyError": NSNull.null,
+           //@"dateVerified": NSNull.null,
+           //@"verifyError": NSNull.null,
            };
 }
 

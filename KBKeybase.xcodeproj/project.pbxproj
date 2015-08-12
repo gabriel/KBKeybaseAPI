@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001206171B7BE35000D773D6 /* KBKeybase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A1B9111B572CED003B77A2 /* KBKeybase.framework */; };
+		001206221B7BE38500D773D6 /* gabrielhlocal2_private.json in Resources */ = {isa = PBXBuildFile; fileRef = 0012061E1B7BE38500D773D6 /* gabrielhlocal2_private.json */; };
+		001206231B7BE38500D773D6 /* gabrielhlocal2_public.json in Resources */ = {isa = PBXBuildFile; fileRef = 0012061F1B7BE38500D773D6 /* gabrielhlocal2_public.json */; };
+		001206241B7BE38500D773D6 /* KBClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001206201B7BE38500D773D6 /* KBClientTest.m */; };
+		001206251B7BE38500D773D6 /* KBPGPKeyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001206211B7BE38500D773D6 /* KBPGPKeyTest.m */; };
 		00A1B92A1B572D16003B77A2 /* KBCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D621A5F62F80052B016 /* KBCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A1B92B1B572D16003B77A2 /* KBKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D631A5F62F80052B016 /* KBKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00A1B92C1B572D16003B77A2 /* KBKeyRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D651A5F62F80052B016 /* KBKeyRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,15 +63,12 @@
 		00A1B95A1B572D44003B77A2 /* KBResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD11A5E28220052B016 /* KBResponseSerializer.m */; };
 		00A1B95B1B572D44003B77A2 /* KBSerialBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD31A5E28220052B016 /* KBSerialBox.m */; };
 		00A1B95C1B572D44003B77A2 /* KBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 00358CD51A5E28220052B016 /* KBSession.m */; };
-		00A1B9671B572E05003B77A2 /* KBKeybase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A1B9111B572CED003B77A2 /* KBKeybase.framework */; };
-		00A1B96F1B572F04003B77A2 /* KBClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF233E14104792ACC8B738 /* KBClientTest.m */; };
 		00A1B9701B572F1E003B77A2 /* KBKeybase.h in Headers */ = {isa = PBXBuildFile; fileRef = 00358D601A5F5FB40052B016 /* KBKeybase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4FAC04BF6FC4BE954716F9CE /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */; };
 		5F9609D5527BB0F436ECB17E /* libPods-KBKeybase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 076EB857B3D3B026187BC752 /* libPods-KBKeybase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00A1B9681B572E05003B77A2 /* PBXContainerItemProxy */ = {
+		001206181B7BE35000D773D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 004BC8F3198C36CD000C039B /* Project object */;
 			proxyType = 1;
@@ -76,6 +78,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001206111B7BE35000D773D6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		001206141B7BE35000D773D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
+		0012061E1B7BE38500D773D6 /* gabrielhlocal2_private.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_private.json; sourceTree = "<group>"; };
+		0012061F1B7BE38500D773D6 /* gabrielhlocal2_public.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_public.json; sourceTree = "<group>"; };
+		001206201B7BE38500D773D6 /* KBClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBClientTest.m; sourceTree = "<group>"; };
+		001206211B7BE38500D773D6 /* KBPGPKeyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPGPKeyTest.m; sourceTree = "<group>"; };
+		001206261B7BE3B500D773D6 /* libPods-KBKeybase-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-KBKeybase-Mantle.a"; path = "Pods/../build/Debug-iphoneos/libPods-KBKeybase-Mantle.a"; sourceTree = "<group>"; };
 		00358CC21A5E28220052B016 /* KBDNSQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDNSQuery.h; sourceTree = "<group>"; };
 		00358CC31A5E28220052B016 /* KBDNSQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDNSQuery.m; sourceTree = "<group>"; };
 		00358CC41A5E28220052B016 /* KBAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAPIClient.h; sourceTree = "<group>"; };
@@ -131,11 +140,7 @@
 		004BC946198C37FC000C039B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		004BC94B198C4032000C039B /* KBKeybase.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KBKeybase.podspec; sourceTree = "<group>"; };
 		004BC94C198C416D000C039B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0054F1551991505800908F74 /* gabrielhlocal2_private.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_private.json; sourceTree = "<group>"; };
-		0054F1571991506900908F74 /* gabrielhlocal2_public.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gabrielhlocal2_public.json; sourceTree = "<group>"; };
 		00A1B9111B572CED003B77A2 /* KBKeybase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KBKeybase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		00A1B9611B572E05003B77A2 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04AF233E14104792ACC8B738 /* KBClientTest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBClientTest.m; path = Tests/KBClientTest.m; sourceTree = "<group>"; };
 		076EB857B3D3B026187BC752 /* libPods-KBKeybase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KBKeybase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA8BEF39A6B47CEBE626660 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A8C8A6A8A6E1130FBC7E282E /* Pods-KBKeybase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KBKeybase.release.xcconfig"; path = "Pods/Target Support Files/Pods-KBKeybase/Pods-KBKeybase.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +150,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0012060E1B7BE35000D773D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001206171B7BE35000D773D6 /* KBKeybase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		00A1B90D1B572CED003B77A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,18 +166,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00A1B95E1B572E05003B77A2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00A1B9671B572E05003B77A2 /* KBKeybase.framework in Frameworks */,
-				4FAC04BF6FC4BE954716F9CE /* libPods-Tests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001206121B7BE35000D773D6 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0012061D1B7BE38500D773D6 /* Data */,
+				001206201B7BE38500D773D6 /* KBClientTest.m */,
+				001206211B7BE38500D773D6 /* KBPGPKeyTest.m */,
+				001206131B7BE35000D773D6 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		001206131B7BE35000D773D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				001206141B7BE35000D773D6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0012061D1B7BE38500D773D6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0012061E1B7BE38500D773D6 /* gabrielhlocal2_private.json */,
+				0012061F1B7BE38500D773D6 /* gabrielhlocal2_public.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		00358CC01A5E28220052B016 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,7 +284,7 @@
 				004BC94B198C4032000C039B /* KBKeybase.podspec */,
 				004BC946198C37FC000C039B /* Podfile */,
 				004BC8FD198C36CD000C039B /* KBKeybase */,
-				6B90446B984D47CE86ECF654 /* Tests */,
+				001206121B7BE35000D773D6 /* Tests */,
 				004BC8FC198C36CD000C039B /* Products */,
 				CD48A32A4DD2492CBBFC0B69 /* Frameworks */,
 				5448E67988E0A97DF6E53C9B /* Pods */,
@@ -263,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				00A1B9111B572CED003B77A2 /* KBKeybase.framework */,
-				00A1B9611B572E05003B77A2 /* Tests.xctest */,
+				001206111B7BE35000D773D6 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,16 +309,6 @@
 				00358CC01A5E28220052B016 /* Client */,
 			);
 			path = KBKeybase;
-			sourceTree = "<group>";
-		};
-		0054F1541991503600908F74 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				0054F1551991505800908F74 /* gabrielhlocal2_private.json */,
-				0054F1571991506900908F74 /* gabrielhlocal2_public.json */,
-			);
-			name = Data;
-			path = Tests/Data;
 			sourceTree = "<group>";
 		};
 		5448E67988E0A97DF6E53C9B /* Pods */ = {
@@ -306,18 +328,10 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		6B90446B984D47CE86ECF654 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				0054F1541991503600908F74 /* Data */,
-				04AF233E14104792ACC8B738 /* KBClientTest.m */,
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
 		CD48A32A4DD2492CBBFC0B69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				001206261B7BE3B500D773D6 /* libPods-KBKeybase-Mantle.a */,
 				C63A870D3FE845ECB0AADD3B /* libPods.a */,
 				682E0287DD784D05B59E92B2 /* iOS */,
 				CF3D4522CAC644C8B50E85D5 /* libPods-Tests.a */,
@@ -367,6 +381,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		001206101B7BE35000D773D6 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0012061A1B7BE35000D773D6 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				0012060D1B7BE35000D773D6 /* Sources */,
+				0012060E1B7BE35000D773D6 /* Frameworks */,
+				0012060F1B7BE35000D773D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				001206191B7BE35000D773D6 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 001206111B7BE35000D773D6 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		00A1B9101B572CED003B77A2 /* KBKeybase */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00A1B9241B572CED003B77A2 /* Build configuration list for PBXNativeTarget "KBKeybase" */;
@@ -387,26 +419,6 @@
 			productReference = 00A1B9111B572CED003B77A2 /* KBKeybase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		00A1B9601B572E05003B77A2 /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00A1B96A1B572E05003B77A2 /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				89901E86C8A08524EB392AAC /* Check Pods Manifest.lock */,
-				00A1B95D1B572E05003B77A2 /* Sources */,
-				00A1B95E1B572E05003B77A2 /* Frameworks */,
-				00A1B95F1B572E05003B77A2 /* Resources */,
-				5404923F020C975DC81FD275 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00A1B9691B572E05003B77A2 /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = Tests;
-			productReference = 00A1B9611B572E05003B77A2 /* Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -416,10 +428,10 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Gabriel Handford";
 				TargetAttributes = {
-					00A1B9101B572CED003B77A2 = {
+					001206101B7BE35000D773D6 = {
 						CreatedOnToolsVersion = 6.4;
 					};
-					00A1B9601B572E05003B77A2 = {
+					00A1B9101B572CED003B77A2 = {
 						CreatedOnToolsVersion = 6.4;
 					};
 				};
@@ -437,20 +449,22 @@
 			projectRoot = "";
 			targets = (
 				00A1B9101B572CED003B77A2 /* KBKeybase */,
-				00A1B9601B572E05003B77A2 /* Tests */,
+				001206101B7BE35000D773D6 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00A1B90F1B572CED003B77A2 /* Resources */ = {
+		0012060F1B7BE35000D773D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001206221B7BE38500D773D6 /* gabrielhlocal2_private.json in Resources */,
+				001206231B7BE38500D773D6 /* gabrielhlocal2_public.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00A1B95F1B572E05003B77A2 /* Resources */ = {
+		00A1B90F1B572CED003B77A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -460,36 +474,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5404923F020C975DC81FD275 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89901E86C8A08524EB392AAC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		8B70EECD240235C13E25B25E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,6 +507,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0012060D1B7BE35000D773D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001206251B7BE38500D773D6 /* KBPGPKeyTest.m in Sources */,
+				001206241B7BE38500D773D6 /* KBClientTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		00A1B90C1B572CED003B77A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,25 +547,66 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00A1B95D1B572E05003B77A2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00A1B96F1B572F04003B77A2 /* KBClientTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00A1B9691B572E05003B77A2 /* PBXTargetDependency */ = {
+		001206191B7BE35000D773D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 00A1B9101B572CED003B77A2 /* KBKeybase */;
-			targetProxy = 00A1B9681B572E05003B77A2 /* PBXContainerItemProxy */;
+			targetProxy = 001206181B7BE35000D773D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0012061B1B7BE35000D773D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0012061C1B7BE35000D773D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		004BC90D198C36CD000C039B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -651,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C0062BDCBDA843A090920152 /* Pods-KBKeybase.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -679,6 +714,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8C8A6A8A6E1130FBC7E282E /* Pods-KBKeybase.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -700,46 +736,18 @@
 			};
 			name = Release;
 		};
-		00A1B96B1B572E05003B77A2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		00A1B96C1B572E05003B77A2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0012061A1B7BE35000D773D6 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0012061B1B7BE35000D773D6 /* Debug */,
+				0012061C1B7BE35000D773D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		004BC8F6198C36CD000C039B /* Build configuration list for PBXProject "KBKeybase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -754,15 +762,6 @@
 			buildConfigurations = (
 				00A1B9251B572CED003B77A2 /* Debug */,
 				00A1B9261B572CED003B77A2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00A1B96A1B572E05003B77A2 /* Build configuration list for PBXNativeTarget "Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00A1B96B1B572E05003B77A2 /* Debug */,
-				00A1B96C1B572E05003B77A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

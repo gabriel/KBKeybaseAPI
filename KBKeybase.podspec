@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "KBKeybase"
-  s.version      = "0.1.11"
+  s.version      = "0.1.15"
   s.summary      = "Keybase.io API client for iOS/OSX."
   s.homepage     = "https://github.com/gabriel/KBKeybase"
   s.license      = { :type => "MIT" }
@@ -22,6 +22,8 @@ Pod::Spec.new do |s|
   s.dependency "Mantle"
   s.dependency "ObjectiveSugar"
   s.dependency "GHKit"
+  s.dependency "NAChloride"
+  s.dependency "NACrypto"
 
   s.subspec "Core" do |a|
     a.source_files = "KBKeybase/Core/**/*.{h,m}"
@@ -29,6 +31,8 @@ Pod::Spec.new do |s|
     a.dependency "Mantle"
     a.dependency "ObjectiveSugar"
     a.dependency "TSTripleSec"
+    a.dependency "NAChloride"
+    a.dependency "NACrypto"
   end
 
 end

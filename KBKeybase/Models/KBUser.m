@@ -27,7 +27,7 @@
            @"bio": @"profile.bio",
            @"location": @"profile.location",
            @"dateCreated": @"basics.ctime",
-           @"dateModified": NSNull.null,
+           //@"dateModified": NSNull.null,
            
            @"bitcoinAddresses": @"cryptocurrency_addresses.bitcoin",
            @"proofs": @"proofs_summary.all",

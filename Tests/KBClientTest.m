@@ -26,10 +26,10 @@
       [expectation fulfill];
 
     } failure:^(NSError *error) {
-      XCTFail(error);
+      XCTFail(@"%@", error);
     }];
   } failure:^(NSError *error) {
-    XCTFail(error);
+    XCTFail(@"%@", error);
   }];
 
   [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {

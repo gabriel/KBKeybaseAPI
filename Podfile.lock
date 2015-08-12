@@ -23,9 +23,9 @@ PODS:
   - GHKit (2.0.0)
   - GHODictionary (1.0.8)
   - libsodium (1.0.3)
-  - Mantle (2.0.2):
-    - Mantle/extobjc (= 2.0.2)
-  - Mantle/extobjc (2.0.2)
+  - Mantle (2.0.3):
+    - Mantle/extobjc (= 2.0.3)
+  - Mantle/extobjc (2.0.3)
   - MPMessagePack (1.1.23):
     - GHODictionary
   - NAChloride (2.0.11):
@@ -50,11 +50,11 @@ SPEC CHECKSUMS:
   GHKit: 29e5361c9d8a33343ae5ed4698057d1533ee590b
   GHODictionary: 4990d3fa008a11257ba54f52a3e95f90dd47ac1b
   libsodium: be547e31dc75725629acc5717dc0a40fc05ef243
-  Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
+  Mantle: 8d6b14979a082a9ed4994463eb7a4ff576c94632
   MPMessagePack: a6f9b328cf057350589dbc095e6bb0536609ecae
   NAChloride: 0526f4f53ee40bd19fbc301ae2f927a7b4a459ef
   NACrypto: 8542a15fa41ae7110731b2aea35ef5edf94574f2
   ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
   TSTripleSec: a3c109fa7f7a59e3c73d552f0ea5ad62ddcca384
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

@@ -50,6 +50,8 @@ typedef void (^KBPGPKeyCompletionBlock)(NSError *error, KBPGPKey *PGPKey);
 // Date modified from API, so we know if we need to update
 @property (nonatomic) NSDate *dateModified;
 
++ (instancetype)PGPKeyFromDictionary:(NSDictionary *)dict error:(NSError **)error;
+
 - (KBKeyCapabilities)capabilities;
 
 /*!
