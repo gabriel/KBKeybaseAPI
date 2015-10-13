@@ -1,19 +1,18 @@
-KBKeybase
-=====
+# KBKeybaseAPI
 
 Keybase.io API client for iOS/OSX.
 
-# Podfile
+## Podfile
 
 ```ruby
 platform :ios, "7.0"
-pod "KBKeybase"
+pod "KBKeybaseAPI"
 ```
 
-# Example
+## Usage
 
 ```objc
-#import <KBKeybase/KBKeybase.h>
+#import <KBKeybaseAPI/KBKeybaseAPI.h>
 
 KBAPIClient *client = [[KBAPIClient alloc] initWithAPIHost:KBAPIKeybaseIOHost];
 NSArray *userNames = @[@"gabrielh", @"chris", @"max"];

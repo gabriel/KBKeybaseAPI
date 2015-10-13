@@ -1,15 +1,15 @@
 //
 //  KBClientTest.m
-//  KBKeybase
+//  KBKeybaseAPI
 //
 //  Created by Gabriel on 7/15/15.
 //  Copyright (c) 2015 Gabriel Handford. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import <KBKeybase/KBKeybase.h>
+#import <KBKeybaseAPI/KBKeybaseAPI.h>
 
 @interface KBClientTest : XCTestCase
 @end
@@ -28,6 +28,23 @@
     } failure:^(NSError *error) {
       XCTFail(@"%@", error);
     }];
+  } failure:^(NSError *error) {
+    XCTFail(@"%@", error);
+  }];
+
+  [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    if (error) XCTFail();
+  }];
+}
+
+- (void)testSearch {
+  XCTestExpectation *expectation = [self expectationWithDescription:@"Search"];
+
+  KBAPIClient *client = [[KBAPIClient alloc] initWithAPIHost:KBAPIKeybaseIOHost crypto:nil];
+  [client searchUsersWithQuery:@"gabriel" success:^(NSArray *searchResults) {
+
+    [expectation fulfill];
+
   } failure:^(NSError *error) {
     XCTFail(@"%@", error);
   }];

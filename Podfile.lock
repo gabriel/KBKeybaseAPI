@@ -1,36 +1,36 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - GHKit (2.0.0)
-  - GHODictionary (1.0.8)
+  - GHODictionary (1.0.9)
   - libsodium (1.0.3)
-  - Mantle (2.0.3):
-    - Mantle/extobjc (= 2.0.3)
-  - Mantle/extobjc (2.0.3)
-  - MPMessagePack (1.1.23):
+  - Mantle (2.0.5):
+    - Mantle/extobjc (= 2.0.5)
+  - Mantle/extobjc (2.0.5)
+  - MPMessagePack (1.2.2):
     - GHODictionary
   - NAChloride (2.0.11):
     - libsodium
-  - NACrypto (1.0.2)
+  - NACrypto (1.0.6)
   - ObjectiveSugar (1.1.0)
   - TSTripleSec (1.0.10):
     - GHODictionary
@@ -42,19 +42,20 @@ DEPENDENCIES:
   - AFNetworking
   - GHKit
   - Mantle
+  - NACrypto
   - ObjectiveSugar
   - TSTripleSec
 
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   GHKit: 29e5361c9d8a33343ae5ed4698057d1533ee590b
-  GHODictionary: 4990d3fa008a11257ba54f52a3e95f90dd47ac1b
+  GHODictionary: 1f7873492445e0f33ac19575a358c3c91926b564
   libsodium: be547e31dc75725629acc5717dc0a40fc05ef243
-  Mantle: 8d6b14979a082a9ed4994463eb7a4ff576c94632
-  MPMessagePack: a6f9b328cf057350589dbc095e6bb0536609ecae
+  Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
+  MPMessagePack: d319b1defc053dc52432dfa0672b0c6325c48c56
   NAChloride: 0526f4f53ee40bd19fbc301ae2f927a7b4a459ef
-  NACrypto: 8542a15fa41ae7110731b2aea35ef5edf94574f2
+  NACrypto: ce3900f1775f1b0cc27ce7c4953b94c598a74149
   ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
   TSTripleSec: a3c109fa7f7a59e3c73d552f0ea5ad62ddcca384
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

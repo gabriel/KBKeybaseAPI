@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A12C0496EA178494DFE4A77E6382F6449FC30B73",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A12C0496EA178494DFE4A77E6382F6449FC30B73" : 0,
+    "E765CDC5501EC6D713B5544166518DACE37298B1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ABF1FB34-FD7F-48EA-9201-8B1C157C871F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A12C0496EA178494DFE4A77E6382F6449FC30B73" : "KBKeybaseAPI\/",
+    "E765CDC5501EC6D713B5544166518DACE37298B1" : "NACrypto\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "KBKeybaseAPI",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "KBKeybaseAPI.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gabriel\/KBKeybaseAPI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A12C0496EA178494DFE4A77E6382F6449FC30B73"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gabriel\/NACrypto.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E765CDC5501EC6D713B5544166518DACE37298B1"
+    }
+  ]
+}
